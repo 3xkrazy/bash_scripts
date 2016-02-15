@@ -1,0 +1,81 @@
+# 3DSCIA
+#!/bin/bash
+
+echo "[1]  Rename *.3ds to game.3ds"
+echo "[2]  Create nnchinfo.bin"
+echo "[3]  Extract the encrypted contents of game.3ds"
+echo "[4]  Merge *.Main.exefs_7x.xorpad for >= 7.X firmware games"
+echo "[5]  Decrypt game contents"
+echo "[6]  Extract the exefs to obtain the icon and banner"
+echo "[7]  Create the game.rsf"
+echo "[8]  Extract the .cfa file for manual/download play"
+echo "[9]  Create the .cxi file"
+echo "[10] Inject original exheader"
+echo "[11] Finalize the game.cia" 
+echo -n "Select your choice: "
+read CHOICE
+
+case $CHOICE in
+	1)	echo "Renaming *.3ds to game.3ds..."
+		mv *.3ds game.3ds
+		echo "Done!"
+		exit 0
+		;;
+	2)	echo "Creating ncchinfo.bin..."
+		python2 tools/ncchinfo_gen.py game.3ds && mv tools/ncchinfo.bin .
+		echo "Copy tools/slot0x25KeyX.bin, tools/brahma, and ncchinfo.bin to the root of your SD card. Use ninjhax to launch Brahma and choose the NCCH padgen option. Copy all *.xorpad files to the xorpads folder." 
+		mkdir xorpads
+		exit 0
+		;;
+	3)	echo "Extract the encrypted contents of game.3ds..."
+		tools/ctrtool -p --exheader=exheader.bin --romfs=romfs.bin --exefs=exefs.bin game.3ds
+		echo "Done!"
+		exit 0
+		;;
+	4)	echo "Merging *.Main.exefs_7x.xorpads..."
+		python2 tools/MEX.py exefs.bin xorpads/*.Main.exefs_norm.xorpad xorpads/*.Main.exefs_7x.xorpad xorpads/Main.exefs_norm.xorpad && rm xorpads/*.Main.exefs*.xorpad
+		exit 0
+		;;
+	5)	echo "Decrypting game contents..."
+		array=(exheader exefs romfs); for item in ${array[@]}; do tools/padxorer $item.bin xorpads/*Main.$item*.xorpad; done
+		rm *.bin
+		rename .bin.out .bin *.out
+		echo "Done!"
+		exit 0
+		;;
+	6)	echo "Extracting exefs to obtain the icon and banner..."
+		tools/ctrtool --exefsdir=exefs --decompresscode -t exefs exefs.bin
+		echo "Done!"
+		exit 0
+		;;
+	7)	echo "Creating the game.rsf..."
+		cp tools/dummy.rsf game.rsf
+		python2 tools/rsfgen.py --rsf game.rsf --rom game.3ds --exheader exheader.bin --regionfree exefs/icon.bin
+		echo "Done!"
+		exit 0
+		;;
+	8)	echo "Extracting the .cfa for manual/download play..."
+		tools/rom_tool --extract=. game.3ds
+		rm -f *APPDATA.cxi *UPDATEDATA.cfa
+		echo "Done!"
+		exit 0
+		;;
+	9)	echo "Creating the .cxi file..."
+		tools/makerom -f cxi -o game.cxi -target t -rsf game.rsf -icon exefs/icon.bin -banner exefs/banner.bin -exefslogo -code exefs/code.bin -exheader exheader.bin -romfs romfs.bin
+		echo "Done!"
+		exit 0
+		;;
+	10)	echo "Injecting the original exheader..."
+		python2 tools/ExInjector.py -rom game.cxi -exheader exheader.bin -sd
+		echo "Done!"
+		exit 0
+		;;
+	11)	echo "Finalizing the game.cia..."
+		tools/makerom -f cia -o game.cia -content game.cxi:0:0 -content $(echo *MANUAL.cfa):1:1 -content $(echo *DLP.cfa):2:2
+		echo "Done!"
+		exit 0
+		;;
+	*)	echo "Invalid choice!"
+		exit 1
+		;;
+esac
