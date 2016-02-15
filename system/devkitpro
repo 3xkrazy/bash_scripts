@@ -1,0 +1,6 @@
+# DevkitPro
+export DEVKITPRO=~/.bin/devkitPro
+export DEVKITARM=$DEVKITPRO/devkitARM
+export CTRULIB=$DEVKITPRO/libctru
+export AEMSTRO=$DEVKITPRO/aemstro
+export PATH=$PATH:$DEVKITARM/bin:~/.bin
