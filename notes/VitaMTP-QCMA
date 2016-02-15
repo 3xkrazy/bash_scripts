@@ -1,0 +1,21 @@
+# VitaMTP
+export PKG_CONFIG_PATH=/home/hle/.programs/vitamtp/lib/pkgconfig
+export LD_LIBRARY_PATH=/home/hle/.programs/vitamtp/lib
+
+# VitaMTP and Qcma
+
+git clone --recursive https://github.com/codestation/VitaMTP.git
+mkdir ~/.programs/vitamtp
+cd VitaMTP
+./autogen.sh
+./configure --prefix=/home/hle/.programs/vitamtp
+make
+make install
+
+git clone --recursive https://github.com/codestation/qcma.git
+mkdir ~/.programs/qcma
+cd qcma
+lrelease qcma.pro
+qmake PREFIX=/home/hle/.programs/qcma
+make
+make install
