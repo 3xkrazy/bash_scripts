@@ -1,0 +1,16 @@
+# PMOVE
+#!/bin/bash
+
+echo Moving files...
+
+mkdir -vp ~/Videos/P;
+mv -v ~/Downloads/*.avi ~/Videos/P/;
+mv -v ~/Downloads/*.AVI ~/Videos/P/;
+mv -v ~/Downloads/*.mp4 ~/Videos/P/;
+mv -v ~/Downloads/*.MP4 ~/Videos/P/;
+mv -v ~/Downloads/*.flv ~/Videos/P/;
+mv -v ~/Downloads/*.FLV ~/Videos/P/;
+mv -v ~/Downloads/*.wmv ~/Videos/P/;
+mv -v ~/Downloads/*.WMV ~/Videos/P/;
+
+echo Done!
