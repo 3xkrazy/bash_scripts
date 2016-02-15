@@ -1,0 +1,20 @@
+# Setting up wireless
+
+nano -w ~/ddwrt.conf
+
+ctrl_interface=/var/run/wpa_supplicant
+ctrl_interface_group=wheel
+update_config=1
+ap_scan=1
+network={
+ssid="ddwrt"
+scan_ssid=1
+psk=""
+proto=RSN
+key_mgmt=WPA-PSK
+pairwise=CCMP
+group=CCMP
+}
+
+/usr/sbin/wpa_supplicant -D wext -i wlp3s0 -c ~/ddwrt.conf &
+/sbin/dhcpcd wlp3s0
