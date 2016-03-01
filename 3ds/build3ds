@@ -1,0 +1,173 @@
+#!/bin/bash
+
+# CakesFW NATIVE_FIRM urls
+n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001B
+n3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk
+o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000049
+o3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/cetk
+
+dir_build=~/src/build
+dir_out=~/src/out
+dir_3ds=~/src/out/3ds
+mkdir -vp $dir_build
+mkdir -vp $dir_out
+mkdir -vp $dir_3ds
+
+# Fetch the homebrew from github
+echo "Fetching homebrew...";
+cd $dir_build;
+git clone --recursive https://github.com/delebile/Brahma2.git
+git clone --recursive https://github.com/d0k3/uncart.git
+git clone --recursive https://github.com/d0k3/EmuNAND9.git
+git clone --recursive https://github.com/d0k3/Decrypt9WIP.git
+git clone --recursive https://github.com/d0k3/MiniPasta.git
+git clone --recursive https://github.com/mid-kid/CakesForeveryWan.git
+git clone --recursive https://github.com/Reisyukaku/ReiNand.git
+git clone --recursive https://github.com/delebile/arm9loaderhax.git
+
+# Patch and build the homebrew
+
+# Brahma2
+cd $dir_build/Brahma2;
+echo "Building Brahma2...";
+sleep 5s;
+make clean;
+cd $dir_build/Brahma2/include;
+sed -i -e 's|/brahma/|/3ds/Brahma2/payloads/|g' $dir_build/Brahma2/include/menus.h;
+cd $dir_build/Brahma2;
+make;
+mkdir -vp $dir_build/Brahma2/Brahma2/payloads;
+mv -v $dir_build/Brahma2/Brahma2.3dsx $dir_build/Brahma2/Brahma2/;
+mv -v $dir_build/Brahma2/Brahma2.smdh $dir_build/Brahma2/Brahma2/;
+mv -v $dir_build/Brahma2/Brahma2 $dir_3ds/;
+echo "Done!";
+
+# uncart
+cd $dir_build/uncart;
+echo "Building Uncart...";
+sleep 5s;
+make clean;
+make;
+mv -v $dir_build/uncart/uncart.bin $dir_3ds/Brahma2/payloads/Uncart.bin;
+echo "Done!";
+
+# EmuNAND9
+cd $dir_build/EmuNAND9;
+echo "Building EmuNAND9...";
+sleep 5s;
+make clean;
+make;
+mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_3ds/Brahma2/payloads/EmuNAND9.bin;
+echo "Done!";
+
+# Decrypt9WIP
+cd $dir_build/Decrypt9WIP;
+echo "Building Decrypt9WIP...";
+sleep 5s;
+make clean;
+make;
+mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_3ds/Brahma2/payloads/Decrypt9WIP.bin;
+echo "Done!";
+
+# MiniPasta
+cd $dir_build/MiniPasta;
+echo "Building MiniPasta...";
+sleep 5s;
+make clean;
+make;
+mkdir $dir_build/MiniPasta/MiniPasta;
+mv -v $dir_build/MiniPasta/MiniPasta.3dsx $dir_build/MiniPasta/MiniPasta/;
+mv -v $dir_build/MiniPasta/MiniPasta.smdh $dir_build/MiniPasta/MiniPasta/;
+mv -v $dir_build/MiniPasta/MiniPasta $dir_3ds/;
+echo "Done!";
+
+# CakesFW
+cd $dir_build/CakesForeveryWan;
+echo "Building CakesForeveryWan...";
+sleep 5s;
+make clean;
+cd $dir_build/CakesForeveryWan/source;
+sed -i -e 's|"/cakes"|"/3ds/Cakes/cakes"|g' $dir_build/CakesForeveryWan/source/paths.h;
+sed -i -e 's|#define PATH_SLOT0X25KEYX "/slot0x25keyX.bin"|#define PATH_SLOT0X25KEYX PATH_CAKES "/slot0x25keyX.bin"|g' $dir_build/CakesForeveryWan/source/paths.h;
+sed -i -e 's|#define PATH_SLOT0X11KEY96 "/slot0x11key96.bin"|#define PATH_SLOT0X11KEY96 PATH_CAKES "/slot0x11key96.bin"|g' $dir_build/CakesForeveryWan/source/paths.h;
+cd $dir_build/CakesForeveryWan/CakeBrah/;
+sed -i -e 's|filepath ?=|filepath ?= 3ds/Cakes/cakes/|g' $dir_build/CakesForeveryWan/CakeBrah/Makefile;
+cd $dir_build/CakesForeveryWan/CakeHax/;
+sed -i -e 's|filepath ?=|filepath ?= 3ds/Cakes/cakes/|g' $dir_build/CakesForeveryWan/CakeHax/Makefile;
+cd $dir_build/CakesForeveryWan/;
+make;
+mv -v $dir_build/CakesForeveryWan/out/Cakes.dat $dir_build/CakesForeveryWan/out/cakes/;
+cp -v $dir_build/CakesForeveryWan/build/main.bin $dir_build/CakesForeveryWan/out/cakes/arm9loaderhax.bin;
+mv -v $dir_build/CakesForeveryWan/out/cakes $dir_build/CakesForeveryWan/out/3ds/Cakes/;
+cp -v ~/src/slot* $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes/;
+cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-n3DS;
+cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-o3DS;
+cd $dir_3ds/Cakes-n3DS/cakes;
+wget $n3ds_cetk;
+wget $n3ds_firm;
+mv -v $dir_3ds/Cakes-n3DS/cakes/0000001B $dir_3ds/Cakes-n3DS/cakes/firmware.bin
+cd $dir_3ds/Cakes-o3DS/cakes;
+wget $o3ds_cetk;
+wget $o3ds_firm;
+mv -v $dir_3ds/Cakes-o3DS/cakes/00000049 $dir_3ds/Cakes-o3DS/cakes/firmware.bin
+echo "Done!"
+
+# ReiNand
+cd $dir_build/ReiNand;
+echo "Building ReiNand..."
+sleep 5s;
+make clean;
+cd $dir_build/ReiNand/source;
+sed -i -e 's|"/rei/splash.bin"|"/3ds/ReiNand/rei/splash.bin"|g' $dir_build/ReiNand/source/draw.c;
+sed -i -e 's|"/rei/firmware.bin"|"/3ds/ReiNand/rei/firmware.bin"|g' $dir_build/ReiNand/source/firm.c;
+sed -i -e 's|"/rei/emunand/emunand.bin"|"/3ds/ReiNand/rei/emunand/emunand.bin"|g' $dir_build/ReiNand/source/firm.c;
+sed -i -e 's|"/rei/thread/arm9.bin"|"/3ds/ReiNand/rei/thread/arm9.bin"|g' $dir_build/ReiNand/source/firm.c;
+cd $dir_build/ReiNand/CakeBrah;
+sed -i -e 's|filepath ?=|filepath ?= 3ds/ReiNand/rei/|g' $dir_build/CakeBrah/Makefile;
+cd $dir_build/ReiNand/CakeHax;
+sed -i -e 's|filepath ?=|filepath ?= 3ds/ReiNand/rei/|g' $dir_build/CakeHax/Makefile;
+cd $dir_build/ReiNand/;
+make;
+make a9lh;
+mv -v $dir_build/ReiNand/out/ReiNand.dat $dir_build/ReiNand/out/rei/;
+mv -v $dir_build/ReiNand/out/arm9loaderhax.bin $dir_build/ReiNand/out/rei/;
+mv -v $dir_build/ReiNand/out/rei $dir_build/ReiNand/out/3ds/ReiNand/;
+mv -v $dir_build/ReiNand/out/3ds/ReiNand $dir_3ds/;
+echo "Done!"
+
+# Arm9loaderhax n3DS
+echo "Building Arm9loaderhax for n3DS..."
+sleep 5s;
+cd $dir_build/arm9loaderhax;
+make clean;
+cd $dir_build/arm9loaderhax/data_input;
+cp -v ~/src/new3ds10.firm $dir_build/arm9loaderhax/data_input;
+cp -v ~/src/new3ds90.firm $dir_build/arm9loaderhax/data_input;
+cp -v ~/src/secret_sector.bin $dir_build/arm9loaderhax/data_input;
+cp -v ~/src/otp.bin-n3DS $dir_build/arm9loaderhax/data_input/otp.bin;
+cd $dir_build/arm9loaderhax/;
+make;
+mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-n3DS;
+make clean;
+
+# Arm9loaderhax o3DS
+echo "Building Arm9loaderhax for o3DS..."
+sleep 5s;
+cd $dir_build/arm9loaderhax;
+cd $dir_build/arm9loaderhax/data_input;
+rm $dir_build/arm9loaderhax/data_input/*;
+make clean;
+cp -v ~/src/new3ds10.firm $dir_build/arm9loaderhax/data_input;
+cp -v ~/src/new3ds90.firm $dir_build/arm9loaderhax/data_input;
+cp -v ~/src/secret_sector.bin $dir_build/arm9loaderhax/data_input;
+cp -v ~/src/otp.bin-o3DS $dir_build/arm9loaderhax/data_input/otp.bin;
+cd $dir_build/arm9loaderhax/;
+make;
+mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3DS;
+
+# Clean up
+cd $dir_out;
+mv -v 3ds 3ds-$(date +%m-%d-%Y);
+rm -rf $dir_build;
+cd ~/src;
+exit 0;
