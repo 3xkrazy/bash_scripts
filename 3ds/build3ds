@@ -201,6 +201,9 @@ sleep 5s;
 cd $dir_build;
 cp -v $dep/*.cia $dir_cia/apps/;
 
+# Copy boot.3dsx
+cp -v $dep/boot.3dsx $dir_out;
+
 # Clean up
 cd ~/src;
 mv -v $dir_out sdmc_root-$(date +%m-%d-%Y);
