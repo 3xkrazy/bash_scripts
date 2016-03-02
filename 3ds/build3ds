@@ -173,7 +173,7 @@ rm $dir_build/arm9loaderhax/data_input/*;
 make clean;
 cp -v $dep/new3ds10.firm $dir_build/arm9loaderhax/data_input;
 cp -v $dep/new3ds90.firm $dir_build/arm9loaderhax/data_input;
-cp -v $dep/files/secret_sector.bin $dir_build/arm9loaderhax/data_input;
+cp -v $dep/secret_sector.bin $dir_build/arm9loaderhax/data_input;
 cp -v $dep/otp.bin-o3DS $dir_build/arm9loaderhax/data_input/otp.bin;
 cd $dir_build/arm9loaderhax/;
 make;
