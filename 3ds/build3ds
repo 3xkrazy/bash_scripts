@@ -11,10 +11,13 @@ dep=~/3DS/files
 
 # BootNTR url
 ntr=https://github.com/44670/BootNTR/releases/download/3.2/NTR.3.2.zip
+
+# Directories
 dir_build=~/src/build
 dir_out=~/src/out
 dir_3ds=~/src/out/3ds
 dir_cia=~/src/out/cia
+dir_a9lh=~/src/out/a9lh_payloads
 
 # Make directories
 mkdir -vp $dir_build
@@ -23,6 +26,7 @@ mkdir -vp $dir_3ds
 mkdir -vp $dir_cia/apps
 mkdir -vp $dir_cia/games
 mkdir -vp $dir_cia/updates
+mkdir -vp $dir_a9lh
 
 # Fetch the homebrew from github
 echo "Fetching homebrew...";
@@ -36,6 +40,7 @@ git clone --recursive https://github.com/mid-kid/CakesForeveryWan.git
 git clone --recursive https://github.com/Reisyukaku/ReiNand.git
 git clone --recursive https://github.com/delebile/arm9loaderhax.git
 git clone --recursive https://github.com/44670/BootNTR.git
+git clone --recursive https://github.com/Cpasjuste/CtrBootManager.git
 
 # Patch and build the homebrew
 
@@ -178,8 +183,27 @@ cp -v $dep/otp.bin-o3DS $dir_build/arm9loaderhax/data_input/otp.bin;
 cd $dir_build/arm9loaderhax/;
 make;
 mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3DS;
+echo "Done!"
 
-# Download and extract BootNTR
+# Build CtrBootManager for a9lh
+#echo "Building CtrBootManager for a9lh"
+#sleep 5s;
+#cd $dir_build/CtrBootManager/source;
+#sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config.h
+#sed -i -e 's|"/a9lh.cfg"|"/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config_new.c
+#cd $dir_build/CtrBootManager;
+#mkdir -v build;
+#cd build;
+#cmake ../;
+#cp -v arm9loaderhax.bin $dir_out;
+#cp -v $dep/a9lh.cfg $dir_out/a9lh_payloads/;
+# Copy a9lh binaries to "/a9lh_payloads/"
+#cp -v $dep/;
+#cp -v $dep/;
+#cp -v $dep/;
+#echo "Done!"
+
+# Build BootNTR and extract ntr.bin
 echo "Building BootNTR..."
 sleep 5s;
 cd $dir_build/BootNTR;
@@ -200,9 +224,12 @@ echo "Copying devtools..."
 sleep 5s;
 cd $dir_build;
 cp -v $dep/*.cia $dir_cia/apps/;
+echo "Done!"
 
 # Copy boot.3dsx
+echo "Copying boot.3dsx";
 cp -v $dep/boot.3dsx $dir_out;
+echo "Done!"
 
 # Clean up
 cd ~/src;
