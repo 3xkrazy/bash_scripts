@@ -117,12 +117,12 @@ cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-o3DS;
 cd $dir_3ds/Cakes-n3DS/cakes;
 wget $n3ds_cetk;
 wget $n3ds_firm;
-cp -v $dep/firmkey.bin-n3ds $dir_3ds/Cakes-n3DS/firmkey.bin;
+cp -v $dep/firmkey.bin-n3ds $dir_3ds/Cakes-n3DS/cakes/firmkey.bin;
 mv -v $dir_3ds/Cakes-n3DS/cakes/000000* $dir_3ds/Cakes-n3DS/cakes/firmware.bin
 cd $dir_3ds/Cakes-o3DS/cakes;
 wget $o3ds_cetk;
 wget $o3ds_firm;
-cp -v $dep/firmkey.bin-o3ds $dir_3ds/Cakes-o3DS/firmkey.bin;
+cp -v $dep/firmkey.bin-o3ds $dir_3ds/Cakes-o3DS/cakes/firmkey.bin;
 mv -v $dir_3ds/Cakes-o3DS/cakes/000000* $dir_3ds/Cakes-o3DS/cakes/firmware.bin
 echo "Done!"
 
