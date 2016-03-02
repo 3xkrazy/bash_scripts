@@ -6,6 +6,9 @@ n3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/c
 o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000049
 o3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/cetk
 
+# Dependencies directory
+dep=~/3DS/files
+
 # BootNTR url
 ntr=https://github.com/44670/BootNTR/releases/download/3.2/NTR.3.2.zip
 dir_build=~/src/build
@@ -108,17 +111,19 @@ make;
 mv -v $dir_build/CakesForeveryWan/out/Cakes.dat $dir_build/CakesForeveryWan/out/cakes/;
 cp -v $dir_build/CakesForeveryWan/build/main.bin $dir_build/CakesForeveryWan/out/cakes/arm9loaderhax.bin;
 mv -v $dir_build/CakesForeveryWan/out/cakes $dir_build/CakesForeveryWan/out/3ds/Cakes/;
-cp -v ~/3DS/files/slot* $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes/;
+cp -v $dep/slot* $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes/;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-n3DS;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-o3DS;
 cd $dir_3ds/Cakes-n3DS/cakes;
 wget $n3ds_cetk;
 wget $n3ds_firm;
-mv -v $dir_3ds/Cakes-n3DS/cakes/0000001B $dir_3ds/Cakes-n3DS/cakes/firmware.bin
+cp -v $dep/firmkey.bin-n3ds $dir_3ds/Cakes-n3DS/firmkey.bin;
+mv -v $dir_3ds/Cakes-n3DS/cakes/000000* $dir_3ds/Cakes-n3DS/cakes/firmware.bin
 cd $dir_3ds/Cakes-o3DS/cakes;
 wget $o3ds_cetk;
 wget $o3ds_firm;
-mv -v $dir_3ds/Cakes-o3DS/cakes/00000049 $dir_3ds/Cakes-o3DS/cakes/firmware.bin
+cp -v $dep/firmkey.bin-o3ds $dir_3ds/Cakes-o3DS/firmkey.bin;
+mv -v $dir_3ds/Cakes-o3DS/cakes/000000* $dir_3ds/Cakes-o3DS/cakes/firmware.bin
 echo "Done!"
 
 # ReiNand
@@ -150,10 +155,10 @@ sleep 5s;
 cd $dir_build/arm9loaderhax;
 make clean;
 cd $dir_build/arm9loaderhax/data_input;
-cp -v ~/3DS/files/new3ds10.firm $dir_build/arm9loaderhax/data_input;
-cp -v ~/3DS/files/new3ds90.firm $dir_build/arm9loaderhax/data_input;
-cp -v ~/3DS/files/secret_sector.bin $dir_build/arm9loaderhax/data_input;
-cp -v ~/3DS/files/otp.bin-n3DS $dir_build/arm9loaderhax/data_input/otp.bin;
+cp -v $dep/new3ds10.firm $dir_build/arm9loaderhax/data_input;
+cp -v $dep/new3ds90.firm $dir_build/arm9loaderhax/data_input;
+cp -v $dep/secret_sector.bin $dir_build/arm9loaderhax/data_input;
+cp -v $dep/otp.bin-n3DS $dir_build/arm9loaderhax/data_input/otp.bin;
 cd $dir_build/arm9loaderhax/;
 make;
 mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-n3DS;
@@ -166,10 +171,10 @@ cd $dir_build/arm9loaderhax;
 cd $dir_build/arm9loaderhax/data_input;
 rm $dir_build/arm9loaderhax/data_input/*;
 make clean;
-cp -v ~/3DS/files/new3ds10.firm $dir_build/arm9loaderhax/data_input;
-cp -v ~/3DS/files/new3ds90.firm $dir_build/arm9loaderhax/data_input;
-cp -v ~/3DS/files/secret_sector.bin $dir_build/arm9loaderhax/data_input;
-cp -v ~/3DS/files/otp.bin-o3DS $dir_build/arm9loaderhax/data_input/otp.bin;
+cp -v $dep/new3ds10.firm $dir_build/arm9loaderhax/data_input;
+cp -v $dep/new3ds90.firm $dir_build/arm9loaderhax/data_input;
+cp -v $dep/files/secret_sector.bin $dir_build/arm9loaderhax/data_input;
+cp -v $dep/otp.bin-o3DS $dir_build/arm9loaderhax/data_input/otp.bin;
 cd $dir_build/arm9loaderhax/;
 make;
 mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3DS;
@@ -179,24 +184,25 @@ echo "Building BootNTR..."
 sleep 5s;
 cd $dir_build/BootNTR;
 make clean;
+cp -v $dep/makerom $dir_build/BootNTR/lib/ctrcommon/tools/makerom-linux;
 chmod u+x $dir_build/BootNTR/lib/ctrcommon/tools/*linux;
-cp -v ~/.bin/makerom $dir_build/BootNTR/lib/ctrcommon/tools/makerom-linux;
 make;
 cp -v $dir_build/BootNTR/output/BootNTR.cia $dir_cia/apps/;
 wget $ntr
 unzip *.zip
 cp -v $dir_build/BootNTR/ntr.bin $dir_out/;
+cp -rRv $dep/filer $dir_out;
+cp -rRv $dep/plugin $dir_out;
 echo "Done!"
 
 # Copy devtools
 echo "Copying devtools..."
 sleep 5s;
 cd $dir_build;
-cp -v ~/3DS/files/*.cia $dir_cia/apps/;
+cp -v $dep/*.cia $dir_cia/apps/;
 
 # Clean up
 cd ~/src;
 mv -v $dir_out sdmc_root-$(date +%m-%d-%Y);
 rm -rf $dir_build;
-cd ~/src;
 exit 0;
