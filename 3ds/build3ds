@@ -117,18 +117,18 @@ mv -v $dir_build/CakesForeveryWan/out/Cakes.dat $dir_build/CakesForeveryWan/out/
 cp -v $dir_build/CakesForeveryWan/build/main.bin $dir_build/CakesForeveryWan/out/cakes/arm9loaderhax.bin;
 mv -v $dir_build/CakesForeveryWan/out/cakes $dir_build/CakesForeveryWan/out/3ds/Cakes/;
 cp -v $dir_3dsfiles/slot* $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes/;
-cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-n3DS;
-cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-o3DS;
-cd $dir_3ds/Cakes-n3DS/cakes;
+cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-n3ds;
+cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-o3ds;
+cd $dir_3ds/Cakes-n3ds/cakes;
 wget $n3ds_cetk;
 wget $n3ds_firm;
-cp -v $dir_3dsfiles/firmkey.bin-n3ds $dir_3ds/Cakes-n3DS/cakes/firmkey.bin;
-mv -v $dir_3ds/Cakes-n3DS/cakes/000000* $dir_3ds/Cakes-n3DS/cakes/firmware.bin
-cd $dir_3ds/Cakes-o3DS/cakes;
+cp -v $dir_3dsfiles/firmkey.bin-n3ds $dir_3ds/Cakes-n3ds/cakes/firmkey.bin;
+mv -v $dir_3ds/Cakes-n3ds/cakes/000000* $dir_3ds/Cakes-n3ds/cakes/firmware.bin
+cd $dir_3ds/Cakes-o3ds/cakes;
 wget $o3ds_cetk;
 wget $o3ds_firm;
-cp -v $dir_3dsfiles/firmkey.bin-o3ds $dir_3ds/Cakes-o3DS/cakes/firmkey.bin;
-mv -v $dir_3ds/Cakes-o3DS/cakes/000000* $dir_3ds/Cakes-o3DS/cakes/firmware.bin
+cp -v $dir_3dsfiles/firmkey.bin-o3ds $dir_3ds/Cakes-o3ds/cakes/firmkey.bin;
+mv -v $dir_3ds/Cakes-o3ds/cakes/000000* $dir_3ds/Cakes-o3ds/cakes/firmware.bin
 echo "Done!"
 
 # ReiNand
@@ -163,10 +163,10 @@ cd $dir_build/arm9loaderhax/data_input;
 cp -v $dir_3dsfiles/new3ds10.firm $dir_build/arm9loaderhax/data_input;
 cp -v $dir_3dsfiles/new3ds90.firm $dir_build/arm9loaderhax/data_input;
 cp -v $dir_3dsfiles/secret_sector.bin $dir_build/arm9loaderhax/data_input;
-cp -v $dir_3dsfiles/otp.bin-n3DS $dir_build/arm9loaderhax/data_input/otp.bin;
+cp -v $dir_3dsfiles/otp.bin-n3ds $dir_build/arm9loaderhax/data_input/otp.bin;
 cd $dir_build/arm9loaderhax/;
 make;
-mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-n3DS;
+mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-n3ds;
 make clean;
 
 # Arm9loaderhax o3DS
@@ -179,10 +179,10 @@ make clean;
 cp -v $dir_3dsfiles/new3ds10.firm $dir_build/arm9loaderhax/data_input;
 cp -v $dir_3dsfiles/new3ds90.firm $dir_build/arm9loaderhax/data_input;
 cp -v $dir_3dsfiles/secret_sector.bin $dir_build/arm9loaderhax/data_input;
-cp -v $dir_3dsfiles/otp.bin-o3DS $dir_build/arm9loaderhax/data_input/otp.bin;
+cp -v $dir_3dsfiles/otp.bin-o3ds $dir_build/arm9loaderhax/data_input/otp.bin;
 cd $dir_build/arm9loaderhax/;
 make;
-mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3DS;
+mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3ds;
 echo "Done!"
 
 # Build CtrBootManager for a9lh
