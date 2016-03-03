@@ -186,22 +186,68 @@ mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3DS;
 echo "Done!"
 
 # Build CtrBootManager for a9lh
-#echo "Building CtrBootManager for a9lh"
-#sleep 5s;
-#cd $dir_build/CtrBootManager/source;
-#sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config.h
-#sed -i -e 's|"/a9lh.cfg"|"/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config_new.c
-#cd $dir_build/CtrBootManager;
-#mkdir -v build;
-#cd build;
-#cmake ../;
-#cp -v arm9loaderhax.bin $dir_out;
-#cp -v $dep/a9lh.cfg $dir_out/a9lh_payloads/;
-# Copy a9lh binaries to "/a9lh_payloads/"
-#cp -v $dep/;
-#cp -v $dep/;
-#cp -v $dep/;
+<<COMMENT1
+echo "Building CtrBootManager for a9lh"
+sleep 5s;
+cd $dir_build/CtrBootManager/source;
+sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config.h
+sed -i -e 's|"/a9lh.cfg"|"/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config_new.c
+cd $dir_build/CtrBootManager;
+mkdir -v build;
+cd build;
+cmake ../;
+cp -v arm9loaderhax.bin $dir_out;
+ Copy a9lh binaries to "/a9lh_payloads/"
+cp -v $dep/;
+cp -v $dep/;
+cp -v $dep/;
+echo "[general]
+timeout = 3
+recovery = 2
+default = 0
+
+[theme]
+bgTop1 = 4a0031
+bgTop2 = 6f0149
+bgBottom = 6f0149
+highlight = dcdcdc
+borders = ffffff
+font1 = ffffff
+font2 = 000000
+bgImgTop = /a9lh_payloads/bgTop.bin
+bgImgBot = /a9lh_payloads/bgBot.bin
+
+[entry]
+title = Cakes
+path =  /3ds/Cakes/cakes/arm9loaderhax.bin
+offset = 0
+key = -1
+
+[entry]
+title = ReiNand
+path =  /3ds/ReiNand/rei/arm9loaderhax.bin
+offset = 0
+key = -1
+
+[entry]
+title = Decrypt9WIP
+path =  /3ds/Brahma2/payloads/Decrypt9WIP.bin
+offset = 0x12000
+key = 3
+
+[entry]
+title = EmuNAND9
+path =  /3ds/Brahma2/payloads/EmuNAND.bin
+offset = 0x12000
+key = 3
+
+[entry]
+title = Uncart
+path =  /3ds/Brahma2/payloads/Uncart.bin
+offset = 0x12000
+key = 3" > $dir_a9lh/;
 #echo "Done!"
+COMMENT1
 
 # Build BootNTR and extract ntr.bin
 echo "Building BootNTR..."
