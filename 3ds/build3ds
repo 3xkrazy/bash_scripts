@@ -206,13 +206,13 @@ recovery = 2
 default = 0
 
 [theme]
-bgTop1 = 01506F
-bgTop2 = 01506F
-bgBottom = 01506F
-highlight = dcdcdc
-borders = ffffff
+bgTop1 = 000000
+bgTop2 = 000000
+bgBottom = 000000
+highlight = ffffff
+borders = 000000
 font1 = ffffff
-font2 = 000000
+font2 = 0000ff
 bgImgTop = /a9lh_payloads/bgTop.bin
 bgImgBot = /a9lh_payloads/bgBot.bin
 
@@ -230,19 +230,19 @@ key = -1
 
 [entry]
 title = Decrypt9
-path =  /a9lh_payloads/Decrypt9WIP.bin
+path =  /a9lh_payloads/Decrypt9.bin
 offset = 0x12000
 key = 3
 
 [entry]
 title = EmuNAND9
-path =  /a9lh_payloads/EmuNAND.bin
+path =  /a9lh_payloads/EmuNAND9-a9lh.bin
 offset = 0x12000
 key = 3
 
 [entry]
 title = Uncart
-path =  /a9lh_payloads/Uncart.bin
+path =  /a9lh_payloads/Uncart-a9lh.bin
 offset = 0x12000
 key = 3" > $dir_a9lh/a9lh.cfg
 
