@@ -196,6 +196,7 @@ sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/a9lh_payloads
 sed -i -e 's|"/a9lh.cfg"|"/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager-a9lh/source/config_new.c
 cd $dir_build/CtrBootManager-a9lh;
 mkdir build;
+cd build;
 cmake -DCMAKE_TOOLCHAIN_FILE=../DevkitArm3DS.cmake ../
 cmake --build . --target CtrBootManager_a9lh
 cp -v CtrBootManager9.bin $dir_out/arm9loaderhax.bin;
