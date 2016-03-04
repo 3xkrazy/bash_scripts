@@ -40,7 +40,7 @@ git clone --recursive https://github.com/mid-kid/CakesForeveryWan.git
 git clone --recursive https://github.com/Reisyukaku/ReiNand.git
 git clone --recursive https://github.com/delebile/arm9loaderhax.git
 git clone --recursive https://github.com/44670/BootNTR.git
-git clone --recursive https://github.com/Cpasjuste/CtrBootManager.git
+#git clone --recursive https://github.com/Cpasjuste/CtrBootManager.git
 
 # Patch and build the homebrew
 
@@ -186,21 +186,19 @@ mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3ds;
 echo "Done!"
 
 # Build CtrBootManager for a9lh
-<<COMMENT1
 echo "Building CtrBootManager for a9lh"
 sleep 5s;
-cd $dir_build/CtrBootManager/source;
-sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config.h
-sed -i -e 's|"/a9lh.cfg"|"/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config_new.c
-cd $dir_build/CtrBootManager;
-mkdir -v build;
-cd build;
-cmake ../;
-cp -v arm9loaderhax.bin $dir_out;
- Copy a9lh binaries to "/a9lh_payloads/"
-cp -v $dir_3dsfiles/;
-cp -v $dir_3dsfiles/;
-cp -v $dir_3dsfiles/;
+cd $dir_build;
+wget https://codeload.github.com/Cpasjuste/CtrBootManager/zip/a9lh
+unzip a9lh;
+cd $dir_build/CtrBootManager-a9lh/source;
+sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager-a9lh/source/config.h
+sed -i -e 's|"/a9lh.cfg"|"/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager-a9lh/source/config_new.c
+cd $dir_build/CtrBootManager-a9lh;
+mkdir build;
+cmake -DCMAKE_TOOLCHAIN_FILE=../DevkitArm3DS.cmake ../
+cmake --build . --target CtrBootManager_a9lh
+cp -v CtrBootManager9.bin $dir_out/arm9loaderhax.bin;
 echo "[general]
 timeout = 3
 recovery = 2
@@ -245,9 +243,13 @@ key = 3
 title = Uncart
 path =  /3ds/Brahma2/payloads/Uncart.bin
 offset = 0x12000
-key = 3" > $dir_a9lh/;
-#echo "Done!"
-COMMENT1
+key = 3" > $dir_a9lh/a9lh.cfg
+echo "Done!"
+
+#Copy a9lh binaries to "/a9lh_payloads/"
+#cp -v $dir_3dsfiles/;
+#cp -v $dir_3dsfiles/;
+#cp -v $dir_3dsfiles/;
 
 # Build BootNTR and extract ntr.bin
 echo "Building BootNTR..."
