@@ -1,13 +1,13 @@
 #!/bin/bash
 
+# Dependencies directory
+dir_3dsfiles=~/3DS/files
+
 # CakesFW NATIVE_FIRM urls
 n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001B
 n3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk
 o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000049
 o3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/cetk
-
-# Dependencies directory
-dir_3dsfiles=~/3DS/files
 
 # BootNTR url
 ntr=https://github.com/44670/BootNTR/releases/download/3.2/NTR.3.2.zip
@@ -201,14 +201,14 @@ cmake -DCMAKE_TOOLCHAIN_FILE=../DevkitArm3DS.cmake ../
 cmake --build . --target CtrBootManager_a9lh
 cp -v CtrBootManager9.bin $dir_out/arm9loaderhax.bin;
 echo "[general]
-timeout = 3
+timeout = 10
 recovery = 2
 default = 0
 
 [theme]
-bgTop1 = 4a0031
-bgTop2 = 6f0149
-bgBottom = 6f0149
+bgTop1 = 01506F
+bgTop2 = 01506F
+bgBottom = 01506F
 highlight = dcdcdc
 borders = ffffff
 font1 = ffffff
@@ -229,28 +229,27 @@ offset = 0
 key = -1
 
 [entry]
-title = Decrypt9WIP
-path =  /3ds/Brahma2/payloads/Decrypt9WIP.bin
+title = Decrypt9
+path =  /a9lh_payloads/Decrypt9WIP.bin
 offset = 0x12000
 key = 3
 
 [entry]
 title = EmuNAND9
-path =  /3ds/Brahma2/payloads/EmuNAND.bin
+path =  /a9lh_payloads/EmuNAND.bin
 offset = 0x12000
 key = 3
 
 [entry]
 title = Uncart
-path =  /3ds/Brahma2/payloads/Uncart.bin
+path =  /a9lh_payloads/Uncart.bin
 offset = 0x12000
 key = 3" > $dir_a9lh/a9lh.cfg
-echo "Done!"
 
-#Copy a9lh binaries to "/a9lh_payloads/"
-#cp -v $dir_3dsfiles/;
-#cp -v $dir_3dsfiles/;
-#cp -v $dir_3dsfiles/;
+cp -v $dir_3dsfiles/Decrypt9.bin $dir_a9lh/;
+cp -v $dir_3dsfiles/EmuNAND9-a9lh.bin $dir_a9lh/;
+cp -v $dir_3dsfiles/Uncart-a9lh.bin $dir_a9lh/;
+echo "Done!"
 
 # Build BootNTR and extract ntr.bin
 echo "Building BootNTR..."
