@@ -17,7 +17,7 @@ dir_build=~/src/build
 dir_out=~/src/out
 dir_3ds=~/src/out/3ds
 dir_cia=~/src/out/cia
-dir_local=~/src/out/.local
+dir_bin=~/src/out/.bin
 
 # Make directories
 mkdir -vp $dir_build
@@ -26,7 +26,7 @@ mkdir -vp $dir_3ds
 mkdir -vp $dir_cia/apps
 mkdir -vp $dir_cia/games
 mkdir -vp $dir_cia/updates
-mkdir -vp $dir_local
+mkdir -vp $dir_bin
 
 # Fetch the homebrew from github
 echo "Fetching homebrew...";
@@ -37,7 +37,6 @@ git clone --recursive https://github.com/d0k3/EmuNAND9.git
 git clone --recursive https://github.com/d0k3/Decrypt9WIP.git
 git clone --recursive https://github.com/d0k3/MiniPasta.git
 git clone --recursive https://github.com/mid-kid/CakesForeveryWan.git
-git clone --recursive https://github.com/Reisyukaku/ReiNand.git
 git clone --recursive https://github.com/delebile/arm9loaderhax.git
 git clone --recursive https://github.com/44670/BootNTR.git
 git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
@@ -50,10 +49,9 @@ echo "Building Brahma2...";
 sleep 5s;
 make clean;
 cd $dir_build/Brahma2/include;
-sed -i -e 's|/brahma/|/3ds/Brahma2/payloads/|g' $dir_build/Brahma2/include/menus.h;
+sed -i -e 's|/brahma/|/.bin/|g' $dir_build/Brahma2/include/menus.h;
 cd $dir_build/Brahma2;
 make;
-mkdir -vp $dir_build/Brahma2/Brahma2/payloads;
 mv -v $dir_build/Brahma2/Brahma2.3dsx $dir_build/Brahma2/Brahma2/;
 mv -v $dir_build/Brahma2/Brahma2.smdh $dir_build/Brahma2/Brahma2/;
 mv -v $dir_build/Brahma2/Brahma2 $dir_3ds/;
@@ -65,7 +63,7 @@ echo "Building Uncart...";
 sleep 5s;
 make clean;
 make;
-mv -v $dir_build/uncart/uncart.bin $dir_3ds/Brahma2/payloads/Uncart.bin;
+mv -v $dir_build/uncart/uncart.bin $dir_bin/Uncart.bin;
 echo "Done!";
 
 # EmuNAND9
@@ -74,7 +72,7 @@ echo "Building EmuNAND9...";
 sleep 5s;
 make clean;
 make;
-mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_3ds/Brahma2/payloads/EmuNAND9.bin;
+mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_bin/EmuNAND9.bin;
 echo "Done!";
 
 # Decrypt9WIP
@@ -83,7 +81,7 @@ echo "Building Decrypt9WIP...";
 sleep 5s;
 make clean;
 make;
-mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_3ds/Brahma2/payloads/Decrypt9WIP.bin;
+mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/Decrypt9WIP.bin;
 echo "Done!";
 
 # MiniPasta
@@ -105,8 +103,9 @@ sleep 5s;
 make clean;
 cd $dir_build/CakesForeveryWan/source;
 sed -i -e 's|"/cakes"|"/3ds/Cakes/cakes"|g' paths.h;
-sed -i -e 's|#define PATH_SLOT0X25KEYX "/slot0x25keyX.bin"|#define PATH_SLOT0X25KEYX PATH_CAKES "/slot0x25keyX.bin"|g' paths.h;
-sed -i -e 's|#define PATH_SLOT0X11KEY96 "/slot0x11key96.bin"|#define PATH_SLOT0X11KEY96 PATH_CAKES "/slot0x11key96.bin"|g' paths.h;
+sed -i -e '7i#define PATH_BIN "/.bin"\' paths.h;
+sed -i -e 's|#define PATH_SLOT0X25KEYX "/slot0x25keyX.bin"|#define PATH_SLOT0X25KEYX PATH_BIN "/slot0x25keyX.bin"|g' paths.h;
+sed -i -e 's|#define PATH_SLOT0X11KEY96 "/slot0x11key96.bin"|#define PATH_SLOT0X11KEY96 PATH_BIN "/slot0x11key96.bin"|g' paths.h;
 cd $dir_build/CakesForeveryWan/CakeBrah/;
 sed -i -e 's|filepath ?=|filepath ?= 3ds/Cakes/cakes/|g' Makefile;
 cd $dir_build/CakesForeveryWan/CakeHax/;
@@ -129,30 +128,6 @@ wget $o3ds_cetk;
 wget $o3ds_firm;
 cp -v $dir_3dsfiles/firmkey.bin-o3ds $dir_3ds/Cakes-o3ds/cakes/firmkey.bin;
 mv -v $dir_3ds/Cakes-o3ds/cakes/000000* $dir_3ds/Cakes-o3ds/cakes/firmware.bin
-echo "Done!"
-
-# ReiNand
-cd $dir_build/ReiNand;
-echo "Building ReiNand..."
-sleep 5s;
-make clean;
-cd $dir_build/ReiNand/source;
-sed -i -e 's|"/rei/splash.bin"|"/3ds/ReiNand/rei/splash.bin"|g' draw.c;
-sed -i -e 's|loadSplash();||g' main.c;
-sed -i -e 's|"/rei/firmware.bin"|"/3ds/ReiNand/rei/firmware.bin"|g' firm.c;
-sed -i -e 's|"/rei/emunand/emunand.bin"|"/3ds/ReiNand/rei/emunand/emunand.bin"|g' firm.c;
-sed -i -e 's|"/rei/thread/arm9.bin"|"/3ds/ReiNand/rei/thread/arm9.bin"|g' firm.c;
-cd $dir_build/ReiNand/CakeBrah;
-sed -i -e 's|filepath ?=|filepath ?= 3ds/ReiNand/rei/|g' Makefile;
-cd $dir_build/ReiNand/CakeHax;
-sed -i -e 's|filepath ?=|filepath ?= 3ds/ReiNand/rei/|g' Makefile;
-cd $dir_build/ReiNand/;
-make;
-make a9lh;
-mv -v $dir_build/ReiNand/out/ReiNand.dat $dir_build/ReiNand/out/rei/;
-mv -v $dir_build/ReiNand/out/arm9loaderhax.bin $dir_build/ReiNand/out/rei/;
-mv -v $dir_build/ReiNand/out/rei $dir_build/ReiNand/out/3ds/ReiNand/;
-mv -v $dir_build/ReiNand/out/3ds/ReiNand $dir_3ds/;
 echo "Done!"
 
 # Arm9loaderhax n3DS
@@ -190,8 +165,8 @@ echo "Done!"
 echo "Building CtrBootManager for a9lh"
 sleep 5s;
 cd $dir_build/CtrBootManager/source;
-sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/.local/a9lh.cfg"|g' config.h
-sed -i -e 's|"/a9lh.cfg"|"/.local/a9lh.cfg"|g' config_new.c
+sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/.bin/a9lh.cfg"|g' config.h
+sed -i -e 's|"/a9lh.cfg"|"/.bin/a9lh.cfg"|g' config_new.c
 cd $dir_build/CtrBootManager;
 mkdir build;
 cd build;
@@ -214,8 +189,8 @@ highlight = 000000
 borders = 009900
 font1 = 009900
 font2 = ff0000
-bgImgTop = /.local/bgTop.bin
-bgImgBot = /.local/bgBot.bin
+bgImgTop = /.bin/bgTop.bin
+bgImgBot = /.bin/bgBot.bin
 
 [entry]
 title = Cakes
@@ -224,32 +199,27 @@ offset = 0
 key = -1
 
 [entry]
-title = ReiNand
-path =  /3ds/ReiNand/rei/arm9loaderhax.bin
-offset = 0
-key = -1
-
-[entry]
 title = Decrypt9
-path =  /.local/Decrypt9.bin
+path =  /.bin/Decrypt9.bin
 offset = 0
 key = 3
 
 [entry]
 title = EmuNAND9
-path =  /.local/EmuNAND9-a9lh.bin
+path =  /.bin/EmuNAND9-a9lh.bin
 offset = 0
 key = 3
 
 [entry]
 title = Uncart
-path =  /.local/Uncart-a9lh.bin
+path =  /.bin/Uncart-a9lh.bin
 offset = 0
-key = 3" > $dir_local/a9lh.cfg
+key = 3" > $dir_bin/a9lh.cfg
 
-cp -v $dir_3dsfiles/Decrypt9.bin $dir_local/;
-cp -v $dir_3dsfiles/EmuNAND9-a9lh.bin $dir_local/;
-cp -v $dir_3dsfiles/Uncart-a9lh.bin $dir_local/;
+cp -v $dir_3dsfiles/slot* $dir_bin/;
+cp -v $dir_3dsfiles/Decrypt9.bin $dir_bin/;
+cp -v $dir_3dsfiles/EmuNAND9-a9lh.bin $dir_bin/;
+cp -v $dir_3dsfiles/Uncart-a9lh.bin $dir_bin/;
 echo "Done!"
 
 # Build BootNTR and extract ntr.bin
