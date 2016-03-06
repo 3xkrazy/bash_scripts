@@ -104,13 +104,13 @@ echo "Building CakesForeveryWan...";
 sleep 5s;
 make clean;
 cd $dir_build/CakesForeveryWan/source;
-sed -i -e 's|"/cakes"|"/3ds/Cakes/cakes"|g' $dir_build/CakesForeveryWan/source/paths.h;
-sed -i -e 's|#define PATH_SLOT0X25KEYX "/slot0x25keyX.bin"|#define PATH_SLOT0X25KEYX PATH_CAKES "/slot0x25keyX.bin"|g' $dir_build/CakesForeveryWan/source/paths.h;
-sed -i -e 's|#define PATH_SLOT0X11KEY96 "/slot0x11key96.bin"|#define PATH_SLOT0X11KEY96 PATH_CAKES "/slot0x11key96.bin"|g' $dir_build/CakesForeveryWan/source/paths.h;
+sed -i -e 's|"/cakes"|"/3ds/Cakes/cakes"|g' paths.h;
+sed -i -e 's|#define PATH_SLOT0X25KEYX "/slot0x25keyX.bin"|#define PATH_SLOT0X25KEYX PATH_CAKES "/slot0x25keyX.bin"|g' paths.h;
+sed -i -e 's|#define PATH_SLOT0X11KEY96 "/slot0x11key96.bin"|#define PATH_SLOT0X11KEY96 PATH_CAKES "/slot0x11key96.bin"|g' paths.h;
 cd $dir_build/CakesForeveryWan/CakeBrah/;
-sed -i -e 's|filepath ?=|filepath ?= 3ds/Cakes/cakes/|g' $dir_build/CakesForeveryWan/CakeBrah/Makefile;
+sed -i -e 's|filepath ?=|filepath ?= 3ds/Cakes/cakes/|g' Makefile;
 cd $dir_build/CakesForeveryWan/CakeHax/;
-sed -i -e 's|filepath ?=|filepath ?= 3ds/Cakes/cakes/|g' $dir_build/CakesForeveryWan/CakeHax/Makefile;
+sed -i -e 's|filepath ?=|filepath ?= 3ds/Cakes/cakes/|g' Makefile;
 cd $dir_build/CakesForeveryWan/;
 make;
 mv -v $dir_build/CakesForeveryWan/out/Cakes.dat $dir_build/CakesForeveryWan/out/cakes/;
@@ -137,14 +137,14 @@ echo "Building ReiNand..."
 sleep 5s;
 make clean;
 cd $dir_build/ReiNand/source;
-sed -i -e 's|"/rei/splash.bin"|"/3ds/ReiNand/rei/splash.bin"|g' $dir_build/ReiNand/source/draw.c;
-sed -i -e 's|"/rei/firmware.bin"|"/3ds/ReiNand/rei/firmware.bin"|g' $dir_build/ReiNand/source/firm.c;
-sed -i -e 's|"/rei/emunand/emunand.bin"|"/3ds/ReiNand/rei/emunand/emunand.bin"|g' $dir_build/ReiNand/source/firm.c;
-sed -i -e 's|"/rei/thread/arm9.bin"|"/3ds/ReiNand/rei/thread/arm9.bin"|g' $dir_build/ReiNand/source/firm.c;
+sed -i -e 's|"/rei/splash.bin"|"/3ds/ReiNand/rei/splash.bin"|g' draw.c;
+sed -i -e 's|"/rei/firmware.bin"|"/3ds/ReiNand/rei/firmware.bin"|g' firm.c;
+sed -i -e 's|"/rei/emunand/emunand.bin"|"/3ds/ReiNand/rei/emunand/emunand.bin"|g' firm.c;
+sed -i -e 's|"/rei/thread/arm9.bin"|"/3ds/ReiNand/rei/thread/arm9.bin"|g' firm.c;
 cd $dir_build/ReiNand/CakeBrah;
-sed -i -e 's|filepath ?=|filepath ?= 3ds/ReiNand/rei/|g' $dir_build/CakeBrah/Makefile;
+sed -i -e 's|filepath ?=|filepath ?= 3ds/ReiNand/rei/|g' Makefile;
 cd $dir_build/ReiNand/CakeHax;
-sed -i -e 's|filepath ?=|filepath ?= 3ds/ReiNand/rei/|g' $dir_build/CakeHax/Makefile;
+sed -i -e 's|filepath ?=|filepath ?= 3ds/ReiNand/rei/|g' Makefile;
 cd $dir_build/ReiNand/;
 make;
 make a9lh;
@@ -189,14 +189,14 @@ echo "Done!"
 echo "Building CtrBootManager for a9lh"
 sleep 5s;
 cd $dir_build/CtrBootManager/source;
-sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/.local/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config.h
-sed -i -e 's|"/a9lh.cfg"|"/.local/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config_new.c
+sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/.local/a9lh.cfg"|g' config.h
+sed -i -e 's|"/a9lh.cfg"|"/.local/a9lh.cfg"|g' config_new.c
 cd $dir_build/CtrBootManager;
 mkdir build;
 cd build;
 cmake -DCMAKE_TOOLCHAIN_FILE=../DevkitArm3DS.cmake ../
 cd $dir_build/CtrBootManager/build/CMakeFiles/CtrBootManager_a9lh.dir;
-sed -i -e 's|--set-section-flags|~/.bin/devkitPro/devkitARM/bin/arm-none-eabi-objcopy --set-section-flags|g' $dir_build/CtrBootManager/build/CMakeFiles/CtrBootManager_a9lh.dir/build.make
+sed -i -e 's|--set-section-flags|~/.bin/devkitPro/devkitARM/bin/arm-none-eabi-objcopy --set-section-flags|g' build.make
 cd $dir_build/CtrBootManager/build;
 cmake --build . --target CtrBootManager_a9lh
 cp -v CtrBootManager9.bin $dir_out/arm9loaderhax.bin;
