@@ -196,7 +196,7 @@ mkdir build;
 cd build;
 cmake -DCMAKE_TOOLCHAIN_FILE=../DevkitArm3DS.cmake ../
 cd $dir_build/CtrBootManager/build/CMakeFiles/CtrBootManager_a9lh.dir;
-sed -i -e 's|--set-section-flags .bss=alloc,load,contents -O binary /home/hle/src/build/CtrBootManager/build/CtrBootManager9 /home/hle/src/build/CtrBootManager/build/CtrBootManager9.bin|~/.bin/devkitPro/devkitARM/bin/arm-none-eabi-objcopy --set-section-flags .bss=alloc,load,contents -O binary ~/src/build/CtrBootManager/build/CtrBootManager9 ~/src/build/CtrBootManager/build/CtrBootManager9.bin|g' $dir_build/CtrBootManager/build/CMakeFiles/CtrBootManager_a9lh.dir/build.make
+sed -i -e 's|--set-section-flags|~/.bin/devkitPro/devkitARM/bin/arm-none-eabi-objcopy --set-section-flags|g' $dir_build/CtrBootManager/build/CMakeFiles/CtrBootManager_a9lh.dir/build.make
 cd $dir_build/CtrBootManager/build;
 cmake --build . --target CtrBootManager_a9lh
 cp -v CtrBootManager9.bin $dir_out/arm9loaderhax.bin;
