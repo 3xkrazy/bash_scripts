@@ -138,6 +138,7 @@ sleep 5s;
 make clean;
 cd $dir_build/ReiNand/source;
 sed -i -e 's|"/rei/splash.bin"|"/3ds/ReiNand/rei/splash.bin"|g' draw.c;
+sed -i -e 's|loadSplash();||g' main.c;
 sed -i -e 's|"/rei/firmware.bin"|"/3ds/ReiNand/rei/firmware.bin"|g' firm.c;
 sed -i -e 's|"/rei/emunand/emunand.bin"|"/3ds/ReiNand/rei/emunand/emunand.bin"|g' firm.c;
 sed -i -e 's|"/rei/thread/arm9.bin"|"/3ds/ReiNand/rei/thread/arm9.bin"|g' firm.c;
