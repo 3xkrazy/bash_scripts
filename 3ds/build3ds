@@ -189,14 +189,14 @@ echo "Done!"
 echo "Building CtrBootManager for a9lh"
 sleep 5s;
 cd $dir_build/CtrBootManager/source;
-sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config.h
-sed -i -e 's|"/a9lh.cfg"|"/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config_new.c
+sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/.local/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config.h
+sed -i -e 's|"/a9lh.cfg"|"/.local/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config_new.c
 cd $dir_build/CtrBootManager;
 mkdir build;
 cd build;
 cmake -DCMAKE_TOOLCHAIN_FILE=../DevkitArm3DS.cmake ../
 cd $dir_build/CtrBootManager/build/CMakeFiles/CtrBootManager_a9lh.dir;
-sed -i -e 's|--set-section-flags .bss=alloc,load,contents -O binary /home/hle/src/CtrBootManager/build/CtrBootManager9|~/.bin/devkitPro/devkitARM/bin/arm-none-eabi-objcopy --set-section-flags .bss=alloc,load,contents -O binary ~/src/CtrBootManager/build/CtrBootManager9 ~/src/CtrBootManager/build/CtrBootManager9.bin|g' $dir_build/CtrBootManager/build/CMakeFiles/CtrBootManager_a9lh.dir/build.make
+sed -i -e 's|--set-section-flags .bss=alloc,load,contents -O binary /home/hle/src/build/CtrBootManager/build/CtrBootManager9 /home/hle/src/build/CtrBootManager/build/CtrBootManager9.bin|~/.bin/devkitPro/devkitARM/bin/arm-none-eabi-objcopy --set-section-flags .bss=alloc,load,contents -O binary ~/src/build/CtrBootManager-a9lh/build/CtrBootManager9 ~/src/build/CtrBootManager/build/CtrBootManager9.bin|g' $dir_build/CtrBootManager/build/CMakeFiles/CtrBootManager_a9lh.dir/build.make
 cd $dir_build/CtrBootManager/build;
 cmake --build . --target CtrBootManager_a9lh
 cp -v CtrBootManager9.bin $dir_out/arm9loaderhax.bin;
