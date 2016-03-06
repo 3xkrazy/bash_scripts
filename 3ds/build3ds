@@ -3,7 +3,7 @@
 # Dependencies directory
 dir_3dsfiles=~/3DS/files
 
-# CakesFW NATIVE_FIRM urls
+# NATIVE_FIRM urls
 n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001B
 n3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk
 o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000049
@@ -17,7 +17,7 @@ dir_build=~/src/build
 dir_out=~/src/out
 dir_3ds=~/src/out/3ds
 dir_cia=~/src/out/cia
-dir_a9lh=~/src/out/a9lh_payloads
+dir_local=~/src/out/.local
 
 # Make directories
 mkdir -vp $dir_build
@@ -26,7 +26,7 @@ mkdir -vp $dir_3ds
 mkdir -vp $dir_cia/apps
 mkdir -vp $dir_cia/games
 mkdir -vp $dir_cia/updates
-mkdir -vp $dir_a9lh
+mkdir -vp $dir_local
 
 # Fetch the homebrew from github
 echo "Fetching homebrew...";
@@ -40,7 +40,7 @@ git clone --recursive https://github.com/mid-kid/CakesForeveryWan.git
 git clone --recursive https://github.com/Reisyukaku/ReiNand.git
 git clone --recursive https://github.com/delebile/arm9loaderhax.git
 git clone --recursive https://github.com/44670/BootNTR.git
-#git clone --recursive https://github.com/Cpasjuste/CtrBootManager.git
+git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
 
 # Patch and build the homebrew
 
@@ -188,16 +188,14 @@ echo "Done!"
 # Build CtrBootManager for a9lh
 echo "Building CtrBootManager for a9lh"
 sleep 5s;
-cd $dir_build;
-wget https://codeload.github.com/Cpasjuste/CtrBootManager/zip/a9lh
-unzip a9lh;
-cd $dir_build/CtrBootManager-a9lh/source;
-sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager-a9lh/source/config.h
-sed -i -e 's|"/a9lh.cfg"|"/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager-a9lh/source/config_new.c
-cd $dir_build/CtrBootManager-a9lh;
+cd $dir_build/CtrBootManager/source;
+sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config.h
+sed -i -e 's|"/a9lh.cfg"|"/a9lh_payloads/a9lh.cfg"|g' $dir_build/CtrBootManager/source/config_new.c
+cd $dir_build/CtrBootManager;
 mkdir build;
 cd build;
 cmake -DCMAKE_TOOLCHAIN_FILE=../DevkitArm3DS.cmake ../
+cmake --build . --target CtrBootManager_a9lh
 cmake --build . --target CtrBootManager_a9lh
 cp -v CtrBootManager9.bin $dir_out/arm9loaderhax.bin;
 echo "[general]
@@ -209,12 +207,12 @@ default = 0
 bgTop1 = 000000
 bgTop2 = 000000
 bgBottom = 000000
-highlight = ffffff
-borders = 000000
-font1 = ffffff
-font2 = 0000ff
-bgImgTop = /a9lh_payloads/bgTop.bin
-bgImgBot = /a9lh_payloads/bgBot.bin
+highlight = 000000
+borders = 009900
+font1 = 009900
+font2 = ff0000
+bgImgTop = /.local/bgTop.bin
+bgImgBot = /.local/bgBot.bin
 
 [entry]
 title = Cakes
@@ -230,25 +228,25 @@ key = -1
 
 [entry]
 title = Decrypt9
-path =  /a9lh_payloads/Decrypt9.bin
-offset = 0x12000
+path =  /.local/Decrypt9.bin
+offset = 0
 key = 3
 
 [entry]
 title = EmuNAND9
-path =  /a9lh_payloads/EmuNAND9-a9lh.bin
-offset = 0x12000
+path =  /.local/EmuNAND9-a9lh.bin
+offset = 0
 key = 3
 
 [entry]
 title = Uncart
-path =  /a9lh_payloads/Uncart-a9lh.bin
-offset = 0x12000
-key = 3" > $dir_a9lh/a9lh.cfg
+path =  /.local/Uncart-a9lh.bin
+offset = 0
+key = 3" > $dir_local/a9lh.cfg
 
-cp -v $dir_3dsfiles/Decrypt9.bin $dir_a9lh/;
-cp -v $dir_3dsfiles/EmuNAND9-a9lh.bin $dir_a9lh/;
-cp -v $dir_3dsfiles/Uncart-a9lh.bin $dir_a9lh/;
+cp -v $dir_3dsfiles/Decrypt9.bin $dir_local/;
+cp -v $dir_3dsfiles/EmuNAND9-a9lh.bin $dir_local/;
+cp -v $dir_3dsfiles/Uncart-a9lh.bin $dir_local/;
 echo "Done!"
 
 # Build BootNTR and extract ntr.bin
