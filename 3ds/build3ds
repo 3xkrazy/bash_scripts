@@ -28,6 +28,8 @@ mkdir -vp $dir_cia/games
 mkdir -vp $dir_cia/updates
 mkdir -vp $dir_bin
 
+cp -v $dir_3dsfiles/slot* $dir_bin/;
+
 # Fetch the homebrew from github
 echo "Fetching homebrew...";
 cd $dir_build;
@@ -57,13 +59,17 @@ mv -v $dir_build/Brahma2/Brahma2.smdh $dir_build/Brahma2/Brahma2/;
 mv -v $dir_build/Brahma2/Brahma2 $dir_3ds/;
 echo "Done!";
 
-# uncart
-cd $dir_build/uncart;
-echo "Building Uncart...";
+# Decrypt9WIP
+cd $dir_build/Decrypt9WIP;
+echo "Building Decrypt9WIP...";
 sleep 5s;
 make clean;
+cd $dir_build/Decrypt9WIP/source;
+sed -i -e 's|"slot0x%02XKeyX.bin"|"/.bin/slot0x%02XKeyX.bin"|g' game.c;
+sed -i -e 's|"slot0x05KeyY.bin"|"/.bin/slot0x05KeyY.bin"|g' nand.c
+cd $dir_build/Decrypt9WIP;
 make;
-mv -v $dir_build/uncart/uncart.bin $dir_bin/Uncart.bin;
+mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/Decrypt9WIP.bin;
 echo "Done!";
 
 # EmuNAND9
@@ -75,13 +81,13 @@ make;
 mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_bin/EmuNAND9.bin;
 echo "Done!";
 
-# Decrypt9WIP
-cd $dir_build/Decrypt9WIP;
-echo "Building Decrypt9WIP...";
+# uncart
+cd $dir_build/uncart;
+echo "Building Uncart...";
 sleep 5s;
 make clean;
 make;
-mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/Decrypt9WIP.bin;
+mv -v $dir_build/uncart/uncart.bin $dir_bin/Uncart.bin;
 echo "Done!";
 
 # MiniPasta
@@ -115,7 +121,6 @@ make;
 mv -v $dir_build/CakesForeveryWan/out/Cakes.dat $dir_build/CakesForeveryWan/out/cakes/;
 cp -v $dir_build/CakesForeveryWan/build/main.bin $dir_build/CakesForeveryWan/out/cakes/arm9loaderhax.bin;
 mv -v $dir_build/CakesForeveryWan/out/cakes $dir_build/CakesForeveryWan/out/3ds/Cakes/;
-cp -v $dir_3dsfiles/slot* $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes/;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-n3ds;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-o3ds;
 cd $dir_3ds/Cakes-n3ds/cakes;
@@ -200,13 +205,13 @@ key = -1
 
 [entry]
 title = Decrypt9
-path =  /.bin/Decrypt9.bin
+path =  /.bin/Decrypt9WIP.bin
 offset = 0
 key = 3
 
 [entry]
 title = EmuNAND9
-path =  /.bin/EmuNAND9-a9lh.bin
+path =  /.bin/EmuNAND9.bin
 offset = 0
 key = 3
 
@@ -216,9 +221,6 @@ path =  /.bin/Uncart-a9lh.bin
 offset = 0
 key = 3" > $dir_bin/a9lh.cfg
 
-cp -v $dir_3dsfiles/slot* $dir_bin/;
-cp -v $dir_3dsfiles/Decrypt9.bin $dir_bin/;
-cp -v $dir_3dsfiles/EmuNAND9-a9lh.bin $dir_bin/;
 cp -v $dir_3dsfiles/Uncart-a9lh.bin $dir_bin/;
 echo "Done!"
 
