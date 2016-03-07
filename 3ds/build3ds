@@ -65,7 +65,7 @@ cd $dir_build/Decrypt9WIP;
 echo "Building Decrypt9WIP...";
 sleep 5s;
 make clean;
-cd $dir_build/Decrypt9WIP/source;
+cd $dir_build/Decrypt9WIP/source/decryptor;
 sed -i -e 's|"slot0x%02XKeyX.bin"|"/.bin/slot0x%02XKeyX.bin"|g' game.c;
 sed -i -e 's|"slot0x05KeyY.bin"|"/.bin/slot0x05KeyY.bin"|g' nand.c
 cd $dir_build/Decrypt9WIP;
