@@ -53,6 +53,7 @@ make clean;
 cd $dir_build/Brahma2/include;
 sed -i -e 's|/brahma/|/.bin/|g' $dir_build/Brahma2/include/menus.h;
 cd $dir_build/Brahma2;
+mkdir $dir_build/Brahma2/Brahma2;
 make;
 mv -v $dir_build/Brahma2/Brahma2.3dsx $dir_build/Brahma2/Brahma2/;
 mv -v $dir_build/Brahma2/Brahma2.smdh $dir_build/Brahma2/Brahma2/;
