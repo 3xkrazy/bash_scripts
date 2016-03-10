@@ -220,5 +220,5 @@ echo "Done!"
 # Clean up
 cd ~/src;
 mv -v $dir_out sdmc_root-$(date +%m-%d-%Y);
-rm -rf $dir_build;
+#rm -rf $dir_build;
 exit 0;
