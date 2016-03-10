@@ -16,8 +16,8 @@ ntr=https://github.com/44670/BootNTR/releases/download/3.2/NTR.3.2.zip
 dir_build=~/src/build
 dir_out=~/src/out
 dir_3ds=~/src/out/3ds
-dir_cia=~/src/out/cia
-dir_bin=~/src/out/.bin
+dir_cia=~/src/out/3ds/cia
+dir_bin=~/src/out/3ds/bin
 
 # Make directories
 mkdir -vp $dir_build
@@ -33,11 +33,9 @@ cp -v $dir_3dsfiles/slot* $dir_bin/;
 # Fetch the homebrew from github
 echo "Fetching homebrew...";
 cd $dir_build;
-git clone --recursive https://github.com/delebile/Brahma2.git
-git clone --recursive https://github.com/d0k3/uncart.git
+
 git clone --recursive https://github.com/d0k3/EmuNAND9.git
 git clone --recursive https://github.com/d0k3/Decrypt9WIP.git
-git clone --recursive https://github.com/d0k3/MiniPasta.git
 git clone --recursive https://github.com/mid-kid/CakesForeveryWan.git
 git clone --recursive https://github.com/delebile/arm9loaderhax.git
 git clone --recursive https://github.com/44670/BootNTR.git
@@ -45,29 +43,14 @@ git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
 
 # Patch and build the homebrew
 
-# Brahma2
-cd $dir_build/Brahma2;
-echo "Building Brahma2...";
-sleep 5s;
-make clean;
-cd $dir_build/Brahma2/include;
-sed -i -e 's|/brahma/|/.bin/|g' $dir_build/Brahma2/include/menus.h;
-cd $dir_build/Brahma2;
-mkdir $dir_build/Brahma2/Brahma2;
-make;
-mv -v $dir_build/Brahma2/Brahma2.3dsx $dir_build/Brahma2/Brahma2/;
-mv -v $dir_build/Brahma2/Brahma2.smdh $dir_build/Brahma2/Brahma2/;
-mv -v $dir_build/Brahma2/Brahma2 $dir_3ds/;
-echo "Done!";
-
 # Decrypt9WIP
 cd $dir_build/Decrypt9WIP;
 echo "Building Decrypt9WIP...";
 sleep 5s;
 make clean;
 cd $dir_build/Decrypt9WIP/source/decryptor;
-sed -i -e 's|"slot0x%02XKeyX.bin"|"/.bin/slot0x%02XKeyX.bin"|g' game.c;
-sed -i -e 's|"slot0x05KeyY.bin"|"/.bin/slot0x05KeyY.bin"|g' nand.c
+sed -i -e 's|"slot0x%02XKeyX.bin"|"/3ds/bin/slot0x%02XKeyX.bin"|g' game.c;
+sed -i -e 's|"slot0x05KeyY.bin"|"/3ds/bin/slot0x05KeyY.bin"|g' nand.c
 cd $dir_build/Decrypt9WIP;
 make;
 mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/Decrypt9WIP.bin;
@@ -82,27 +65,6 @@ make;
 mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_bin/EmuNAND9.bin;
 echo "Done!";
 
-# uncart
-cd $dir_build/uncart;
-echo "Building Uncart...";
-sleep 5s;
-make clean;
-make;
-mv -v $dir_build/uncart/uncart.bin $dir_bin/Uncart.bin;
-echo "Done!";
-
-# MiniPasta
-cd $dir_build/MiniPasta;
-echo "Building MiniPasta...";
-sleep 5s;
-make clean;
-make;
-mkdir $dir_build/MiniPasta/MiniPasta;
-mv -v $dir_build/MiniPasta/MiniPasta.3dsx $dir_build/MiniPasta/MiniPasta/;
-mv -v $dir_build/MiniPasta/MiniPasta.smdh $dir_build/MiniPasta/MiniPasta/;
-mv -v $dir_build/MiniPasta/MiniPasta $dir_3ds/;
-echo "Done!";
-
 # CakesFW
 cd $dir_build/CakesForeveryWan;
 echo "Building CakesForeveryWan...";
@@ -110,7 +72,7 @@ sleep 5s;
 make clean;
 cd $dir_build/CakesForeveryWan/source;
 sed -i -e 's|"/cakes"|"/3ds/Cakes/cakes"|g' paths.h;
-sed -i -e '7i#define PATH_BIN "/.bin"\' paths.h;
+sed -i -e '7i#define PATH_BIN "/3ds/bin"\' paths.h;
 sed -i -e 's|#define PATH_SLOT0X25KEYX "/slot0x25keyX.bin"|#define PATH_SLOT0X25KEYX PATH_BIN "/slot0x25keyX.bin"|g' paths.h;
 sed -i -e 's|#define PATH_SLOT0X11KEY96 "/slot0x11key96.bin"|#define PATH_SLOT0X11KEY96 PATH_BIN "/slot0x11key96.bin"|g' paths.h;
 cd $dir_build/CakesForeveryWan/CakeBrah/;
@@ -141,6 +103,8 @@ echo "Building Arm9loaderhax for n3DS..."
 sleep 5s;
 cd $dir_build/arm9loaderhax;
 make clean;
+cd $dir_build/arm9loaderhax/payload_stage2/source;
+sed -i -e 's|"arm9loaderhax.bin"|"/3ds/bin/arm9loaderhax.bin"|g' main.c
 cd $dir_build/arm9loaderhax/data_input;
 cp -v $dir_3dsfiles/new3ds10.firm $dir_build/arm9loaderhax/data_input;
 cp -v $dir_3dsfiles/new3ds90.firm $dir_build/arm9loaderhax/data_input;
@@ -171,8 +135,8 @@ echo "Done!"
 echo "Building CtrBootManager for a9lh"
 sleep 5s;
 cd $dir_build/CtrBootManager/source;
-sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/.bin/a9lh.cfg"|g' config.h
-sed -i -e 's|"/a9lh.cfg"|"/.bin/a9lh.cfg"|g' config_new.c
+sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/3ds/bin/a9lh.cfg"|g' config.h
+sed -i -e 's|"/a9lh.cfg"|"/3ds/bin/a9lh.cfg"|g' config_new.c
 cd $dir_build/CtrBootManager;
 mkdir build;
 cd build;
@@ -195,8 +159,8 @@ highlight = 000000
 borders = 009900
 font1 = 009900
 font2 = ff0000
-bgImgTop = /.bin/bgTop.bin
-bgImgBot = /.bin/bgBot.bin
+bgImgTop = /3ds/bin/bgTop.bin
+bgImgBot = /3ds/bin/bgBot.bin
 
 [entry]
 title = Cakes
@@ -206,19 +170,19 @@ key = -1
 
 [entry]
 title = Decrypt9
-path =  /.bin/Decrypt9WIP.bin
+path =  /3ds/bin/Decrypt9WIP.bin
 offset = 0
 key = 3
 
 [entry]
 title = EmuNAND9
-path =  /.bin/EmuNAND9.bin
+path =  /3ds/bin/EmuNAND9.bin
 offset = 0
 key = 3
 
 [entry]
 title = Uncart
-path =  /.bin/Uncart-a9lh.bin
+path =  /3ds/bin/Uncart-a9lh.bin
 offset = 0
 key = 3" > $dir_bin/a9lh.cfg
 
