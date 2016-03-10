@@ -145,7 +145,7 @@ cd $dir_build/CtrBootManager/build/CMakeFiles/CtrBootManager_a9lh.dir;
 sed -i -e 's|--set-section-flags|~/.bin/devkitPro/devkitARM/bin/arm-none-eabi-objcopy --set-section-flags|g' build.make
 cd $dir_build/CtrBootManager/build;
 cmake --build . --target CtrBootManager_a9lh
-cp -v CtrBootManager9.bin $dir_out/arm9loaderhax.bin;
+cp -v CtrBootManager9.bin $dir_bin/arm9loaderhax.bin;
 echo "[general]
 timeout = 10
 recovery = 2
