@@ -16,8 +16,8 @@ ntr=https://github.com/44670/BootNTR/releases/download/3.2/NTR.3.2.zip
 dir_build=~/src/build
 dir_out=~/src/out
 dir_3ds=~/src/out/3ds
-dir_cia=~/src/out/3ds/cia
-dir_bin=~/src/out/3ds/bin
+dir_cia=~/src/out/3ds/sys/cia
+dir_bin=~/src/out/3ds/sys/bin
 
 # Make directories
 mkdir -vp $dir_build
@@ -49,8 +49,8 @@ echo "Building Decrypt9WIP...";
 sleep 5s;
 make clean;
 cd $dir_build/Decrypt9WIP/source/decryptor;
-sed -i -e 's|"slot0x%02XKeyX.bin"|"/3ds/bin/slot0x%02XKeyX.bin"|g' game.c;
-sed -i -e 's|"slot0x05KeyY.bin"|"/3ds/bin/slot0x05KeyY.bin"|g' nand.c
+sed -i -e 's|"slot0x%02XKeyX.bin"|"/3ds/sys/bin/slot0x%02XKeyX.bin"|g' game.c;
+sed -i -e 's|"slot0x05KeyY.bin"|"/3ds/sys/bin/slot0x05KeyY.bin"|g' nand.c
 cd $dir_build/Decrypt9WIP;
 make;
 mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/Decrypt9WIP.bin;
@@ -72,7 +72,7 @@ sleep 5s;
 make clean;
 cd $dir_build/CakesForeveryWan/source;
 sed -i -e 's|"/cakes"|"/3ds/Cakes/cakes"|g' paths.h;
-sed -i -e '7i#define PATH_BIN "/3ds/bin"\' paths.h;
+sed -i -e '7i#define PATH_BIN "/3ds/sys/bin"\' paths.h;
 sed -i -e 's|#define PATH_SLOT0X25KEYX "/slot0x25keyX.bin"|#define PATH_SLOT0X25KEYX PATH_BIN "/slot0x25keyX.bin"|g' paths.h;
 sed -i -e 's|#define PATH_SLOT0X11KEY96 "/slot0x11key96.bin"|#define PATH_SLOT0X11KEY96 PATH_BIN "/slot0x11key96.bin"|g' paths.h;
 cd $dir_build/CakesForeveryWan/CakeBrah/;
@@ -104,7 +104,7 @@ sleep 5s;
 cd $dir_build/arm9loaderhax;
 make clean;
 cd $dir_build/arm9loaderhax/payload_stage2/source;
-sed -i -e 's|"arm9loaderhax.bin"|"/3ds/bin/arm9loaderhax.bin"|g' main.c
+sed -i -e 's|"arm9loaderhax.bin"|"/3ds/sys/bin/arm9loaderhax.bin"|g' main.c
 cd $dir_build/arm9loaderhax/data_input;
 cp -v $dir_3dsfiles/new3ds10.firm $dir_build/arm9loaderhax/data_input;
 cp -v $dir_3dsfiles/new3ds90.firm $dir_build/arm9loaderhax/data_input;
@@ -135,8 +135,8 @@ echo "Done!"
 echo "Building CtrBootManager for a9lh"
 sleep 5s;
 cd $dir_build/CtrBootManager/source;
-sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/3ds/bin/a9lh.cfg"|g' config.h
-sed -i -e 's|"/a9lh.cfg"|"/3ds/bin/a9lh.cfg"|g' config_new.c
+sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/3ds/sys/bin/a9lh.cfg"|g' config.h
+sed -i -e 's|"/a9lh.cfg"|"/3ds/sys/bin/a9lh.cfg"|g' config_new.c
 cd $dir_build/CtrBootManager;
 mkdir build;
 cd build;
@@ -159,8 +159,8 @@ highlight = 000000
 borders = 009900
 font1 = 009900
 font2 = ff0000
-bgImgTop = /3ds/bin/bgTop.bin
-bgImgBot = /3ds/bin/bgBot.bin
+bgImgTop = /3ds/sys/bin/bgTop.bin
+bgImgBot = /3ds/sys/bin/bgBot.bin
 
 [entry]
 title = Cakes
@@ -170,19 +170,19 @@ key = -1
 
 [entry]
 title = Decrypt9
-path =  /3ds/bin/Decrypt9WIP.bin
+path =  /3ds/sys/bin/Decrypt9WIP.bin
 offset = 0
 key = 3
 
 [entry]
 title = EmuNAND9
-path =  /3ds/bin/EmuNAND9.bin
+path =  /3ds/sys/bin/EmuNAND9.bin
 offset = 0
 key = 3
 
 [entry]
 title = Uncart
-path =  /3ds/bin/Uncart-a9lh.bin
+path =  /3ds/sys/bin/Uncart-a9lh.bin
 offset = 0
 key = 3" > $dir_bin/a9lh.cfg
 
