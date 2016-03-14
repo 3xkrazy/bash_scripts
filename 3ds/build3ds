@@ -166,12 +166,12 @@ recovery = 2
 default = 0
 
 [theme]
-bgTop1 = 336699
-bgTop2 = 336699
-bgBottom = 336699
-highlight = 336699
-borders = f2f2f2
-font1 = f2f2f2
+bgTop1 = 000000
+bgTop2 = 000000
+bgBottom = 000000
+highlight = 000000
+borders = ffffff
+font1 = ffffff
 font2 = ff0000
 bgImgTop = /3ds/sys/bin/bgTop.bin
 bgImgBot = /3ds/sys/bin/bgBot.bin
