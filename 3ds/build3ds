@@ -148,7 +148,7 @@ sed -i -e 's|Super ftpd II Turbo|ftpd|g' Makefile.3ds
 make;
 mkdir -vp $dir_3ds/ftpd;
 mv -v ftpd.3dsx $dir_3ds/ftpd/;
-mv -v ftpd.sdmh $dir_3ds/ftpd/;
+mv -v ftpd.smdh $dir_3ds/ftpd/;
 echo "Done!"
 
 # hblauncher_loader
