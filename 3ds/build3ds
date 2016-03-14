@@ -28,7 +28,13 @@ mkdir -vp $dir_cia/games
 mkdir -vp $dir_cia/updates
 mkdir -vp $dir_bin
 
+# Copy files over
 cp -v $dir_3dsfiles/slot* $dir_bin/;
+cp -v $dir_3dsfiles/Uncart-a9lh.bin $dir_bin/;
+cp -v $dir_3dsfiles/*.cia $dir_cia/apps/;
+cp -v $dir_3dsfiles/boot.3dsx $dir_out;
+cp -rRv $dir_3dsfiles/filer $dir_out/;
+cp -rRv $dir_3dsfiles/plugin $dir_out/;
 
 # Fetch the homebrew from github
 echo "Fetching homebrew...";
@@ -133,13 +139,13 @@ mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3ds;
 echo "Done!"
 
 # hblauncher_loader
-echo "Building hblauncer_loader"
+echo "Building hblaunhcer_loader"
 sleep 5s;
-cd $dir_build/hblauncer_loader;
+cd $dir_build/hblauncher_loader;
 make clean;
-cd $dir_build/hblauncer_loader/source;
+cd $dir_build/hblauncher_loader/source;
 sed -i -e 's|"sdmc:/hblauncherloader_otherapp_payload_%s.bin"|"sdmc:/3ds/sys/bin/hblauncherloader_otherapp_payload_%s.bin"|g' hblauncher_loader.c
-cd $dir_build/hblauncer_loader;
+cd $dir_build/hblauncher_loader;
 make;
 cp -v hblauncher_loader.cia $dir_cia/;
 
@@ -196,8 +202,6 @@ title = Uncart
 path =  /3ds/sys/bin/Uncart-a9lh.bin
 offset = 0
 key = 3" > $dir_bin/a9lh.cfg
-
-cp -v $dir_3dsfiles/Uncart-a9lh.bin $dir_bin/;
 echo "Done!"
 
 # Build BootNTR and extract ntr.bin
@@ -212,20 +216,6 @@ cp -v $dir_build/BootNTR/output/BootNTR.cia $dir_cia/apps/;
 wget $ntr
 unzip *.zip
 cp -v $dir_build/BootNTR/ntr.bin $dir_out/;
-cp -rRv $dir_3dsfiles/filer $dir_out/;
-cp -rRv $dir_3dsfiles/plugin $dir_out/;
-echo "Done!"
-
-# Copy devtools
-echo "Copying devtools..."
-sleep 5s;
-cd $dir_build;
-cp -v $dir_3dsfiles/*.cia $dir_cia/apps/;
-echo "Done!"
-
-# Copy boot.3dsx
-echo "Copying boot.3dsx";
-cp -v $dir_3dsfiles/boot.3dsx $dir_out;
 echo "Done!"
 
 # Clean up
