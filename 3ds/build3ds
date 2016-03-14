@@ -147,7 +147,7 @@ cd $dir_build/hblauncher_loader/source;
 sed -i -e 's|"sdmc:/hblauncherloader_otherapp_payload_%s.bin"|"sdmc:/3ds/sys/bin/hblauncherloader_otherapp_payload_%s.bin"|g' hblauncher_loader.c
 cd $dir_build/hblauncher_loader;
 make;
-cp -v hblauncher_loader.cia $dir_cia/;
+cp -v hblauncher_loader.cia $dir_cia/apps/;
 
 # Build CtrBootManager for a9lh
 echo "Building CtrBootManager for a9lh"
