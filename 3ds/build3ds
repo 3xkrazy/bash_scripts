@@ -45,6 +45,7 @@ git clone --recursive https://github.com/d0k3/Decrypt9WIP.git
 git clone --recursive https://github.com/mid-kid/CakesForeveryWan.git
 git clone --recursive https://github.com/delebile/arm9loaderhax.git
 git clone --recursive https://github.com/yellows8/hblauncher_loader.git
+git clone --recursive https://github.com/mtheall/ftpd.git
 git clone --recursive https://github.com/44670/BootNTR.git
 git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
 
@@ -138,8 +139,20 @@ make;
 mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3ds;
 echo "Done!"
 
+# ftpd
+echo "building ftpd..."
+sleep 5s;
+cd $dir_build/ftpd;
+make clean;
+sed -i -e 's|Super ftpd II Turbo|ftpd|g' Makefile.3ds
+make;
+mkdir -vp $dir_3ds/ftpd;
+mv -v ftpd.3dsx $dir_3ds/ftpd/;
+mv -v ftpd.sdmh $dir_3ds/ftpd/;
+echo "Done!"
+
 # hblauncher_loader
-echo "Building hblaunhcer_loader"
+echo "Building hblaunhcer_loader..."
 sleep 5s;
 cd $dir_build/hblauncher_loader;
 make clean;
@@ -148,6 +161,7 @@ sed -i -e 's|"sdmc:/hblauncherloader_otherapp_payload_%s.bin"|"sdmc:/3ds/sys/bin
 cd $dir_build/hblauncher_loader;
 make;
 cp -v hblauncher_loader.cia $dir_cia/apps/;
+echo "Done!"
 
 # Build CtrBootManager for a9lh
 echo "Building CtrBootManager for a9lh"
