@@ -132,7 +132,6 @@ make;
 mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3ds;
 echo "Done!"
 
-<<COMMENT1
 # hblauncher_loader
 echo "Building hblauncer_loader"
 sleep 5s;
@@ -143,14 +142,12 @@ sed -i -e 's|"sdmc:/hblauncherloader_otherapp_payload_%s.bin"|"sdmc:/3ds/sys/bin
 cd $dir_build/hblauncer_loader;
 make;
 cp -v hblauncher_loader.cia $dir_cia/;
-COMMENT1
 
 # Build CtrBootManager for a9lh
 echo "Building CtrBootManager for a9lh"
 sleep 5s;
 cd $dir_build/CtrBootManager/source;
 sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/3ds/sys/bin/a9lh.cfg"|g' config.h
-
 cd $dir_build/CtrBootManager;
 mkdir build;
 cd build;
