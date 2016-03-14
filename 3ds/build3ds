@@ -38,6 +38,7 @@ git clone --recursive https://github.com/d0k3/EmuNAND9.git
 git clone --recursive https://github.com/d0k3/Decrypt9WIP.git
 git clone --recursive https://github.com/mid-kid/CakesForeveryWan.git
 git clone --recursive https://github.com/delebile/arm9loaderhax.git
+#git clone --recursive https://github.com/yellows8/hblauncher_loader.git
 git clone --recursive https://github.com/44670/BootNTR.git
 git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
 
@@ -131,12 +132,25 @@ make;
 mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3ds;
 echo "Done!"
 
+<<COMMENT1
+# hblauncher_loader
+echo "Building hblauncer_loader"
+sleep 5s;
+cd $dir_build/hblauncer_loader;
+make clean;
+cd $dir_build/hblauncer_loader/source;
+sed -i -e 's|"sdmc:/hblauncherloader_otherapp_payload_%s.bin"|"sdmc:/3ds/sys/bin/hblauncherloader_otherapp_payload_%s.bin"|g' hblauncher_loader.c
+cd $dir_build/hblauncer_loader;
+make;
+cp -v hblauncher_loader.cia $dir_cia/;
+COMMENT1
+
 # Build CtrBootManager for a9lh
 echo "Building CtrBootManager for a9lh"
 sleep 5s;
 cd $dir_build/CtrBootManager/source;
 sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/3ds/sys/bin/a9lh.cfg"|g' config.h
-sed -i -e 's|"/a9lh.cfg"|"/3ds/sys/bin/a9lh.cfg"|g' config_new.c
+
 cd $dir_build/CtrBootManager;
 mkdir build;
 cd build;
@@ -152,12 +166,12 @@ recovery = 2
 default = 0
 
 [theme]
-bgTop1 = 000000
-bgTop2 = 000000
-bgBottom = 000000
-highlight = 000000
-borders = 009900
-font1 = 009900
+bgTop1 = 336699
+bgTop2 = 336699
+bgBottom = 336699
+highlight = 336699
+borders = f2f2f2
+font1 = f2f2f2
 font2 = ff0000
 bgImgTop = /3ds/sys/bin/bgTop.bin
 bgImgBot = /3ds/sys/bin/bgBot.bin
@@ -201,8 +215,8 @@ cp -v $dir_build/BootNTR/output/BootNTR.cia $dir_cia/apps/;
 wget $ntr
 unzip *.zip
 cp -v $dir_build/BootNTR/ntr.bin $dir_out/;
-cp -rRv $dir_3dsfiles/filer $dir_out;
-cp -rRv $dir_3dsfiles/plugin $dir_out;
+cp -rRv $dir_3dsfiles/filer $dir_out/;
+cp -rRv $dir_3dsfiles/plugin $dir_out/;
 echo "Done!"
 
 # Copy devtools
