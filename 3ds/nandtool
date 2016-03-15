@@ -11,19 +11,13 @@ echo -n "Select your choice: "
 read CHOICE_1
 case $CHOICE_1 in
         1)
-                BLOCK_DEVICE=sdc
+                BLOCK_DEVICE=sdb
                 ;;
         2)
-                BLOCK_DEVICE=sdd
+                BLOCK_DEVICE=sdc
                 ;;
         3)
-                BLOCK_DEVICE=sde
-                ;;
-        4)
-                BLOCK_DEVICE=sdf
-                ;;
-        5)
-		BLOCK_DEVICE=sdg
+                BLOCK_DEVICE=sdd
                 ;;
         *)
                 echo Invalid choice!
