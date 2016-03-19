@@ -42,6 +42,7 @@ cd $dir_build;
 
 git clone --recursive https://github.com/d0k3/EmuNAND9.git
 git clone --recursive https://github.com/d0k3/Decrypt9WIP.git
+git clone --recursive https://github.com/d0k3/GodMode9.git
 git clone --recursive https://github.com/mid-kid/CakesForeveryWan.git
 git clone --recursive https://github.com/delebile/arm9loaderhax.git
 git clone --recursive https://github.com/yellows8/hblauncher_loader.git
@@ -61,7 +62,7 @@ sed -i -e 's|"slot0x%02XKeyX.bin"|"/3ds/sys/bin/slot0x%02XKeyX.bin"|g' game.c;
 sed -i -e 's|"slot0x05KeyY.bin"|"/3ds/sys/bin/slot0x05KeyY.bin"|g' nand.c
 cd $dir_build/Decrypt9WIP;
 make;
-mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/Decrypt9WIP.bin;
+mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/;
 echo "Done!";
 
 # EmuNAND9
@@ -70,8 +71,17 @@ echo "Building EmuNAND9...";
 sleep 5s;
 make clean;
 make;
-mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_bin/EmuNAND9.bin;
+mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_bin/;
 echo "Done!";
+
+# Godmode9
+cd $dir_build/Godmode9;
+echo "Building Godmode9...";
+sleep 5s;
+make clean;
+make bootstrap;
+mv -v $dir_build/Godmode9/output/Godmode9.bin $dir_bin/;
+echo "Done!"
 
 # CakesFW
 cd $dir_build/CakesForeveryWan;
@@ -208,6 +218,12 @@ key = 3
 [entry]
 title = EmuNAND9
 path =  /3ds/sys/bin/EmuNAND9.bin
+offset = 0
+key = 3
+
+[entry]
+title = Godmode9
+path =  /3ds/sys/bin/Godmode9.bin
 offset = 0
 key = 3
 
