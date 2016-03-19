@@ -80,9 +80,12 @@ cd $dir_build/GodMode9;
 echo "Building GodMode9...";
 sleep 5s;
 make clean;
+cd $dir_build/GodMode9/source/nand;
+sed -i -e 's|"0:/slot0x05KeyY.bin"|"0:/3ds/sys/bin/slot0x05KeyY.bin"|g' nand.c
+cd $dir_build/GodMode9;
 make bootstrap;
 mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_bin/;
-echo "Done!"
+echo "Done!";
 
 # CakesFW
 cd $dir_build/CakesForeveryWan;
@@ -115,7 +118,7 @@ wget $o3ds_cetk;
 wget $o3ds_firm;
 cp -v $dir_3dsfiles/firmkey.bin-o3ds $dir_3ds/Cakes-o3ds/cakes/firmkey.bin;
 mv -v $dir_3ds/Cakes-o3ds/cakes/000000* $dir_3ds/Cakes-o3ds/cakes/firmware.bin
-echo "Done!"
+echo "Done!";
 
 # Arm9loaderhax n3DS
 echo "Building Arm9loaderhax for n3DS..."
@@ -148,7 +151,7 @@ cp -v $dir_3dsfiles/otp.bin-o3ds $dir_build/arm9loaderhax/data_input/otp.bin;
 cd $dir_build/arm9loaderhax/;
 make;
 mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3ds;
-echo "Done!"
+echo "Done!";
 
 # ftpd
 echo "building ftpd..."
@@ -160,7 +163,7 @@ make;
 mkdir -vp $dir_3ds/ftpd;
 mv -v ftpd.3dsx $dir_3ds/ftpd/;
 mv -v ftpd.smdh $dir_3ds/ftpd/;
-echo "Done!"
+echo "Done!";
 
 # hblauncher_loader
 echo "Building hblaunhcer_loader..."
@@ -172,7 +175,7 @@ sed -i -e 's|"sdmc:/hblauncherloader_otherapp_payload_%s.bin"|"sdmc:/3ds/sys/bin
 cd $dir_build/hblauncher_loader;
 make;
 cp -v hblauncher_loader.cia $dir_cia/apps/;
-echo "Done!"
+echo "Done!";
 
 # Build CtrBootManager for a9lh
 echo "Building CtrBootManager for a9lh"
@@ -233,7 +236,7 @@ title = Uncart
 path =  /3ds/sys/bin/Uncart-a9lh.bin
 offset = 0
 key = 3" > $dir_bin/a9lh.cfg
-echo "Done!"
+echo "Done!";
 
 # Build BootNTR and extract ntr.bin
 echo "Building BootNTR..."
@@ -247,7 +250,7 @@ cp -v $dir_build/BootNTR/output/BootNTR.cia $dir_cia/apps/;
 wget $ntr
 unzip *.zip
 cp -v $dir_build/BootNTR/ntr.bin $dir_out/;
-echo "Done!"
+echo "Done!";
 
 # Clean up
 cd ~/src;
