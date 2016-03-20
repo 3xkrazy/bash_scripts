@@ -8,6 +8,8 @@ n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0
 n3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk
 o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000049
 o3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/cetk
+agb_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/0000000B
+agb_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/cetk
 
 # BootNTR url
 ntr=https://github.com/44670/BootNTR/releases/download/3.2/NTR.3.2.zip
@@ -106,6 +108,12 @@ make;
 mv -v $dir_build/CakesForeveryWan/out/Cakes.dat $dir_build/CakesForeveryWan/out/cakes/;
 cp -v $dir_build/CakesForeveryWan/build/main.bin $dir_build/CakesForeveryWan/out/cakes/arm9loaderhax.bin;
 mv -v $dir_build/CakesForeveryWan/out/cakes $dir_build/CakesForeveryWan/out/3ds/Cakes/;
+cd $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes;
+wget $agb_cetk;
+wget $agb_firm;
+cp -v $dir_3dsfiles/agb_firmkey.bin $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes/agb_firmkey.bin;
+mv -v $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes/cetk $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes/agb_cetk.bin;
+mv -v $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes/000000* $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes/agb_firmware.bin;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-n3ds;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-o3ds;
 cd $dir_3ds/Cakes-n3ds/cakes;
