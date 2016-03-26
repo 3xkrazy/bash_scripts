@@ -168,7 +168,7 @@ cd $dir_build/ftpd;
 make clean;
 sed -i -e 's|Super ftpd II Turbo|ftpd|g' Makefile.3ds
 make;
-makerom -f cia -target -t -exefslogo -o ftpd.cia -elf ftpd.elf -rsf $dir_3dsfiles/ftpd.rsf -banner $dir_3dsfiles/ftpd.bnr -icon ftpd.smdh;
+makerom -f cia -target t -exefslogo -o ftpd.cia -elf ftpd.elf -rsf $dir_3dsfiles/ftpd.rsf -banner $dir_3dsfiles/ftpd.bnr -icon ftpd.smdh;
 mv -v $dir_build/ftpd/ftpd.cia $dir_cia/apps/;
 echo "Done!";
 
