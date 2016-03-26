@@ -49,7 +49,6 @@ git clone --recursive https://github.com/d0k3/GodMode9.git
 git clone --recursive https://github.com/mid-kid/CakesForeveryWan.git
 git clone --recursive https://github.com/delebile/arm9loaderhax.git
 git clone --recursive https://github.com/yellows8/hblauncher_loader.git
-git clone --recursive https://github.com/mtheall/ftpd.git
 git clone --recursive https://github.com/44670/BootNTR.git
 git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
 
@@ -159,17 +158,6 @@ cp -v $dir_3dsfiles/otp.bin-o3ds $dir_build/arm9loaderhax/data_input/otp.bin;
 cd $dir_build/arm9loaderhax/;
 make;
 mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3ds;
-echo "Done!";
-
-# ftpd
-echo "building ftpd..."
-sleep 5s;
-cd $dir_build/ftpd;
-make clean;
-sed -i -e 's|Super ftpd II Turbo|ftpd|g' Makefile.3ds
-make;
-makerom -f cia -target t -exefslogo -o ftpd.cia -elf ftpd.elf -rsf $dir_3dsfiles/ftpd.rsf -banner $dir_3dsfiles/ftpd.bnr -icon ftpd.smdh;
-mv -v $dir_build/ftpd/ftpd.cia $dir_cia/apps/;
 echo "Done!";
 
 # hblauncher_loader
