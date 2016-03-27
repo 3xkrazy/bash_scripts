@@ -37,7 +37,6 @@ cp -v $dir_3dsfiles/*.cia $dir_cia/apps/;
 cp -v $dir_3dsfiles/boot.3dsx $dir_out;
 cp -rRv $dir_3dsfiles/filer $dir_out/;
 cp -rRv $dir_3dsfiles/plugin $dir_out/;
-cp -rRv $dir_3dsfiles/Nintendo\ 3DS-n3ds $dir_out/;
 
 # Fetch the homebrew from github
 echo "Fetching homebrew...";
