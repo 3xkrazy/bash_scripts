@@ -26,6 +26,12 @@ case $CHOICE_1 in
 		;;
 esac
 
+if [ ! -f /dev/$CHOICE_1 ]; then
+	echo ""
+	echo Block device selected does not exist!
+	exit 1
+fi
+
 echo ""
 echo Your 3DS is connected at /dev/$BLOCK_DEVICE.
 echo ""
