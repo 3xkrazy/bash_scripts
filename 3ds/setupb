@@ -1,0 +1,9 @@
+#!/bin/bash
+
+build3ds_url=https://raw.githubusercontent.com/3xkrazy/bash_scripts/master/3ds/build3ds
+dir_bin=~/.bin/
+
+rm -v $dir_bin/build3ds;
+cd $dir_bin;
+wget $build3ds_url;
+chmod -v u+x $dir_bin/build3ds;
