@@ -1,12 +1,13 @@
 # NANDTOOL
 #!/bin/bash
 
+dir_nand=/home/hle/3ds/files/nands;
+cd $dir_nand;
+
 echo Which block device is your 3DS connected to?
-echo [1] /dev/sdc
-echo [2] /dev/sdd
-echo [3] /dev/sde
-echo [4] /dev/sdf
-echo [5] /dev/sdg
+echo [1] /dev/sdb
+echo [2] /dev/sdc
+echo [3] /dev/sdd
 echo -n "Select your choice: "
 read CHOICE_1
 case $CHOICE_1 in
@@ -25,34 +26,44 @@ case $CHOICE_1 in
 		;;
 esac
 
+echo ""
 echo Your 3DS is connected at /dev/$BLOCK_DEVICE.
-
+echo ""
 echo [1] Backup 3DS nand
 echo [2] Write to 3DS nand
 echo -n "Select your choice: "
 read CHOICE_2
 case $CHOICE_2 in
-	1)
+	1)	echo ""
 		echo -n "Enter nand backup name: "
 		read NAND_NAME
 		echo Backing up 3DS nand file: $NAND_NAME
-		sudo dd if=/dev/$BLOCK_DEVICE of=$NAND_NAME bs=1M
+		sudo dd if=/dev/$BLOCK_DEVICE of=$dir_nand/$NAND_NAME bs=1M
 		echo Backup completed! Calculating MD5 hash...
-		md5sum $NAND_NAME
+		md5sum $dir_nand/$NAND_NAME
 		;;
-	2)
+	2)	echo ""
+		echo "Nand list:"
+		for entry in "$dir_nand"/*
+		do
+  			echo "$entry"
+		done
+		echo ""
 		echo -n "Enter nand backup name: "
 		read NAND_NAME
-                if [ ! -f $NAND_NAME ]; then
+                if [ ! -f $dir_nand/$NAND_NAME ]; then
+                	echo ""
 			echo $NAND_NAME does not exist!
 			exit 1
 		else
+			echo ""
 			echo Writing $NAND_NAME to 3DS nand...
-			sudo dd if=$NAND_NAME of=/dev/$BLOCK_DEVICE bs=1M
+			sudo dd if=$dir_nand/$NAND_NAME of=/dev/$BLOCK_DEVICE bs=1M
 			echo Write completed!
 		fi
 		;;
 	*)
+		echo ""
 		echo Invalid choice!
 		exit 1
 		;;
