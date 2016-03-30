@@ -21,6 +21,7 @@ case $CHOICE_1 in
                 BLOCK_DEVICE=sdd
                 ;;
         *)
+        	echo ""
                 echo Invalid choice!
                 exit 1
 		;;
