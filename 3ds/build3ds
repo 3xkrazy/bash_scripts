@@ -225,8 +225,13 @@ bgImgTop = /3ds/sys/bin/bgTop.bin
 bgImgBot = /3ds/sys/bin/bgBot.bin
 
 [entry]
-title = Cakes
+title = CakesFW
 path =  /3ds/Cakes/cakes/arm9loaderhax.bin
+offset = 0
+key = -1
+
+title = ReiNand
+path =  /3ds/ReiNand/rei/arm9loaderhax.bin
 offset = 0
 key = -1
 
