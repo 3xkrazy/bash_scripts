@@ -143,10 +143,10 @@ sed -i -e 's|"/rei/emunand/emunand.bin"|"/3ds/ReiNand/rei/emunand/emunand.bin"|g
 sed -i -e 's|"/rei/thread/arm9.bin"|"/3ds/ReiNand/rei/thread/arm9.bin"|g' firm.c;
 cd $dir_build/ReiNand;
 make;
-mv -v $dir_build/out/rei $dir_build/out/3ds/ReiNand/;
-mv -v $dir_build/out/arm9loaderhax.bin $dir_build/out/3ds/ReiNand/rei/;
-mv -v $dir_build/out/ReiNand.dat $dir_build/out/3ds/ReiNand/rei/;
-mv -v $dir_build/out/3ds/ReiNand $dir_3ds/;
+mv -v $dir_build/ReiNand/out/rei $dir_build/out/3ds/ReiNand/;
+mv -v $dir_build/ReiNand/out/arm9loaderhax.bin $dir_build/out/3ds/ReiNand/rei/;
+mv -v $dir_build/ReiNand/out/ReiNand.dat $dir_build/out/3ds/ReiNand/rei/;
+mv -v $dir_build/ReiNand/out/3ds/ReiNand $dir_3ds/;
 echo "Done!";
 
 # Arm9loaderhax n3DS
