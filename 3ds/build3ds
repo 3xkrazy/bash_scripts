@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Dependencies directory
-dir_3dsfiles=~/3DS/files
+dir_3dsfiles=~/3ds/files
 
 # NATIVE_FIRM urls
 n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001B
