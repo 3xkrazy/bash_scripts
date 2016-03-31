@@ -27,9 +27,9 @@ case $CHOICE_1 in
 		;;
 esac
 
-if [ ! -f /dev/$CHOICE_1 ]; then
+if [ ! -f /dev/$BLOCK_DEVICE ]; then
 	echo ""
-	echo Block device selected does not exist!
+	echo Block device /dev/$BLOCK_DEVICE does not exist!
 	exit 1
 fi
 
