@@ -40,10 +40,10 @@ cp -rRv $dir_3dsfiles/plugin $dir_out/;
 
 # Fetch the homebrew from github
 echo "Fetching homebrew...";
-cd $dir_build;
 
-git clone --recursive https://github.com/d0k3/EmuNAND9.git
+cd $dir_build;
 git clone --recursive https://github.com/d0k3/Decrypt9WIP.git
+git clone --recursive https://github.com/d0k3/EmuNAND9.git
 git clone --recursive https://github.com/d0k3/GodMode9.git
 git clone --recursive https://github.com/mid-kid/CakesForeveryWan.git
 git clone --recursive https://github.com/delebile/arm9loaderhax.git
@@ -85,6 +85,26 @@ sed -i -e 's|"0:/slot0x05KeyY.bin"|"0:/3ds/sys/bin/slot0x05KeyY.bin"|g' nand.c;
 cd $dir_build/GodMode9;
 make bootstrap;
 mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_bin/;
+echo "Done!";
+
+# ReiNand
+echo "Building ReiNand...";
+cd $dir_build/ReiNand;
+sleep 5s;
+make clean;
+cd $dir_build/ReiNand/CakeBrah;
+sed -i -e 's|filepath ?=|filepath ?= 3ds/ReiNand/rei/|g' Makefile;
+cd $dir_build/ReiNand/CakeHax;
+sed -i -e 's|filepath ?=|filepath ?= 3ds/ReiNand/rei/|g' Makefile;
+cd $dir_build/ReiNand/source;
+sed -i -e 's|"/rei/splash.bin"|"/3ds/ReiNand/rei/splash.bin"|g' draw.c;
+sed -i -e 's|"/rei/firmware.bin"|"/3ds/ReiNand/rei/firmware.bin"|g' firm.c;
+sed -i -e 's|"/rei/emunand/emunand.bin"|"/3ds/ReiNand/rei/emunand/emunand.bin"|g' firm.c;
+sed -i -e 's|"/rei/thread/arm9.bin"|"/3ds/ReiNand/rei/thread/arm9.bin"|g' firm.c;
+mv -v $dir_build/out/rei $dir_build/out/3ds/ReiNand/;
+mv -v $dir_build/out/arm9loaderhax.bin $dir_build/out/3ds/ReiNand/rei/;
+mv -v $dir_build/out/ReiNand.dat $dir_build/out/3ds/ReiNand/rei/;
+mv -v $dir_build/out/3ds/ReiNand $dir_3ds/;
 echo "Done!";
 
 # CakesFW
