@@ -47,7 +47,7 @@ VIDEO_CARDS="nvidia"
 
 USE="-gnome -kde"
 #################
-nano -w /mnt/etc/fstab
+nano -w /mnt/gentoo/etc/fstab
 ###########################################################################
 /dev/sda1               /boot           ext2            noauto,noatime  1 2
 /dev/sda2               none            swap            sw              0 0
@@ -177,7 +177,7 @@ reboot
 emerge --sync
 eselect profile list
 emerge -e system
-emerge -e world
+emerge world
 emerge --depclean
 emerge revdep-rebuild
 
