@@ -1,77 +1,75 @@
-# NANDTOOL
+# nandtool
 #!/bin/bash
 
-dir_nand=/home/hle/3ds/files/nands;
+dir_nand=/home/hle/Documents/3ds/nands
 cd $dir_nand;
 
-echo Which block device is your 3DS connected to?
+echo "Which block device is your 3DS connected to?";
 echo [1] /dev/sdb
 echo [2] /dev/sdc
 echo [3] /dev/sdd
-echo -n "Select your choice: "
-read CHOICE_1
-case $CHOICE_1 in
+echo -n "Select your choice: ";
+read x
+case $x in
         1)
-                BLOCK_DEVICE=sdb
+                block_device=sdb
                 ;;
         2)
-                BLOCK_DEVICE=sdc
+                block_device=sdc
                 ;;
         3)
-                BLOCK_DEVICE=sdd
+                block_device=sdd
                 ;;
         *)
-        	echo ""
-                echo Invalid choice!
-                exit 1
+        	echo "";
+                echo "Invalid choice!";
+                exit 1;
 		;;
 esac
-
-if [ ! -f /dev/$BLOCK_DEVICE ]; then
-	echo ""
-	echo Block device /dev/$BLOCK_DEVICE does not exist!
-	exit 1
+if [ ! -f /dev/$block_device ]; then
+	echo "";
+	echo Block device /dev/$block_device does not exist!;
+	exit 1;
 fi
-
+echo "";
+echo Your 3DS is connected at /dev/$block_device
 echo ""
-echo Your 3DS is connected at /dev/$BLOCK_DEVICE.
-echo ""
-echo [1] Backup 3DS nand
-echo [2] Write to 3DS nand
-echo -n "Select your choice: "
-read CHOICE_2
-case $CHOICE_2 in
-	1)	echo ""
-		echo -n "Enter nand backup name: "
-		read NAND_NAME
-		echo Backing up 3DS nand file: $NAND_NAME
-		sudo dd if=/dev/$BLOCK_DEVICE of=$dir_nand/$NAND_NAME bs=1M
-		echo Backup completed! Calculating MD5 hash...
-		md5sum $dir_nand/$NAND_NAME
+echo "[1] Backup 3DS nand";
+echo "[2] Write to 3DS nand;
+echo -n "Select your choice: ";
+read y
+case $y in
+	1)	echo "";
+		echo -n "Enter nand backup name: ";
+		read nand_name
+		echo Backing up 3DS nand file: $nand_name;
+		sudo dd if=/dev/$block_device of=$dir_nand/$nand_name bs=1M;
+		echo Backup completed! Calculating MD5 hash...;
+		md5sum $dir_nand/$nand_name;
 		;;
-	2)	echo ""
+	2)	echo "";
 		echo "Nand list:"
 		for entry in "$dir_nand"/*
 		do
-  			echo "$entry"
+  			echo "$entry";
 		done
-		echo ""
-		echo -n "Enter nand backup name: "
-		read NAND_NAME
-                if [ ! -f $dir_nand/$NAND_NAME ]; then
-                	echo ""
-			echo $NAND_NAME does not exist!
-			exit 1
+		echo "";
+		echo -n "Enter nand backup name: ";
+		read nand_name
+                if [ ! -f $dir_nand/$nand_name ]; then
+                	echo "";
+			echo $nand_name does not exist!
+			exit 1;
 		else
-			echo ""
-			echo Writing $NAND_NAME to 3DS nand...
-			sudo dd if=$dir_nand/$NAND_NAME of=/dev/$BLOCK_DEVICE bs=1M
-			echo Write completed!
+			echo "";
+			echo Writing $nand_name to 3DS nand...
+			sudo dd if=$dir_nand/$nand_name of=/dev/$block_device bs=1M;
+			echo "Write completed!";
 		fi
 		;;
 	*)
-		echo ""
-		echo Invalid choice!
-		exit 1
+		echo "";
+		echo Invalid choice!;
+		exit 1;
 		;;
 esac
