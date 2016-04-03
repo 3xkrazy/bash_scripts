@@ -1,9 +1,10 @@
 #!/bin/bash
+# build3ds
 
 # Dependencies directory
-dir_3dsfiles=~/3ds/files
+dir_3dsfiles=~/Documents/3ds/files
 
-# NATIVE_FIRM urls
+# NATIVE_FIRM and AGB_FIRM urls
 n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001B
 n3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk
 o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000049
