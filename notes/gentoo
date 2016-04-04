@@ -168,6 +168,7 @@ visudo
 rc-update add sshd default
 rc-update add alsasound boot
 rc-update add vsftpd boot
+rc-update add consolekit default
 useradd -m -G users,wheel,audio,portage,plugdev,usb,video,games -s /bin/bash hle
 passwd hle
 
