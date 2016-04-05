@@ -1,16 +1,15 @@
 #!/bin/bash
 # build3ds
 
-# Dependencies directory
-dir_3dsfiles=~/Documents/3ds/files
-
 # NATIVE_FIRM and AGB_FIRM urls
 n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001B
 n3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk
+n3ds_agb_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000202/00000000
+n3ds_agb_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000202/cetk
 o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000049
 o3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/cetk
-agb_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/0000000B
-agb_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/cetk
+o3ds_agb_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/0000000B
+o3ds_agb_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/cetk
 
 # BootNTR url
 ntr=https://github.com/44670/BootNTR/releases/download/3.2/NTR.3.2.zip
@@ -22,6 +21,13 @@ dir_3ds=~/src/out/3ds
 dir_cia=~/src/out/3ds/sys/cia
 dir_bin=~/src/out/3ds/sys/bin
 
+# Dependencies directory
+dir_a9lh_files=~/Documents/3ds/a9lh_files
+dir_cakesfw_files=~/Documents/3ds/cakesfw_files
+dir_cia_files=~/Documents/3ds/cia_files
+dir_decrypt9wip_files=~/Documents/3ds/decrypt9wip_files
+dir_slotkeybin_files=~/Documents/3ds/slotkeybin
+
 # Make directories
 mkdir -vp $dir_build
 mkdir -vp $dir_out
@@ -30,14 +36,6 @@ mkdir -vp $dir_cia/apps
 mkdir -vp $dir_cia/games
 mkdir -vp $dir_cia/updates
 mkdir -vp $dir_bin
-
-# Copy files over
-cp -v $dir_3dsfiles/slot* $dir_bin/;
-cp -v $dir_3dsfiles/Uncart-a9lh.bin $dir_bin/;
-cp -v $dir_3dsfiles/*.cia $dir_cia/apps/;
-cp -v $dir_3dsfiles/boot.3dsx $dir_out;
-cp -rRv $dir_3dsfiles/filer $dir_out/;
-cp -rRv $dir_3dsfiles/plugin $dir_out/;
 
 # Fetch the homebrew from github
 echo "Fetching homebrew...";
@@ -109,22 +107,17 @@ mv -v $dir_build/CakesForeveryWan/out/Cakes.dat $dir_build/CakesForeveryWan/out/
 cp -v $dir_build/CakesForeveryWan/build/main.bin $dir_build/CakesForeveryWan/out/cakes/arm9loaderhax.bin;
 mv -v $dir_build/CakesForeveryWan/out/cakes $dir_build/CakesForeveryWan/out/3ds/Cakes/;
 cd $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes;
-wget $agb_cetk;
-wget $agb_firm;
-cp -v $dir_3dsfiles/agb_firmkey.bin $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes/agb_firmkey.bin;
-mv -v $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes/cetk $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes/agb_cetk.bin;
-mv -v $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes/000000* $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes/agb_firmware.bin;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-n3ds;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-o3ds;
 cd $dir_3ds/Cakes-n3ds/cakes;
-wget $n3ds_cetk;
-wget $n3ds_firm;
-cp -v $dir_3dsfiles/firmkey.bin-n3ds $dir_3ds/Cakes-n3ds/cakes/firmkey.bin;
+#wget $n3ds_cetk;
+#wget $n3ds_firm;
+#cp -v $dir_3dsfiles/firmkey.bin-n3ds $dir_3ds/Cakes-n3ds/cakes/firmkey.bin;
 mv -v $dir_3ds/Cakes-n3ds/cakes/000000* $dir_3ds/Cakes-n3ds/cakes/firmware.bin;
 cd $dir_3ds/Cakes-o3ds/cakes;
-wget $o3ds_cetk;
-wget $o3ds_firm;
-cp -v $dir_3dsfiles/firmkey.bin-o3ds $dir_3ds/Cakes-o3ds/cakes/firmkey.bin;
+#wget $o3ds_cetk;
+#wget $o3ds_firm;
+#cp -v $dir_3dsfiles/firmkey.bin-o3ds $dir_3ds/Cakes-o3ds/cakes/firmkey.bin;
 mv -v $dir_3ds/Cakes-o3ds/cakes/000000* $dir_3ds/Cakes-o3ds/cakes/firmware.bin;
 echo "Done!";
 
@@ -158,10 +151,10 @@ make clean;
 cd $dir_build/arm9loaderhax/payload_stage2/source;
 sed -i -e 's|"arm9loaderhax.bin"|"/3ds/sys/bin/arm9loaderhax.bin"|g' main.c;
 cd $dir_build/arm9loaderhax/data_input;
-cp -v $dir_3dsfiles/new3ds10.firm $dir_build/arm9loaderhax/data_input;
-cp -v $dir_3dsfiles/new3ds90.firm $dir_build/arm9loaderhax/data_input;
-cp -v $dir_3dsfiles/secret_sector.bin $dir_build/arm9loaderhax/data_input;
-cp -v $dir_3dsfiles/otp.bin-n3ds $dir_build/arm9loaderhax/data_input/otp.bin;
+#cp -v $dir_3dsfiles/new3ds10.firm $dir_build/arm9loaderhax/data_input;
+#cp -v $dir_3dsfiles/new3ds90.firm $dir_build/arm9loaderhax/data_input;
+#cp -v $dir_3dsfiles/secret_sector.bin $dir_build/arm9loaderhax/data_input;
+#cp -v $dir_3dsfiles/otp.bin-n3ds $dir_build/arm9loaderhax/data_input/otp.bin;
 cd $dir_build/arm9loaderhax/;
 make;
 mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-n3ds;
@@ -174,10 +167,10 @@ cd $dir_build/arm9loaderhax;
 cd $dir_build/arm9loaderhax/data_input;
 rm $dir_build/arm9loaderhax/data_input/*;
 make clean;
-cp -v $dir_3dsfiles/new3ds10.firm $dir_build/arm9loaderhax/data_input;
-cp -v $dir_3dsfiles/new3ds90.firm $dir_build/arm9loaderhax/data_input;
-cp -v $dir_3dsfiles/secret_sector.bin $dir_build/arm9loaderhax/data_input;
-cp -v $dir_3dsfiles/otp.bin-o3ds $dir_build/arm9loaderhax/data_input/otp.bin;
+#cp -v $dir_3dsfiles/new3ds10.firm $dir_build/arm9loaderhax/data_input;
+#cp -v $dir_3dsfiles/new3ds90.firm $dir_build/arm9loaderhax/data_input;
+#cp -v $dir_3dsfiles/secret_sector.bin $dir_build/arm9loaderhax/data_input;
+#cp -v $dir_3dsfiles/otp.bin-o3ds $dir_build/arm9loaderhax/data_input/otp.bin;
 cd $dir_build/arm9loaderhax/;
 make;
 mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3ds;
@@ -266,7 +259,7 @@ echo "Building BootNTR...";
 sleep 5s;
 cd $dir_build/BootNTR;
 make clean;
-cp -v $dir_3dsfiles/makerom $dir_build/BootNTR/lib/ctrcommon/tools/makerom-linux;
+#cp -v $dir_3dsfiles/makerom $dir_build/BootNTR/lib/ctrcommon/tools/makerom-linux;
 chmod u+x $dir_build/BootNTR/lib/ctrcommon/tools/*linux;
 make;
 cp -v $dir_build/BootNTR/output/BootNTR.cia $dir_cia/apps/;
@@ -274,6 +267,14 @@ wget $ntr;
 unzip *.zip;
 cp -v $dir_build/BootNTR/ntr.bin $dir_out/;
 echo "Done!";
+
+# Copy files over
+cp -v $dir_3dsfiles/slot* $dir_bin/;
+cp -v $dir_3dsfiles/Uncart-a9lh.bin $dir_bin/;
+cp -v $dir_3dsfiles/*.cia $dir_cia/apps/;
+cp -v $dir_3dsfiles/boot.3dsx $dir_out;
+cp -rRv $dir_3dsfiles/filer $dir_out/;
+cp -rRv $dir_3dsfiles/plugin $dir_out/;
 
 # Clean up
 cd ~/src;
