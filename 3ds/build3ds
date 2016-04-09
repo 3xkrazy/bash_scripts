@@ -82,7 +82,8 @@ if [ $option = "1" ]; then
   cp -rRv $dir_homebrew/* $dir_build/;
 fi
 if [ $option = "2" ]; then
-  rm -rf $dir_src/sdmc*
+  rm -rf $dir_src/sdmc*;
+  rm -rf $dir_build/*;
 fi
 
 # Decrypt9WIP
