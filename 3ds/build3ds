@@ -26,15 +26,6 @@ o3ds_agb_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/00040138000002
 # BootNTR url
 ntr=https://github.com/44670/BootNTR/releases/download/3.2/NTR.3.2.zip
 
-# Directories
-dir_src=~/src
-dir_build=~/src/build
-dir_out=~/src/out
-dir_3ds=~/src/out/3ds
-dir_homebrew=~/src/homebrew
-dir_cia=~/src/out/3ds/sys/cia
-dir_bin=~/src/out/3ds/sys/bin
-
 # Dependencies
 dir_a9lh_files=~/Documents/3ds/a9lh_files
 dir_cakesfw_files=~/Documents/3ds/cakesfw_files
@@ -45,11 +36,20 @@ dir_misc=~/Documents/3ds/misc
 dir_filer=~/Documents/3ds/filer
 dir_plugin=~/Documents/3ds/plugin
 
+# Directories
+dir_src=~/src
+dir_build=~/src/build
+dir_out=~/src/out
+dir_3ds=~/src/out/3ds
+#dir_homebrew=~/src/homebrew
+dir_cia=~/src/out/3ds/sys/cia
+dir_bin=~/src/out/3ds/sys/bin
+
 # Make directories
 mkdir -vp $dir_build
 mkdir -vp $dir_out
 mkdir -vp $dir_3ds
-mkdir -vp $dir_homebrew
+#mkdir -vp $dir_homebrew
 mkdir -vp $dir_cia/apps
 mkdir -vp $dir_cia/games
 mkdir -vp $dir_cia/updates
@@ -61,7 +61,7 @@ echo [1] Downloand and build from source;
 echo [2] Build from local source;
 echo -n "Select your choice: ";
 read option;
-if [ $option !=1 && $option !=2 ]; then
+if [ $option !=1 ] || [ $option !=2 ]; then
   echo "Invalid choice!";
   exit 1;
 fi
