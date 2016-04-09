@@ -79,7 +79,7 @@ if [ $option = "1" ]; then
   git clone --recursive https://github.com/yellows8/hblauncher_loader.git
   git clone --recursive https://github.com/44670/BootNTR.git
   git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
-  cp -rRv $dir_homebrew $dir_build;
+  cp -rRv $dir_homebrew/* $dir_build/;
 fi
 if [ $option = "2"]; then
   rm -rf $dir_src/sdmc*
