@@ -91,6 +91,7 @@ fi
 rm -rfv $dir_src/build/*;
 rm -rfv $dir_out/*;
 rm -rfv $dir_src/sdmc*;
+cp -rRv $dir_homebrew/* $dir_build/;
 
 # Decrypt9WIP
 cd $dir_build/Decrypt9WIP;
@@ -320,7 +321,7 @@ cp -v $dir_misc/makerom $dir_build/BootNTR/lib/ctrcommon/tools/makerom-linux;
 chmod u+x $dir_build/BootNTR/lib/ctrcommon/tools/*linux;
 make;
 cp -v $dir_build/BootNTR/output/BootNTR.cia $dir_cia/apps/;
-cp -v $dir_homebrew/ntr_zip/ntr.bin $dir_out/;
+cp -v $dir_build/ntr_zip/ntr.bin $dir_out/;
 echo "Done!";
 
 # Copy files over
