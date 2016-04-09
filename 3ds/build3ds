@@ -89,6 +89,7 @@ fi
 
 # Clean src directory
 rm -rfv $dir_src/build/*;
+rm -rfv $dir_out/*;
 rm -rfv $dir_src/sdmc*;
 
 # Decrypt9WIP
