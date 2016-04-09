@@ -31,6 +31,7 @@ dir_src=~/src
 dir_build=~/src/build
 dir_out=~/src/out
 dir_3ds=~/src/out/3ds
+dir_homebrew=~/src/homebrew
 dir_cia=~/src/out/3ds/sys/cia
 dir_bin=~/src/out/3ds/sys/bin
 
