@@ -48,25 +48,26 @@ dir_plugin=~/Documents/3ds/plugin
 mkdir -vp $dir_build
 mkdir -vp $dir_out
 mkdir -vp $dir_3ds
+mkdir -vp $dir_homebrew;
 mkdir -vp $dir_cia/apps
 mkdir -vp $dir_cia/games
 mkdir -vp $dir_cia/updates
 mkdir -vp $dir_bin
 
 # Menu
+echo "";
 echo [1] Downloand and build from source;
 echo [2] Build from local source;
-echo -n "Select your choice: "
-read option
-
-if [option !=1 || option !=2]; then
+echo -n "Select your choice: ";
+read option;
+if [ $option !=1 && $option !=2 ]; then
   echo "Invalid choice!";
   exit 1;
 fi
-
 if [option = 1 ]; then 
   # Fetch the homebrew from github
-  cd $dir_build;
+  rm -rfv $dir_build/*;
+  cd $dir_homebrew;
   echo "Fetching homebrew...";
   git clone --recursive https://github.com/d0k3/Decrypt9WIP.git
   git clone --recursive https://github.com/d0k3/EmuNAND9.git
@@ -77,18 +78,10 @@ if [option = 1 ]; then
   git clone --recursive https://github.com/yellows8/hblauncher_loader.git
   git clone --recursive https://github.com/44670/BootNTR.git
   git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
+  cp -rRv $dir_homebrew $dir_build;
 fi
-
 if [option = 2]; then
   rm -rf $dir_src/sdmc*
-  cd $dir_build/Decrypt9WIP && make clean;
-  cd $dir_build/EmuNAND9 && make clean;
-  cd $dir_build/GodMode9 && make clean;
-  cd $dir_build/CakesForeveryWan && make clean;
-  cd $dir_build/ReiNand && make clean;
-  cd $dir_build/arm9loaderhax && make clean;
-  cd $dir_build/hblauncher_loader && make clean;
-  cd $dir_build/BootNTR && make clean && rm -rf ntr_build;
 fi
 
 # Decrypt9WIP
