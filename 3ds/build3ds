@@ -41,7 +41,7 @@ dir_src=~/src
 dir_build=~/src/build
 dir_out=~/src/out
 dir_3ds=~/src/out/3ds
-#dir_homebrew=~/src/homebrew
+dir_homebrew=~/src/out/homebrew
 dir_cia=~/src/out/3ds/sys/cia
 dir_bin=~/src/out/3ds/sys/bin
 
@@ -49,7 +49,7 @@ dir_bin=~/src/out/3ds/sys/bin
 mkdir -vp $dir_build
 mkdir -vp $dir_out
 mkdir -vp $dir_3ds
-#mkdir -vp $dir_homebrew
+mkdir -vp $dir_homebrew
 mkdir -vp $dir_cia/apps
 mkdir -vp $dir_cia/games
 mkdir -vp $dir_cia/updates
@@ -61,11 +61,11 @@ echo [1] Downloand and build from source;
 echo [2] Build from local source;
 echo -n "Select your choice: ";
 read option;
-if [ $option !=1 ] || [ $option !=2 ]; then
+if [ $option != "1" ] || [ $option != "2" ]; then
   echo "Invalid choice!";
   exit 1;
 fi
-if [option = 1 ]; then 
+if [ $option = "1" ]; then 
   # Fetch the homebrew from github
   rm -rfv $dir_build/*;
   cd $dir_homebrew;
@@ -81,7 +81,7 @@ if [option = 1 ]; then
   git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
   cp -rRv $dir_homebrew $dir_build;
 fi
-if [option = 2]; then
+if [ $option = "2"]; then
   rm -rf $dir_src/sdmc*
 fi
 
@@ -91,7 +91,7 @@ echo "Building Decrypt9WIP...";
 sleep 5s;
 make clean;
 cd $dir_build/Decrypt9WIP/source/decryptor;
-if [option = 1]; then
+if [ $option = "1" ]; then
   sed -i -e 's|"aeskeydb.bin"|"/3ds/sys/bin/aeskeydb.bin"|g' keys.c;
   sed -i -e 's|"slot0x%02X%s.bin"|"/3ds/sys/bin/slot0x%02X%s.bin"|g' keys.c;
 fi
@@ -115,7 +115,7 @@ echo "Building GodMode9...";
 sleep 5s;
 make clean;
 cd $dir_build/GodMode9/source/nand;
-if [option = 1]; then
+if [ $option = "1" ]; then
   sed -i -e 's|"%s/aeskeydb.bin", folder|"/3ds/sys/bin/slot0x05KeyY.bin"|g' nand.c;
   sed -i -e 's|"%s/slot0x%02XKey%.10s", folder|"/3ds/sys/bin/slot0x%02XKey%.10s"|g' nand.c;
 fi
@@ -129,7 +129,7 @@ cd $dir_build/CakesForeveryWan;
 echo "Building CakesForeveryWan...";
 sleep 5s;
 make clean;
-if [option = 1]; then
+if [ $option = "1" ]; then
   cd $dir_build/CakesForeveryWan/source;
   sed -i -e 's|"/cakes"|"/3ds/Cakes/cakes"|g' paths.h;
   sed -i -e '7i#define PATH_BIN "/3ds/sys/bin"\' paths.h;
@@ -179,7 +179,7 @@ echo "Building ReiNand...";
 cd $dir_build/ReiNand;
 sleep 5s;
 make clean;
-if [option = 1]; then
+if [ $option = "1" ]; then
   cd $dir_build/ReiNand/CakeBrah;
   sed -i -e 's|filepath ?=|filepath ?= 3ds/ReiNand/rei/|g' Makefile;
   cd $dir_build/ReiNand/CakeHax;
@@ -204,7 +204,7 @@ echo "Building Arm9loaderhax for n3DS...";
 sleep 5s;
 cd $dir_build/arm9loaderhax;
 make clean;
-if [option = 1]; then
+if [ $option = "1" ]; then
   cd $dir_build/arm9loaderhax/payload_stage2/source;
   sed -i -e 's|"arm9loaderhax.bin"|"/3ds/sys/bin/arm9loaderhax.bin"|g' main.c;
 fi
@@ -239,7 +239,7 @@ echo "Building hblaunhcer_loader...";
 sleep 5s;
 cd $dir_build/hblauncher_loader;
 make clean;
-if if [option = 1]; then
+if if [ $option = "1" ]; then
   cd $dir_build/hblauncher_loader/source;
   sed -i -e 's|"sdmc:/hblauncherloader_otherapp_payload_%s.bin"|"sdmc:/3ds/sys/bin/hblauncherloader_otherapp_payload_%s.bin"|g' hblauncher_loader.c;
 fi
@@ -251,12 +251,12 @@ echo "Done!";
 # CtrBootManager
 echo "Building CtrBootManager";
 sleep 5s;
-if [option = 1]; then
+if [ $option = "1" ]; then
   cd $dir_build/CtrBootManager/source;
   sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/3ds/sys/bin/a9lh.cfg"|g' config.h;
 fi
 cd $dir_build/CtrBootManager;
-if [option = 2]; then
+if [ $option = "2" ]; then
   rm -rf build;
 fi
 mkdir build;
@@ -328,7 +328,7 @@ cp -v $dir_misc/makerom $dir_build/BootNTR/lib/ctrcommon/tools/makerom-linux;
 chmod u+x $dir_build/BootNTR/lib/ctrcommon/tools/*linux;
 make;
 cp -v $dir_build/BootNTR/output/BootNTR.cia $dir_cia/apps/;
-if [option = 2]; then
+if [ $option = "2" ]; then
   rm -rf ntr_zip;
 fi
 mkdir ntr_zip;
