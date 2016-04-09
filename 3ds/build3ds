@@ -83,6 +83,8 @@ if [ $option = "1" ]; then
   cd ntr_zip;
   wget $ntr;
   unzip *.zip;
+  echo "Homebrew up to date! Exiting...";
+  exit 1;
 fi
 
 # Clean src directory
@@ -95,8 +97,8 @@ echo "Building Decrypt9WIP...";
 sleep 5s;
 make clean;
 cd $dir_build/Decrypt9WIP/source/decryptor;
-  sed -i -e 's|"aeskeydb.bin"|"/3ds/sys/bin/aeskeydb.bin"|g' keys.c;
-  sed -i -e 's|"slot0x%02X%s.bin"|"/3ds/sys/bin/slot0x%02X%s.bin"|g' keys.c;
+sed -i -e 's|"aeskeydb.bin"|"/3ds/sys/bin/aeskeydb.bin"|g' keys.c;
+sed -i -e 's|"slot0x%02X%s.bin"|"/3ds/sys/bin/slot0x%02X%s.bin"|g' keys.c;
 cd $dir_build/Decrypt9WIP;
 make bootstrap;
 mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/;
@@ -179,7 +181,6 @@ echo "Building ReiNand...";
 cd $dir_build/ReiNand;
 sleep 5s;
 make clean;
-[ $option = "1" ]; then
 cd $dir_build/ReiNand/CakeBrah;
 sed -i -e 's|filepath ?=|filepath ?= 3ds/ReiNand/rei/|g' Makefile;
 cd $dir_build/ReiNand/CakeHax;
