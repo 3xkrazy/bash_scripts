@@ -45,16 +45,6 @@ dir_3ds=~/src/out/3ds
 dir_cia=~/src/out/3ds/sys/cia
 dir_bin=~/src/out/3ds/sys/bin
 
-# Make directories
-mkdir -vp $dir_build
-mkdir -vp $dir_homebrew
-mkdir -vp $dir_out
-mkdir -vp $dir_3ds
-mkdir -vp $dir_cia/apps
-mkdir -vp $dir_cia/games
-mkdir -vp $dir_cia/updates
-mkdir -vp $dir_bin
-
 # Menu
 echo "";
 echo "[1] Update homebrew";
@@ -67,6 +57,7 @@ if [ $option != "1" ] && [ $option != "2" ]; then
 fi
 if [ $option = "1" ]; then 
   # Fetch the homebrew from github
+  mkdir -vp $dir_homebrew
   rm -rfv $dir_homebrew/*;
   cd $dir_homebrew;
   echo "Fetching homebrew...";
@@ -87,11 +78,20 @@ if [ $option = "1" ]; then
   exit 1;
 fi
 
-# Clean src directory
-rm -rfv $dir_src/build/*;
-rm -rfv $dir_out/*;
+# Make directories
+rm -rfv $dir_build;
+rm -rfv $dir_out;
 rm -rfv $dir_src/sdmc*;
+mkdir -vp $dir_build
+mkdir -vp $dir_out
+mkdir -vp $dir_3ds
+mkdir -vp $dir_cia/apps
+mkdir -vp $dir_cia/games
+mkdir -vp $dir_cia/updates
+mkdir -vp $dir_bin
 cp -rRv $dir_homebrew/* $dir_build/;
+
+
 
 # Decrypt9WIP
 cd $dir_build/Decrypt9WIP;
@@ -152,7 +152,6 @@ mv -v $dir_build/CakesForeveryWan/out/cakes $dir_build/CakesForeveryWan/out/3ds/
 cd $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-n3ds;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-o3ds;
-<< COMMENT1
 cd $dir_3ds/Cakes-n3ds/cakes;
 wget $n3ds_twl_firm;
 wget $n3ds_twl_cetk;
@@ -337,4 +336,3 @@ cp -rRv $dir_plugin $dir_out/;
 cd ~/src;
 mv -v $dir_out sdmc_root-$(date +%m-%d-%Y);
 exit 0;
-COMMENT1
