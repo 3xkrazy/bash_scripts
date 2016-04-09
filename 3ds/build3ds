@@ -48,7 +48,7 @@ dir_plugin=~/Documents/3ds/plugin
 mkdir -vp $dir_build
 mkdir -vp $dir_out
 mkdir -vp $dir_3ds
-mkdir -vp $dir_homebrew;
+mkdir -vp $dir_homebrew
 mkdir -vp $dir_cia/apps
 mkdir -vp $dir_cia/games
 mkdir -vp $dir_cia/updates
