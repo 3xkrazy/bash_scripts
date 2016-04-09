@@ -82,8 +82,9 @@ if [ $option = "1" ]; then
   cp -rRv $dir_homebrew/* $dir_build/;
 fi
 if [ $option = "2" ]; then
-  rm -rf $dir_src/sdmc*;
-  rm -rf $dir_build/*;
+  rm -rfv $dir_src/sdmc*;
+  rm -rfv $dir_build/*;
+  cp -rRv $dir_homebrew/* $dir_build/;
 fi
 
 # Decrypt9WIP
@@ -116,10 +117,10 @@ echo "Building GodMode9...";
 sleep 5s;
 make clean;
 cd $dir_build/GodMode9/source/nand;
-if [ $option = "1" ]; then
-  sed -i -e 's|"%s/aeskeydb.bin", folder|"/3ds/sys/bin/slot0x05KeyY.bin"|g' nand.c;
-  sed -i -e 's|"%s/slot0x%02XKey%.10s", folder|"/3ds/sys/bin/slot0x%02XKey%.10s"|g' nand.c;
-fi
+#if [ $option = "1" ]; then
+#  sed -i -e 's|"%s/aeskeydb.bin", folder|"/3ds/sys/bin/slot0x05KeyY.bin"|g' nand.c;
+#  sed -i -e 's|"%s/slot0x%02XKey%.10s", folder|"/3ds/sys/bin/slot0x%02XKey%.10s"|g' nand.c;
+#fi
 cd $dir_build/GodMode9;
 make bootstrap;
 mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_bin/;
