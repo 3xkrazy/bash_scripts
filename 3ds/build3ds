@@ -81,7 +81,7 @@ if [ $option = "1" ]; then
   git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
   cp -rRv $dir_homebrew/* $dir_build/;
 fi
-if [ $option = "2"]; then
+if [ $option = "2" ]; then
   rm -rf $dir_src/sdmc*
 fi
 
@@ -239,7 +239,7 @@ echo "Building hblaunhcer_loader...";
 sleep 5s;
 cd $dir_build/hblauncher_loader;
 make clean;
-if if [ $option = "1" ]; then
+if [ $option = "1" ]; then
   cd $dir_build/hblauncher_loader/source;
   sed -i -e 's|"sdmc:/hblauncherloader_otherapp_payload_%s.bin"|"sdmc:/3ds/sys/bin/hblauncherloader_otherapp_payload_%s.bin"|g' hblauncher_loader.c;
 fi
