@@ -1,24 +1,27 @@
 #!/bin/bash
 # build3ds
 
-# NATIVE_FIRM, AGB_FIRM, and TWL_FIRM urls
+# NATIVE_FIRM
 n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001B
 n3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk
-#n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001F
-#n3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk
-n3ds_agb_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000202/00000000
-n3ds_agb_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000202/cetk
-n3ds_twl_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000102/00000000
-n3ds_twl_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000102/cetk
-
 o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000049
 o3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/cetk
+#n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001F
+#n3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk
 #o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000050
 #o3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/cetk
-o3ds_agb_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/0000000B
-o3ds_agb_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/cetk
+
+# TWL_FIRM
+n3ds_twl_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000102/00000000
+n3ds_twl_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000102/cetk
 o3ds_twl_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000102/00000016
 o3ds_twl_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000102/cetk
+
+# AGB_FIRM
+n3ds_agb_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000202/00000000
+n3ds_agb_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000202/cetk
+o3ds_agb_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/0000000B
+o3ds_agb_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/cetk
 
 # BootNTR url
 ntr=https://github.com/44670/BootNTR/releases/download/3.2/NTR.3.2.zip
@@ -30,7 +33,7 @@ dir_3ds=~/src/out/3ds
 dir_cia=~/src/out/3ds/sys/cia
 dir_bin=~/src/out/3ds/sys/bin
 
-# Dependencies directory
+# Dependencies
 dir_a9lh_files=~/Documents/3ds/a9lh_files
 dir_cakesfw_files=~/Documents/3ds/cakesfw_files
 dir_cia_files=~/Documents/3ds/cia_files
@@ -47,9 +50,8 @@ mkdir -vp $dir_cia/updates
 mkdir -vp $dir_bin
 
 # Fetch the homebrew from github
-echo "Fetching homebrew...";
-
 cd $dir_build;
+echo "Fetching homebrew...";
 git clone --recursive https://github.com/d0k3/Decrypt9WIP.git
 git clone --recursive https://github.com/d0k3/EmuNAND9.git
 git clone --recursive https://github.com/d0k3/GodMode9.git
@@ -59,8 +61,6 @@ git clone --recursive https://github.com/delebile/arm9loaderhax.git
 git clone --recursive https://github.com/yellows8/hblauncher_loader.git
 git clone --recursive https://github.com/44670/BootNTR.git
 git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
-
-# Patch and build the homebrew
 
 # Decrypt9WIP
 cd $dir_build/Decrypt9WIP;
@@ -153,7 +153,7 @@ mv -v $dir_build/ReiNand/out/ReiNand.dat $dir_build/ReiNand/out/3ds/ReiNand/rei/
 mv -v $dir_build/ReiNand/out/3ds/ReiNand $dir_3ds/;
 echo "Done!";
 
-# Arm9loaderhax n3DS
+# Arm9loaderhax n3ds
 echo "Building Arm9loaderhax for n3DS...";
 sleep 5s;
 cd $dir_build/arm9loaderhax;
@@ -170,7 +170,7 @@ make;
 mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-n3ds;
 make clean;
 
-# Arm9loaderhax o3DS
+# Arm9loaderhax o3ds
 echo "Building Arm9loaderhax for o3DS...";
 sleep 5s;
 cd $dir_build/arm9loaderhax;
@@ -198,8 +198,8 @@ make;
 cp -v hblauncher_loader.cia $dir_cia/apps/;
 echo "Done!";
 
-# Build CtrBootManager for a9lh
-echo "Building CtrBootManager for a9lh";
+# CtrBootManager
+echo "Building CtrBootManager;
 sleep 5s;
 cd $dir_build/CtrBootManager/source;
 sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/3ds/sys/bin/a9lh.cfg"|g' config.h;
