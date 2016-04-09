@@ -38,7 +38,10 @@ dir_a9lh_files=~/Documents/3ds/a9lh_files
 dir_cakesfw_files=~/Documents/3ds/cakesfw_files
 dir_cia_files=~/Documents/3ds/cia_files
 dir_decrypt9wip_files=~/Documents/3ds/decrypt9wip_files
-dir_slotkeybin_files=~/Documents/3ds/slotkeybin
+dir_slotkeybin_files=~/Documents/3ds/slotkeybin_files
+dir_misc=~/Documents/3ds/misc
+dir_filer=~/Documents/3ds/filer
+dir_plugin=~/Documents/3ds/plugin
 
 # Make directories
 mkdir -vp $dir_build
@@ -283,7 +286,7 @@ echo "Building BootNTR...";
 sleep 5s;
 cd $dir_build/BootNTR;
 make clean;
-#cp -v $dir_3dsfiles/makerom $dir_build/BootNTR/lib/ctrcommon/tools/makerom-linux;
+cp -v $dir_misc/makerom $dir_build/BootNTR/lib/ctrcommon/tools/makerom-linux;
 chmod u+x $dir_build/BootNTR/lib/ctrcommon/tools/*linux;
 make;
 cp -v $dir_build/BootNTR/output/BootNTR.cia $dir_cia/apps/;
@@ -293,12 +296,12 @@ cp -v $dir_build/BootNTR/ntr.bin $dir_out/;
 echo "Done!";
 
 # Copy files over
-cp -v $dir_3dsfiles/slot* $dir_bin/;
-cp -v $dir_3dsfiles/Uncart-a9lh.bin $dir_bin/;
-cp -v $dir_3dsfiles/*.cia $dir_cia/apps/;
-cp -v $dir_3dsfiles/boot.3dsx $dir_out;
-cp -rRv $dir_3dsfiles/filer $dir_out/;
-cp -rRv $dir_3dsfiles/plugin $dir_out/;
+cp -v $dir_slotbin_files/slot* $dir_bin/;
+cp -v $dir_misc/Uncart-a9lh.bin $dir_bin/;
+cp -v $dir_cia_files/*.cia $dir_cia/apps/;
+cp -v $dir_misc/boot.3dsx $dir_out;
+cp -rRv $dir_filer $dir_out/;
+cp -rRv $dir_plugin $dir_out/;
 
 # Clean up
 cd ~/src;
