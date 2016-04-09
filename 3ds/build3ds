@@ -68,6 +68,7 @@ fi
 if [ $option = "1" ]; then 
   # Fetch the homebrew from github
   rm -rfv $dir_build/*;
+  rm -rfv $dir_build/*;
   cd $dir_homebrew;
   echo "Fetching homebrew...";
   git clone --recursive https://github.com/d0k3/Decrypt9WIP.git
