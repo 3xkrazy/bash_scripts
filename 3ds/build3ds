@@ -39,17 +39,17 @@ dir_plugin=~/Documents/3ds/plugin
 # Directories
 dir_src=~/src
 dir_build=~/src/build
+dir_homebrew=~/src/homebrew
 dir_out=~/src/out
 dir_3ds=~/src/out/3ds
-dir_homebrew=~/src/out/homebrew
 dir_cia=~/src/out/3ds/sys/cia
 dir_bin=~/src/out/3ds/sys/bin
 
 # Make directories
 mkdir -vp $dir_build
+mkdir -vp $dir_homebrew
 mkdir -vp $dir_out
 mkdir -vp $dir_3ds
-mkdir -vp $dir_homebrew
 mkdir -vp $dir_cia/apps
 mkdir -vp $dir_cia/games
 mkdir -vp $dir_cia/updates
