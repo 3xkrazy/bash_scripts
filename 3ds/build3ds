@@ -199,7 +199,7 @@ cp -v hblauncher_loader.cia $dir_cia/apps/;
 echo "Done!";
 
 # CtrBootManager
-echo "Building CtrBootManager;
+echo "Building CtrBootManager";
 sleep 5s;
 cd $dir_build/CtrBootManager/source;
 sed -i -e 's|#define CONFIG_PATH "/a9lh.cfg"|#define CONFIG_PATH "/3ds/sys/bin/a9lh.cfg"|g' config.h;
