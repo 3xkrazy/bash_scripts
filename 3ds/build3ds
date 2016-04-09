@@ -145,6 +145,7 @@ mv -v $dir_3ds/Cakes-o3ds/cakes/000000* $dir_3ds/Cakes-o3ds/cakes/agb_firmware.b
 mv -v $dir_3ds/Cakes-o3ds/cakes/cetk $dir_3ds/Cakes-o3ds/cakes/agb_cetk;
 wget $o3ds_cetk;
 wget $o3ds_firm;
+mv -v $dir_3ds/Cakes-o3ds/cakes/000000* $dir_3ds/Cakes-o3ds/cakes/firmware.bin;
 echo "Done!";
 
 # ReiNand
@@ -296,7 +297,7 @@ cp -v $dir_build/BootNTR/ntr.bin $dir_out/;
 echo "Done!";
 
 # Copy files over
-cp -v $dir_slotbin_files/slot* $dir_bin/;
+cp -v $dir_slotkeybin_files/* $dir_bin/;
 cp -v $dir_misc/Uncart-a9lh.bin $dir_bin/;
 cp -v $dir_cia_files/*.cia $dir_cia/apps/;
 cp -v $dir_misc/boot.3dsx $dir_out;
