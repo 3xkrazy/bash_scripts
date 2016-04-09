@@ -152,6 +152,7 @@ mv -v $dir_build/CakesForeveryWan/out/cakes $dir_build/CakesForeveryWan/out/3ds/
 cd $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-n3ds;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-o3ds;
+<< COMMENT1
 cd $dir_3ds/Cakes-n3ds/cakes;
 wget $n3ds_twl_firm;
 wget $n3ds_twl_cetk;
@@ -336,3 +337,4 @@ cp -rRv $dir_plugin $dir_out/;
 cd ~/src;
 mv -v $dir_out sdmc_root-$(date +%m-%d-%Y);
 exit 0;
+COMMENT1
