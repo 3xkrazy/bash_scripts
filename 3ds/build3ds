@@ -132,7 +132,7 @@ cd $dir_build/Decrypt9WIP/source;
 sed -i -e 's|#define GAME_DIR "/D9Game"|#define GAME_DIR "/3ds/sys/D9Game"|g' common.h;
 sed -i -e 's|#define WORK_DIR "/Decrypt9"|#define WORK_DIR "/3ds/sys/Decrypt9"|g' common.h;
 cd $dir_build/Decrypt9WIP/source/decryptor;
-#sed -i -e 's|"aeskeydb.bin"|"/3ds/sys/bin/aeskeydb.bin"|g' keys.c;
+sed -i -e 's|"aeskeydb.bin"|"/3ds/sys/slotkeybin/aeskeydb.bin"|g' keys.c;
 sed -i -e 's|"slot0x%02X%s.bin"|"/3ds/sys/slotkeybin/slot0x%02X%s.bin"|g' keys.c;
 cd $dir_build/Decrypt9WIP;
 make bootstrap;
