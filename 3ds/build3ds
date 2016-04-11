@@ -179,29 +179,19 @@ cd $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-n3ds;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-o3ds;
 cd $dir_3ds/Cakes-n3ds/cakes;
-wget $n3ds_twl_firm;
-wget $n3ds_twl_cetk;
-mv -v $dir_3ds/Cakes-n3ds/cakes/000000* $dir_3ds/Cakes-n3ds/cakes/twl_firmware.bin
-mv -v $dir_3ds/Cakes-n3ds/cakes/cetk $dir_3ds/Cakes-n3ds/cakes/twl_cetk;
-wget $n3ds_agb_firm;
-wget $n3ds_agb_cetk;
-mv -v $dir_3ds/Cakes-n3ds/cakes/000000* $dir_3ds/Cakes-n3ds/cakes/agb_firmware.bin
-mv -v $dir_3ds/Cakes-n3ds/cakes/cetk $dir_3ds/Cakes-n3ds/cakes/agb_cetk;
-wget $n3ds_cetk;
-wget $n3ds_firm;
-mv -v $dir_3ds/Cakes-n3ds/cakes/000000* $dir_3ds/Cakes-n3ds/cakes/firmware.bin;
+cp -v $dir_firm/n3ds/000000* $dir_3ds/Cakes-n3ds/cakes/firmware.bin;
+cp -v $dir_firm/n3ds/cetk $dir_3ds/Cakes-n3ds/cakes/cetk;
+cp -v $dir_twl/n3ds/000000* $dir_3ds/Cakes-n3ds/cakes/twl_firmware.bin;
+cp -v $dir_twl/n3ds/cetk $dir_3ds/Cakes-n3ds/cakes/twl_cetk;
+cp -v $dir_agb/n3ds/000000* $dir_3ds/Cakes-n3ds/cakes/agb_firmware.bin;
+cp -v $dir_agb/n3ds/cetk $dir_3ds/Cakes-n3ds/cakes/agb_cetk;
 cd $dir_3ds/Cakes-o3ds/cakes;
-wget $o3ds_twl_firm;
-wget $o3ds_twl_cetk;
-mv -v $dir_3ds/Cakes-o3ds/cakes/000000* $dir_3ds/Cakes-o3ds/cakes/twl_firmware.bin
-mv -v $dir_3ds/Cakes-o3ds/cakes/cetk $dir_3ds/Cakes-o3ds/cakes/twl_cetk;
-wget $o3ds_agb_firm;
-wget $o3ds_agb_cetk;
-mv -v $dir_3ds/Cakes-o3ds/cakes/000000* $dir_3ds/Cakes-o3ds/cakes/agb_firmware.bin
-mv -v $dir_3ds/Cakes-o3ds/cakes/cetk $dir_3ds/Cakes-o3ds/cakes/agb_cetk;
-wget $o3ds_cetk;
-wget $o3ds_firm;
-mv -v $dir_3ds/Cakes-o3ds/cakes/000000* $dir_3ds/Cakes-o3ds/cakes/firmware.bin;
+cp -v $dir_firm/o3ds/000000* $dir_3ds/Cakes-o3ds/cakes/firmware.bin;
+cp -v $dir_firm/o3ds/cetk $dir_3ds/Cakes-o3ds/cakes/cetk;
+cp -v $dir_twl/o3ds/000000* $dir_3ds/Cakes-o3ds/cakes/twl_firmware.bin;
+cp -v $dir_twl/o3ds/cetk $dir_3ds/Cakes-o3ds/cakes/twl_cetk;
+cp -v $dir_agb/o3ds/000000* $dir_3ds/Cakes-o3ds/cakes/agb_firmware.bin;
+cp -v $dir_agb/o3ds/cetk $dir_3ds/Cakes-o3ds/cakes/agb_cetk;
 echo "Done!";
 
 # ReiNand
