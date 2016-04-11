@@ -44,6 +44,7 @@ dir_out=~/src/out
 dir_3ds=~/src/out/3ds
 dir_cia=~/src/out/3ds/sys/cia
 dir_bin=~/src/out/3ds/sys/bin
+dir_slotkeybin=~/src/out/3ds/sys/slotkeybin
 dir_firm=~/src/homebrew/firm
 dir_twl=~/src/homebrew/twl
 dir_agb=~/src/homebrew/agb
@@ -119,6 +120,7 @@ mkdir -vp $dir_cia/apps
 mkdir -vp $dir_cia/games
 mkdir -vp $dir_cia/updates
 mkdir -vp $dir_bin
+mkdir -vp $dir_slotkeybin
 cp -rRv $dir_homebrew/* $dir_build/;
 
 # Decrypt9WIP
@@ -131,7 +133,7 @@ sed -i -e 's|#define GAME_DIR "/D9Game"|#define GAME_DIR "/3ds/sys/D9Game"|g' co
 sed -i -e 's|#define WORK_DIR "/Decrypt9"|#define WORK_DIR "/3ds/sys/Decrypt9"|g' common.h;
 cd $dir_build/Decrypt9WIP/source/decryptor;
 #sed -i -e 's|"aeskeydb.bin"|"/3ds/sys/bin/aeskeydb.bin"|g' keys.c;
-sed -i -e 's|"slot0x%02X%s.bin"|"/3ds/sys/bin/slot0x%02X%s.bin"|g' keys.c;
+sed -i -e 's|"slot0x%02X%s.bin"|"/3ds/sys/slotkeybin/slot0x%02X%s.bin"|g' keys.c;
 cd $dir_build/Decrypt9WIP;
 make bootstrap;
 mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/;
@@ -157,7 +159,7 @@ echo "Building GodMode9...";
 sleep 5s;
 make clean;
 cd $dir_build/GodMode9/source/nand;
-sed -i -e 's|"0:", slot0x05KeyY|"0:/3ds/sys/bin", slot0x05KeyY|g' nand.c;
+sed -i -e 's|"0:", slot0x05KeyY|"0:/3ds/sys/slotkeybin", slot0x05KeyY|g' nand.c;
 cd $dir_build/GodMode9;
 make bootstrap;
 mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_bin/;
@@ -170,9 +172,9 @@ sleep 5s;
 make clean;
 cd $dir_build/CakesForeveryWan/source;
 sed -i -e 's|"/cakes"|"/3ds/Cakes/cakes"|g' paths.h;
-sed -i -e '7i#define PATH_BIN "/3ds/sys/bin"\' paths.h;
-sed -i -e 's|#define PATH_SLOT0X25KEYX "/slot0x25keyX.bin"|#define PATH_SLOT0X25KEYX PATH_BIN "/slot0x25keyX.bin"|g' paths.h;
-sed -i -e 's|#define PATH_SLOT0X11KEY96 "/slot0x11key96.bin"|#define PATH_SLOT0X11KEY96 PATH_BIN "/slot0x11key96.bin"|g' paths.h;
+sed -i -e '7i#define PATH_SLOTKEYBIN "/3ds/sys/slotkeybin"\' paths.h;
+sed -i -e 's|#define PATH_SLOT0X25KEYX "/slot0x25keyX.bin"|#define PATH_SLOT0X25KEYX PATH_SLOTKEYBIN "/slot0x25keyX.bin"|g' paths.h;
+sed -i -e 's|#define PATH_SLOT0X11KEY96 "/slot0x11key96.bin"|#define PATH_SLOT0X11KEY96 PATH_SLOTKEYBIN "/slot0x11key96.bin"|g' paths.h;
 cd $dir_build/CakesForeveryWan/CakeBrah/;
 sed -i -e 's|filepath ?=|filepath ?= 3ds/Cakes/cakes/|g' Makefile;
 cd $dir_build/CakesForeveryWan/CakeHax/;
@@ -362,7 +364,7 @@ cp -v $dir_build/ntr_zip/ntr.bin $dir_out/;
 echo "Done!";
 
 # Copy files over
-cp -v $dir_slotkeybin_files/* $dir_bin/;
+cp -v $dir_slotkeybin_files/* $dir_slotkeybin/;
 cp -v $dir_misc/Uncart-a9lh.bin $dir_bin/;
 cp -v $dir_cia_files/apps/*.cia $dir_cia/apps/;
 cp -v $dir_misc/boot.3dsx $dir_out;
