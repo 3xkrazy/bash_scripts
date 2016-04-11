@@ -134,7 +134,7 @@ cd $dir_build/Decrypt9WIP/source;
 cd $dir_build/Decrypt9WIP/source/decryptor;
 sed -i -e 's|"aeskeydb.bin"|"/3ds/sys/slotkeybin/aeskeydb.bin"|g' keys.c;
 sed -i -e 's|char filename\[32\];|char filename\[50\];|g' keys.c;
-sed -i -e 's|snprintf(filename, 31, "slot0x%02X%s.bin", (unsigned int) keyslot, keyname);|snprintf(filename, 49, "/3ds/sys/slotkeybin/slot0x%02X%s.bin", (unsigned int) keyslot, keyname);|g' keys.c;
+sed -i -e 's|filename, 31, "slot0x%02X%s.bin"|filename, 49, "/3ds/sys/slot0x%02X%s.bin"|g' keys.c;
 cd $dir_build/Decrypt9WIP;
 make bootstrap;
 mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/;
