@@ -148,6 +148,7 @@ sleep 5s;
 make clean;
 cd $dir_build/EmuNAND9/source;
 sed -i -e 's|#define WORK_DIR "/EmuNAND9"|#define WORK_DIR "/3ds/sys/EmuNAND9"|g' common.h;
+cd $dir_build/EmuNAND9;
 make bootstrap;
 mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_bin/;
 mkdir -vp $dir_3ds/sys/EmuNAND9;
