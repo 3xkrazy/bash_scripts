@@ -44,9 +44,9 @@ dir_out=~/src/out
 dir_3ds=~/src/out/3ds
 dir_cia=~/src/out/3ds/sys/cia
 dir_bin=~/src/out/3ds/sys/bin
-dir_firm=~/src/homebrew/firm
-dir_twl=~/src/homebrew/twl
-dir_agb=~/src/homebrew/agb
+dir_firm=~/src/build/firm
+dir_twl=~/src/build/twl
+dir_agb=~/src/build/agb
 
 # Menu
 echo "";
