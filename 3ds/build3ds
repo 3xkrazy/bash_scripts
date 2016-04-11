@@ -97,6 +97,7 @@ if [ $option = "1" ]; then
   cd $dir_agb/o3ds;
   wget $o3ds_agb_firm;
   wget $o3ds_agb_cetk;
+  cd $dir_homebrew;
   mkdir ntr_zip;
   cd ntr_zip;
   wget $ntr;
