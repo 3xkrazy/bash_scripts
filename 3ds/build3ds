@@ -149,10 +149,7 @@ echo "Building GodMode9...";
 sleep 5s;
 make clean;
 cd $dir_build/GodMode9/source/nand;
-#if [ $option = "1" ]; then
-#  sed -i -e 's|"%s/aeskeydb.bin", folder|"/3ds/sys/bin/slot0x05KeyY.bin"|g' nand.c;
-#  sed -i -e 's|"%s/slot0x%02XKey%.10s", folder|"/3ds/sys/bin/slot0x%02XKey%.10s"|g' nand.c;
-#fi
+sed -i -e 's|"0:", slot0x05KeyY|"0:/3ds/sys/bin", slot0x05KeyY|g' nand.c;
 cd $dir_build/GodMode9;
 make bootstrap;
 mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_bin/;
