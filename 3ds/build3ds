@@ -360,6 +360,10 @@ cp -v $dir_cia_files/apps/*.cia $dir_cia/apps/;
 cp -v $dir_misc/boot.3dsx $dir_out;
 cp -rRv $dir_filer $dir_out/;
 cp -rRv $dir_plugin $dir_out/;
+mkdir -vp $dir_3ds/sys/db;
+cd $dir_3ds/sys/db;
+touch title.db;
+touch import.db;
 
 # Clean up
 cd ~/src;
