@@ -44,6 +44,9 @@ dir_out=~/src/out
 dir_3ds=~/src/out/3ds
 dir_cia=~/src/out/3ds/sys/cia
 dir_bin=~/src/out/3ds/sys/bin
+dir_firm=~/src/homebrew/firm
+dir_twl=~/src/homebrew/twl
+dir_agb=~/src/homebrew/agb
 
 # Menu
 echo "";
@@ -59,6 +62,12 @@ if [ $option = "1" ]; then
   # Fetch the homebrew from github
   mkdir -vp $dir_homebrew
   rm -rfv $dir_homebrew/*;
+  mkdir -vp $dir_firm/n3ds;
+  mkdir -vp $dir_firm/o3ds;
+  mkdir -vp $dir_twl/n3ds;
+  mkdir -vp $dir_twl/o3ds;
+  mkdir -vp $dir_agb/n3ds;
+  mkdir -vp $dir_agb/o3ds;
   cd $dir_homebrew;
   echo "Fetching homebrew...";
   git clone --recursive https://github.com/d0k3/Decrypt9WIP.git
@@ -70,6 +79,24 @@ if [ $option = "1" ]; then
   git clone --recursive https://github.com/yellows8/hblauncher_loader.git
   git clone --recursive https://github.com/44670/BootNTR.git
   git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
+  cd $dir_firm/n3ds;
+  wget $n3ds_firm;
+  wget $n3ds_cetk;
+  cd $dir_firm/o3ds;
+  wget $o3ds_firm;
+  wget $o3ds_cetk;
+  cd $dir_twl/n3ds;
+  wget $n3ds_twl_firm;
+  wget $n3ds_twl_cetk;
+  cd $dir_twl/o3ds;
+  wget $o3ds_twl_firm;
+  wget $o3ds_twl_cetk;
+  cd $dir_agb/n3ds;
+  wget $n3ds_agb_firm;
+  wget $n3ds_agb_cetk;
+  cd $dir_agb/o3ds;
+  wget $o3ds_agb_firm;
+  wget $o3ds_agb_cetk;
   mkdir ntr_zip;
   cd ntr_zip;
   wget $ntr;
@@ -90,8 +117,6 @@ mkdir -vp $dir_cia/games
 mkdir -vp $dir_cia/updates
 mkdir -vp $dir_bin
 cp -rRv $dir_homebrew/* $dir_build/;
-
-
 
 # Decrypt9WIP
 cd $dir_build/Decrypt9WIP;
