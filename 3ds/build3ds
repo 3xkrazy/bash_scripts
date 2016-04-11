@@ -207,8 +207,8 @@ echo "Building lgy_cakes..."
 cd $dir_build/lgy_cakes;
 sleep 5s;
 make;
-cp -v *.cake $dir_3ds/Cakes-n3ds/cakes/;
-cp -v *.cake $dir_3ds/Cakes-o3ds/cakes/;
+cp -v *.cake $dir_3ds/Cakes-n3ds/cakes/patches/;
+cp -v *.cake $dir_3ds/Cakes-o3ds/cakes/patches/;
 echo "Done!";
 
 # ReiNand
