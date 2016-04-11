@@ -74,11 +74,13 @@ if [ $option = "1" ]; then
   git clone --recursive https://github.com/d0k3/EmuNAND9.git
   git clone --recursive https://github.com/d0k3/GodMode9.git
   git clone --recursive https://github.com/mid-kid/CakesForeveryWan.git
+  git clone --recursive https://github.com/mid-kid/lgy_cakes.git
   git clone --recursive https://github.com/Reisyukaku/ReiNand.git
   git clone --recursive https://github.com/delebile/arm9loaderhax.git
+  git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
   git clone --recursive https://github.com/yellows8/hblauncher_loader.git
   git clone --recursive https://github.com/44670/BootNTR.git
-  git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
+  
   cd $dir_firm/n3ds;
   wget $n3ds_firm;
   wget $n3ds_cetk;
@@ -198,6 +200,15 @@ cp -v $dir_misc/o3ds/twl_firmkey.bin $dir_3ds/Cakes-o3ds/cakes/twl_firmkey.bin;
 cp -v $dir_agb/o3ds/000000* $dir_3ds/Cakes-o3ds/cakes/agb_firmware.bin;
 cp -v $dir_agb/o3ds/cetk $dir_3ds/Cakes-o3ds/cakes/agb_cetk;
 cp -v $dir_misc/o3ds/agb_firmkey.bin $dir_3ds/Cakes-o3ds/cakes/agb_firmkey.bin;
+echo "Done!";
+
+# lgy_cakes
+echo "Building lgy_cakes..."
+cd $dir_build/lgy_cakes;
+sleep 5s;
+make;
+cp -v *.cake $dir_3ds/Cakes-n3ds/cakes/;
+cp -v *.cake $dir_3ds/Cakes-o3ds/cakes/;
 echo "Done!";
 
 # ReiNand
