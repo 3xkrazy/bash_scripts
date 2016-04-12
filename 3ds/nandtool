@@ -1,5 +1,5 @@
-# nandtool
 #!/bin/bash
+# nandtool
 
 dir_nand=/home/hle/Documents/3ds/nand_files
 cd $dir_nand;
@@ -21,7 +21,7 @@ case $x in
                 block_device=sdd
                 ;;
         *)
-        	echo "";
+		echo "";
                 echo "Invalid choice!";
                 exit 1;
 		;;
@@ -35,7 +35,7 @@ echo "";
 echo Your 3DS is connected at /dev/$block_device
 echo ""
 echo "[1] Backup 3DS nand";
-echo "[2] Write to 3DS nand;
+echo "[2] Write to 3DS nand";
 echo -n "Select your choice: ";
 read y
 case $y in
@@ -51,13 +51,13 @@ case $y in
 		echo "Nand list:"
 		for entry in "$dir_nand"/*
 		do
-  			echo "$entry";
+		echo "$entry";
 		done
 		echo "";
 		echo -n "Enter nand backup name: ";
 		read nand_name
                 if [ ! -f $dir_nand/$nand_name ]; then
-                	echo "";
+			echo "";
 			echo $nand_name does not exist!
 			exit 1;
 		else
