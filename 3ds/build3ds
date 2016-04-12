@@ -76,6 +76,7 @@ if [ $option = "1" ]; then
   git clone --recursive https://github.com/d0k3/GodMode9.git
   git clone --recursive https://github.com/mid-kid/CakesForeveryWan.git
   git clone --recursive https://github.com/mid-kid/lgy_cakes.git
+  git clone --recursive https://github.com/mid-kid/3ds_injector.git
   git clone --recursive https://github.com/Reisyukaku/ReiNand.git
   git clone --recursive https://github.com/delebile/arm9loaderhax.git
   git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
