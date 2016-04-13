@@ -79,6 +79,7 @@ if [ $option = "1" ]; then
   git clone --recursive https://github.com/mid-kid/3ds_injector.git
   git clone --recursive https://github.com/Reisyukaku/ReiNand.git
   git clone --recursive https://github.com/delebile/arm9loaderhax.git
+  git clone --recursive https://github.com/Steveice10/FBI.git
   git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
   git clone --recursive https://github.com/yellows8/hblauncher_loader.git
   git clone --recursive https://github.com/44670/BootNTR.git
@@ -296,6 +297,15 @@ sed -i -e 's|"sdmc:/hblauncherloader_otherapp_payload_%s.bin"|"sdmc:/3ds/sys/bin
 cd $dir_build/hblauncher_loader;
 make;
 cp -v hblauncher_loader.cia $dir_cia/apps/;
+echo "Done!";
+
+# FBI
+echo "Building FBI...";
+sleep 5s;
+cd $dir_build/FBI;
+make clean;
+make;
+cp -v $dir_build/FBI/output/FBI.cia $dir_cia/apps/;
 echo "Done!";
 
 # CtrBootManager
