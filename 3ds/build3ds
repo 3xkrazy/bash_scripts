@@ -373,8 +373,7 @@ key = 3
 title = Uncart
 path =  /3ds/sys/bin/Uncart-a9lh.bin
 offset = 0
-key = 3" > $dir_bin/a9lh.cfg;
-echo "Done!";
+key = 3"
 
 [entry]
 title = A9LH Updater
