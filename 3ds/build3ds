@@ -261,6 +261,8 @@ cd $dir_build/arm9loaderhax;
 make clean;
 cd $dir_build/arm9loaderhax/payload_stage2/source;
 sed -i -e 's|"arm9loaderhax.bin"|"/3ds/sys/bin/arm9loaderhax.bin"|g' main.c;
+cd $dir_build/payload_installer/installer/source/;
+sed -i -e 's|"sdmc:/arm9loaderhax.pack"|"sdmc:/3ds/sys/arm9loaderhax.pack"|g' main.c
 cd $dir_build/arm9loaderhax/data_input;
 cp -v $dir_a9lh_files/new3ds10.firm $dir_build/arm9loaderhax/data_input;
 cp -v $dir_a9lh_files/new3ds90.firm $dir_build/arm9loaderhax/data_input;
@@ -370,6 +372,13 @@ key = 3
 [entry]
 title = Uncart
 path =  /3ds/sys/bin/Uncart-a9lh.bin
+offset = 0
+key = 3" > $dir_bin/a9lh.cfg;
+echo "Done!";
+
+[entry]
+title = A9LH Updater
+path =  /3ds/arm9loaderhax/arm9loaderhax.bin
 offset = 0
 key = 3" > $dir_bin/a9lh.cfg;
 echo "Done!";
