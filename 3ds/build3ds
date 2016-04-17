@@ -53,9 +53,10 @@ dir_agb=~/src/homebrew/agb
 echo "";
 echo "[1] Update homebrew";
 echo "[2] Build homebrew";
+echo "[3] Build homebrew and place arm9loaderhax.pack on SD root"
 echo -n "Select your choice: ";
 read option;
-if [ $option != "1" ] && [ $option != "2" ]; then
+if [ $option != "1" ] && [ $option != "2" && $option !="3" ]; then
   echo "Invalid choice!";
   exit 1;
 fi
@@ -261,8 +262,6 @@ cd $dir_build/arm9loaderhax;
 make clean;
 cd $dir_build/arm9loaderhax/payload_stage2/source;
 sed -i -e 's|"arm9loaderhax.bin"|"/3ds/sys/bin/arm9loaderhax.bin"|g' main.c;
-cd $dir_build/payload_installer/installer/source/;
-sed -i -e 's|"sdmc:/arm9loaderhax.pack"|"sdmc:/3ds/sys/arm9loaderhax.pack"|g' main.c
 cd $dir_build/arm9loaderhax/data_input;
 cp -v $dir_a9lh_files/new3ds10.firm $dir_build/arm9loaderhax/data_input;
 cp -v $dir_a9lh_files/new3ds90.firm $dir_build/arm9loaderhax/data_input;
@@ -405,6 +404,8 @@ mkdir -vp $dir_3ds/sys/db;
 cd $dir_3ds/sys/db;
 touch title.db;
 touch import.db;
+cp -v $dir_build/3ds/arm9loaderhax-n3ds/arm9loaderhax.pack $dir_out/arm9loaderhax.pack-n3ds;
+cp -v $dir_build/3ds/arm9loaderhax-o3ds/arm9loaderhax.pack $dir_out/arm9loaderhax.pack-o3ds;
 
 # Clean up
 cd ~/src;
