@@ -53,10 +53,9 @@ dir_agb=~/src/homebrew/agb
 echo "";
 echo "[1] Update homebrew";
 echo "[2] Build homebrew";
-echo "[3] Build homebrew and place arm9loaderhax.pack on SD root"
 echo -n "Select your choice: ";
 read option;
-if [ $option != "1" ] && [ $option != "2" && $option !="3" ]; then
+if [ $option != "1" ] && [ $option != "2" ]; then
   echo "Invalid choice!";
   exit 1;
 fi
