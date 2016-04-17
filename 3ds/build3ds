@@ -2,14 +2,14 @@
 # build3ds
 
 # NATIVE_FIRM
-n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001B
-n3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk
-o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000049
-o3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/cetk
-#n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001F
+#n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001B
 #n3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk
-#o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000050
+#o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000049
 #o3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/cetk
+n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001F
+n3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk
+o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000050
+o3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/cetk
 
 # TWL_FIRM
 n3ds_twl_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000102/00000000
