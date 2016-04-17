@@ -261,10 +261,6 @@ cd $dir_build/arm9loaderhax;
 make clean;
 cd $dir_build/arm9loaderhax/payload_stage2/source;
 sed -i -e 's|"arm9loaderhax.bin"|"/3ds/sys/bin/arm9loaderhax.bin"|g' main.c;
-cd $dir_build/arm9loaderhax/common/pack_tool_src/source/;
-sed -i -e 's|"arm9loaderhax.pack"|"/3ds/sys/bin/arm9loaderhax.pack"|g' main.c
-cd $dir_build/arm9loaderhax/payload_installer/installer/source/
-sed -i -e 's|"sdmc:/arm9loaderhax.pack"|"sdmc:/3ds/sys/bin/arm9loaderhax.pack"|g' main.c
 cd $dir_build/arm9loaderhax/data_input;
 cp -v $dir_a9lh_files/new3ds10.firm $dir_build/arm9loaderhax/data_input;
 cp -v $dir_a9lh_files/new3ds90.firm $dir_build/arm9loaderhax/data_input;
