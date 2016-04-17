@@ -403,8 +403,8 @@ mkdir -vp $dir_3ds/sys/db;
 cd $dir_3ds/sys/db;
 touch title.db;
 touch import.db;
-cp -v $dir_build/3ds/arm9loaderhax-n3ds/arm9loaderhax.pack $dir_out/arm9loaderhax.pack-n3ds;
-cp -v $dir_build/3ds/arm9loaderhax-o3ds/arm9loaderhax.pack $dir_out/arm9loaderhax.pack-o3ds;
+cp -v $dir_3ds/arm9loaderhax-n3ds/arm9loaderhax.pack $dir_out/arm9loaderhax.pack-n3ds;
+cp -v $dir_3ds/arm9loaderhax-o3ds/arm9loaderhax.pack $dir_out/arm9loaderhax.pack-o3ds;
 
 # Clean up
 cd ~/src;
