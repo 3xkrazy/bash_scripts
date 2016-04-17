@@ -24,7 +24,7 @@ o3ds_agb_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/00040138000002
 o3ds_agb_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/cetk
 
 # BootNTR url
-ntr=https://github.com/44670/BootNTR/releases/download/3.2/NTR.3.2.zip
+ntr=https://github.com/44670/BootNTR/files/212904/NTR_3.4PREVIEW1_STARTER_KIT.zip
 
 # Dependencies
 dir_a9lh_files=~/Documents/3ds/a9lh_files
