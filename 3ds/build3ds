@@ -376,7 +376,7 @@ offset = 0
 key = 3
 
 [entry]
-title = A9LH Updater
+title = Arm9loaderhax Updater
 path =  /3ds/arm9loaderhax/arm9loaderhax.bin
 offset = 0
 key = 3" > $dir_bin/a9lh.cfg;
