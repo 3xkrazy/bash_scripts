@@ -26,7 +26,7 @@ dir_cia_files=~/Documents/3ds/cia_files
 dir_decrypt9wip_files=~/Documents/3ds/decrypt9wip_files
 dir_3ds_injector=~/Documents/3ds/3ds_injector
 dir_slotkeybin_files=~/Documents/3ds/slotkeybin_files
-dir_misc_files=~/Documents/3ds/misc
+dir_misc_files=~/Documents/3ds/misc_files
 dir_filer=~/Documents/3ds/filer
 
 # Directories
