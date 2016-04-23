@@ -2,10 +2,6 @@
 # build3ds
 
 # NATIVE_FIRM
-#n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001B
-#n3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk
-#o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000049
-#o3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/cetk
 n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001F
 n3ds_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk
 o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000050
@@ -78,7 +74,6 @@ if [ $option = "1" ]; then
   git clone --recursive https://github.com/delebile/arm9loaderhax.git
   git clone --recursive https://github.com/Steveice10/FBI.git
   git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
-  
   cd $dir_firm/n3ds;
   wget $n3ds_firm;
   wget $n3ds_cetk;
@@ -125,6 +120,7 @@ sed -i -e 's|"aeskeydb.bin"|"/3ds/sys/bin/aeskeydb.bin"|g' keys.c;
 cd $dir_build/Decrypt9WIP;
 make bootstrap;
 mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/;
+cp -v $dir_decrypt9wip_files/aeskeydb.bin $dir_bin/;
 echo "Done!";
 
 # EmuNAND9
@@ -154,8 +150,8 @@ sleep 5s;
 make clean;
 cd $dir_build/CakesForeveryWan/source;
 sed -i -e 's|"/cakes"|"/3ds/Cakes/cakes"|g' paths.h;
-sed -i -e 's|"/slot0x25keyX.bin"|"/3ds/sys/bin/slot0x25keyX.bin"|g' paths.h;
-sed -i -e 's|"/slot0x11key96.bin"|"/3ds/sys/bin/slot0x11key96.bin"|g' paths.h;
+sed -i -e 's|PATH_SLOT0X25KEYX|PATH_SLOT0X25KEYX PATH_CAKES|g' paths.h;
+sed -i -e 's|PATH_SLOT0X11KEY96|PATH_SLOT0X11KEY96 PATH_CAKES|g' paths.h;
 cd $dir_build/CakesForeveryWan/CakeBrah/;
 sed -i -e 's|filepath ?=|filepath ?= 3ds/Cakes/cakes/|g' Makefile;
 cd $dir_build/CakesForeveryWan/CakeHax/;
@@ -165,7 +161,8 @@ make;
 mv -v $dir_build/CakesForeveryWan/out/Cakes.dat $dir_build/CakesForeveryWan/out/cakes/;
 cp -v $dir_build/CakesForeveryWan/build/main.bin $dir_build/CakesForeveryWan/out/cakes/arm9loaderhax.bin;
 mv -v $dir_build/CakesForeveryWan/out/cakes $dir_build/CakesForeveryWan/out/3ds/Cakes/;
-cd $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes;
+cp -v $dir_slotkeybin_files/slot0x25KeyX.bin $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes;
+cp -v $dir_slotkeybin_files/slot0x11Key96.bin $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-n3ds;
 cp -rRv $dir_build/CakesForeveryWan/out/3ds/Cakes $dir_3ds/Cakes-o3ds;
 cd $dir_3ds/Cakes-n3ds/cakes;
@@ -222,33 +219,8 @@ cd $dir_build/3ds_injector;
 make;
 cp -v *.cake $dir_3ds/Cakes-n3ds/cakes/patches/;
 cp -v *.cake $dir_3ds/Cakes-o3ds/cakes/patches/;
+cp -rRv $dir_3ds_injector $dir_3ds/sys;
 echo "Done!";
-
-<<COMMENT2
-# ReiNand
-echo "Building ReiNand...";
-cd $dir_build/ReiNand;
-sleep 5s;
-make clean;
-cd $dir_build/ReiNand/CakeBrah;
-sed -i -e 's|filepath ?=|filepath ?= 3ds/ReiNand/rei/|g' Makefile;
-cd $dir_build/ReiNand/CakeHax;
-sed -i -e 's|filepath ?=|filepath ?= 3ds/ReiNand/rei/|g' Makefile;
-cd $dir_build/ReiNand/source;
-sed -i -e 's|"/rei/splash.bin"|"/3ds/ReiNand/rei/splash.bin"|g' draw.c;
-sed -i -e 's|"/rei/firmware.bin"|"/3ds/ReiNand/rei/firmware.bin"|g' firm.c;
-sed -i -e 's|"/rei/emunand/emunand.bin"|"/3ds/ReiNand/rei/emunand/emunand.bin"|g' firm.c;
-sed -i -e 's|"/rei/loader.cxi"|"/3ds/ReiNand/rei/loader.cxi"|g' firm.c;
-cd $dir_build/ReiNand/loader/source;
-sed -i -e 's|"/rei/patches/patches.dat"|"/3ds/ReiNand/rei/patches/patches.dat"|g' patcher.c;
-cd $dir_build/ReiNand;
-make;
-mv -v $dir_build/ReiNand/out/rei $dir_build/ReiNand/out/3ds/ReiNand/;
-mv -v $dir_build/ReiNand/out/arm9loaderhax.bin $dir_build/ReiNand/out/3ds/ReiNand/rei/;
-mv -v $dir_build/ReiNand/out/ReiNand.dat $dir_build/ReiNand/out/3ds/ReiNand/rei/;
-mv -v $dir_build/ReiNand/out/3ds/ReiNand $dir_3ds/;
-echo "Done!";
-COMMENT2
 
 # Arm9loaderhax n3ds
 echo "Building Arm9loaderhax for n3DS...";
@@ -362,13 +334,9 @@ key = 3" > $dir_bin/a9lh.cfg;
 echo "Done!";
 
 # Copy files over
-cp -v $dir_decrypt9wip_files/aeskeydb.bin $dir_bin/;
-cp -v $dir_slotkeybin_files/slot0x25KeyX.bin $dir_bin/;
-cp -v $dir_slotkeybin_files/slot0x11Key96.bin $dir_bin/;
 cp -v $dir_misc_files/Uncart-a9lh.bin $dir_bin/;
 cp -v $dir_cia_files/apps/*.cia $dir_cia/apps/;
 cp -rRv $dir_filer $dir_out/;
-cp -rRv $dir_3ds_injector $dir_3ds/sys;
 mkdir -vp $dir_3ds/sys/tmp/db;
 cd $dir_3ds/sys/tmp/db;
 touch title.db;
