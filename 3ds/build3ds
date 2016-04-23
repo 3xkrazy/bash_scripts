@@ -23,9 +23,6 @@ n3ds_agb_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/00040138200002
 o3ds_agb_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/0000000B
 o3ds_agb_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/cetk
 
-# BootNTR url
-ntr=https://github.com/44670/BootNTR/files/222950/NTR_3.4PREVIEW2_STARTER_KIT.zip
-
 # Dependencies
 dir_a9lh_files=~/Documents/3ds/a9lh_files
 dir_cakesfw_files=~/Documents/3ds/cakesfw_files
@@ -33,7 +30,7 @@ dir_cia_files=~/Documents/3ds/cia_files
 dir_decrypt9wip_files=~/Documents/3ds/decrypt9wip_files
 dir_3ds_injector=~/Documents/3ds/3ds_injector
 dir_slotkeybin_files=~/Documents/3ds/slotkeybin_files
-dir_misc=~/Documents/3ds/misc
+dir_misc_files=~/Documents/3ds/misc
 dir_filer=~/Documents/3ds/filer
 dir_plugin=~/Documents/3ds/plugin
 
@@ -78,12 +75,9 @@ if [ $option = "1" ]; then
   git clone --recursive https://github.com/mid-kid/lgy_cakes.git
   #git clone --recursive https://github.com/mid-kid/3ds_injector.git
   git clone --recursive https://github.com/Wolfvak/3ds_injector.git
-  #git clone --recursive https://github.com/Reisyukaku/ReiNand.git
   git clone --recursive https://github.com/delebile/arm9loaderhax.git
   git clone --recursive https://github.com/Steveice10/FBI.git
   git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
-  #git clone --recursive https://github.com/yellows8/hblauncher_loader.git
-  #git clone --recursive https://github.com/44670/BootNTR.git
   
   cd $dir_firm/n3ds;
   wget $n3ds_firm;
@@ -104,10 +98,6 @@ if [ $option = "1" ]; then
   wget $o3ds_agb_firm;
   wget $o3ds_agb_cetk;
   cd $dir_homebrew;
-  mkdir ntr_zip;
-  cd ntr_zip;
-  wget $ntr;
-  unzip *.zip;
   echo "Homebrew up to date! Exiting...";
   exit 0;
 fi
@@ -131,7 +121,7 @@ echo "Building Decrypt9WIP...";
 sleep 5s;
 make clean;
 cd $dir_build/Decrypt9WIP/source/decryptor;
-sed -i -e 's|"aeskeydb.bin"|"/3ds/sys/aeskeydb.bin"|g' keys.c;
+sed -i -e 's|"aeskeydb.bin"|"/3ds/sys/bin/aeskeydb.bin"|g' keys.c;
 cd $dir_build/Decrypt9WIP;
 make bootstrap;
 mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/;
@@ -295,20 +285,6 @@ make;
 mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3ds;
 echo "Done!";
 
-<< COMMENT3
-# hblauncher_loader
-echo "Building hblaunhcer_loader...";
-sleep 5s;
-cd $dir_build/hblauncher_loader;
-make clean;
-cd $dir_build/hblauncher_loader/source;
-sed -i -e 's|"sdmc:/hblauncherloader_otherapp_payload_%s.bin"|"sdmc:/3ds/sys/bin/hblauncherloader_otherapp_payload_%s.bin"|g' hblauncher_loader.c;
-cd $dir_build/hblauncher_loader;
-make;
-cp -v hblauncher_loader.cia $dir_cia/apps/;
-echo "Done!";
-COMMENT3
-
 # FBI
 echo "Building FBI...";
 sleep 5s;
@@ -385,30 +361,14 @@ offset = 0
 key = 3" > $dir_bin/a9lh.cfg;
 echo "Done!";
 
-<< COMMENT4
-# Build BootNTR and extract ntr.bin
-echo "Building BootNTR...";
-sleep 5s;
-cd $dir_build/BootNTR;
-make clean;
-cp -v $dir_misc/makerom $dir_build/BootNTR/lib/ctrcommon/tools/makerom-linux;
-chmod u+x $dir_build/BootNTR/lib/ctrcommon/tools/*linux;
-make;
-cp -v $dir_build/BootNTR/output/BootNTR.cia $dir_cia/apps/;
-cp -v $dir_build/ntr_zip/ntr.bin $dir_out/;
-echo "Done!";
-COMMENT4
-
 # Copy files over
 cp -v $dir_decrypt9wip_files/aeskeydb.bin $dir_bin/;
 cp -v $dir_slotkeybin_files/slot0x25KeyX.bin $dir_bin/;
 cp -v $dir_slotkeybin_files/slot0x11Key96.bin $dir_bin/;
-cp -v $dir_misc/Uncart-a9lh.bin $dir_bin/;
+cp -v $dir_misc_files/Uncart-a9lh.bin $dir_bin/;
 cp -v $dir_cia_files/apps/*.cia $dir_cia/apps/;
-#cp -v $dir_misc/boot.3dsx $dir_out;
 cp -rRv $dir_filer $dir_out/;
 cp -rRv $dir_3ds_injector $dir_3ds/sys;
-#cp -rRv $dir_plugin $dir_out/;
 mkdir -vp $dir_3ds/sys/db;
 cd $dir_3ds/sys/db;
 touch title.db;
