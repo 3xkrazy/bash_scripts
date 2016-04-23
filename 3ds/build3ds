@@ -75,7 +75,8 @@ if [ $option = "1" ]; then
   git clone --recursive https://github.com/d0k3/GodMode9.git
   git clone --recursive https://github.com/mid-kid/CakesForeveryWan.git
   git clone --recursive https://github.com/mid-kid/lgy_cakes.git
-  git clone --recursive https://github.com/mid-kid/3ds_injector.git
+  #git clone --recursive https://github.com/mid-kid/3ds_injector.git
+  git clone --recursive https://github.com/Wolfvak/3ds_injector.git
   git clone --recursive https://github.com/Reisyukaku/ReiNand.git
   git clone --recursive https://github.com/delebile/arm9loaderhax.git
   git clone --recursive https://github.com/Steveice10/FBI.git
@@ -208,10 +209,26 @@ cp -v *.cake $dir_3ds/Cakes-n3ds/cakes/patches/;
 cp -v *.cake $dir_3ds/Cakes-o3ds/cakes/patches/;
 echo "Done!";
 
+<< COMMENT1
 # 3ds_injector
 echo "Building 3ds_injector..."
 cd $dir_build/3ds_injector;
 sleep 5s;
+make clean;
+make;
+cp -v *.cake $dir_3ds/Cakes-n3ds/cakes/patches/;
+cp -v *.cake $dir_3ds/Cakes-o3ds/cakes/patches/;
+echo "Done!";
+COMMENT1
+
+# 3ds_injector
+echo "Building 3ds_injector..."
+cd $dir_build/3ds_injector;
+sleep 5s;
+make clean;
+cd $dir_build/3ds_injector/source/;
+sed -i -e 's|"/injector/"|"/3ds/sys/3ds_injector/"|g' paths.h;
+cd dir_build/3ds_injector;
 make;
 cp -v *.cake $dir_3ds/Cakes-n3ds/cakes/patches/;
 cp -v *.cake $dir_3ds/Cakes-o3ds/cakes/patches/;
@@ -389,11 +406,13 @@ cp -v $dir_misc/Uncart-a9lh.bin $dir_bin/;
 cp -v $dir_cia_files/apps/*.cia $dir_cia/apps/;
 cp -v $dir_misc/boot.3dsx $dir_out;
 cp -rRv $dir_filer $dir_out/;
+cp -rRv $dir_3ds_injector $dir_3ds/sys;
 cp -rRv $dir_plugin $dir_out/;
 mkdir -vp $dir_3ds/sys/db;
 cd $dir_3ds/sys/db;
 touch title.db;
 touch import.db;
+
 
 # Clean up
 cd ~/src;
