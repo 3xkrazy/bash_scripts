@@ -77,12 +77,12 @@ if [ $option = "1" ]; then
   git clone --recursive https://github.com/mid-kid/lgy_cakes.git
   #git clone --recursive https://github.com/mid-kid/3ds_injector.git
   git clone --recursive https://github.com/Wolfvak/3ds_injector.git
-  git clone --recursive https://github.com/Reisyukaku/ReiNand.git
+  #git clone --recursive https://github.com/Reisyukaku/ReiNand.git
   git clone --recursive https://github.com/delebile/arm9loaderhax.git
   git clone --recursive https://github.com/Steveice10/FBI.git
   git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
-  git clone --recursive https://github.com/yellows8/hblauncher_loader.git
-  git clone --recursive https://github.com/44670/BootNTR.git
+  #git clone --recursive https://github.com/yellows8/hblauncher_loader.git
+  #git clone --recursive https://github.com/44670/BootNTR.git
   
   cd $dir_firm/n3ds;
   wget $n3ds_firm;
@@ -108,7 +108,7 @@ if [ $option = "1" ]; then
   wget $ntr;
   unzip *.zip;
   echo "Homebrew up to date! Exiting...";
-  exit 1;
+  exit 0;
 fi
 
 # Make directories
@@ -208,16 +208,17 @@ cp -v *.cake $dir_3ds/Cakes-n3ds/cakes/patches/;
 cp -v *.cake $dir_3ds/Cakes-o3ds/cakes/patches/;
 echo "Done!";
 
-
+<< COMMENT1
 # 3ds_injector
-#echo "Building 3ds_injector..."
-#cd $dir_build/3ds_injector;
-#sleep 5s;
-#make clean;
-#make;
-#cp -v *.cake $dir_3ds/Cakes-n3ds/cakes/patches/;
-#cp -v *.cake $dir_3ds/Cakes-o3ds/cakes/patches/;
-#echo "Done!";
+echo "Building 3ds_injector..."
+cd $dir_build/3ds_injector;
+sleep 5s;
+make clean;
+make;
+cp -v *.cake $dir_3ds/Cakes-n3ds/cakes/patches/;
+cp -v *.cake $dir_3ds/Cakes-o3ds/cakes/patches/;
+echo "Done!";
+COMMENT1
 
 # 3ds_injector
 echo "Building 3ds_injector..."
@@ -232,6 +233,7 @@ cp -v *.cake $dir_3ds/Cakes-n3ds/cakes/patches/;
 cp -v *.cake $dir_3ds/Cakes-o3ds/cakes/patches/;
 echo "Done!";
 
+<<COMMENT2
 # ReiNand
 echo "Building ReiNand...";
 cd $dir_build/ReiNand;
@@ -255,6 +257,7 @@ mv -v $dir_build/ReiNand/out/arm9loaderhax.bin $dir_build/ReiNand/out/3ds/ReiNan
 mv -v $dir_build/ReiNand/out/ReiNand.dat $dir_build/ReiNand/out/3ds/ReiNand/rei/;
 mv -v $dir_build/ReiNand/out/3ds/ReiNand $dir_3ds/;
 echo "Done!";
+COMMENT2
 
 # Arm9loaderhax n3ds
 echo "Building Arm9loaderhax for n3DS...";
@@ -291,6 +294,7 @@ make;
 mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3ds;
 echo "Done!";
 
+<< COMMENT3
 # hblauncher_loader
 echo "Building hblaunhcer_loader...";
 sleep 5s;
@@ -302,6 +306,7 @@ cd $dir_build/hblauncher_loader;
 make;
 cp -v hblauncher_loader.cia $dir_cia/apps/;
 echo "Done!";
+COMMENT3
 
 # FBI
 echo "Building FBI...";
@@ -348,11 +353,6 @@ path =  /3ds/Cakes/cakes/arm9loaderhax.bin
 offset = 0
 key = -1
 
-title = ReiNand
-path =  /3ds/ReiNand/rei/arm9loaderhax.bin
-offset = 0
-key = -1
-
 [entry]
 title = Decrypt9
 path =  /3ds/sys/bin/Decrypt9WIP.bin
@@ -378,12 +378,13 @@ offset = 0
 key = 3
 
 [entry]
-title = Arm9loaderhax Updater
+title = Arm9LoaderHax
 path =  /3ds/arm9loaderhax/arm9loaderhax.bin
 offset = 0
 key = 3" > $dir_bin/a9lh.cfg;
 echo "Done!";
 
+<< COMMENT4
 # Build BootNTR and extract ntr.bin
 echo "Building BootNTR...";
 sleep 5s;
@@ -395,6 +396,7 @@ make;
 cp -v $dir_build/BootNTR/output/BootNTR.cia $dir_cia/apps/;
 cp -v $dir_build/ntr_zip/ntr.bin $dir_out/;
 echo "Done!";
+COMMENT4
 
 # Copy files over
 cp -v $dir_slotkeybin_files/aeskeydb.bin $dir_bin/;
@@ -405,12 +407,11 @@ cp -v $dir_cia_files/apps/*.cia $dir_cia/apps/;
 cp -v $dir_misc/boot.3dsx $dir_out;
 cp -rRv $dir_filer $dir_out/;
 cp -rRv $dir_3ds_injector $dir_3ds/sys;
-cp -rRv $dir_plugin $dir_out/;
+#cp -rRv $dir_plugin $dir_out/;
 mkdir -vp $dir_3ds/sys/db;
 cd $dir_3ds/sys/db;
 touch title.db;
 touch import.db;
-
 
 # Clean up
 cd ~/src;
