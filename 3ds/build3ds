@@ -365,6 +365,7 @@ echo "Done!";
 # Copy files over
 cp -v $dir_misc_files/Uncart-a9lh.bin $dir_bin/;
 cp -v $dir_cia_files/apps/*.cia $dir_cia/apps/;
+cp -v $dir_misc_files/boot.3dsx $dir_out;
 cp -rRv $dir_filer $dir_out/;
 mkdir -vp $dir_3ds/sys/tmp/db;
 cd $dir_3ds/sys/tmp/db;
