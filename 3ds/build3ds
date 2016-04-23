@@ -252,7 +252,7 @@ sleep 5s;
 cd $dir_build/arm9loaderhax;
 make clean;
 cd $dir_build/arm9loaderhax/payload_stage2/source;
-sed -i -e 's|"arm9loaderhax.bin"|"/3ds/arm9loaderhax-n3ds/arm9loaderhax.bin"|g' main.c;
+sed -i -e 's|"arm9loaderhax.bin"|"/3ds/sys/bin/arm9loaderhax.bin"|g' main.c;
 cd $dir_build/arm9loaderhax/payload_installer/installer/source;
 sed -i -e 's|"sdmc:/arm9loaderhax.pack"|"sdmc:/3ds/arm9loaderhax-n3ds/arm9loaderhax.pack"|g' main.c
 cd $dir_build/arm9loaderhax/data_input;
@@ -265,13 +265,13 @@ make;
 mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-n3ds;
 echo "Done!";
 
-# Arm9loaderhax n3ds
+# Arm9loaderhax o3ds
 echo "Building Arm9loaderhax for o3DS...";
 sleep 5s;
 cd $dir_build/arm9loaderhax;
 make clean;
 cd $dir_build/arm9loaderhax/payload_stage2/source;
-sed -i -e 's|"arm9loaderhax.bin"|"/3ds/arm9loaderhax-o3ds/arm9loaderhax.bin"|g' main.c;
+sed -i -e 's|"arm9loaderhax.bin"|"/3ds/sys/bin/arm9loaderhax.bin"|g' main.c;
 cd $dir_build/arm9loaderhax/payload_installer/installer/source;
 sed -i -e 's|"sdmc:/arm9loaderhax.pack"|"sdmc:/3ds/arm9loaderhax-o3ds/arm9loaderhax.pack"|g' main.c
 cd $dir_build/arm9loaderhax/data_input;
