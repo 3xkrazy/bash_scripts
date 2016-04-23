@@ -31,6 +31,7 @@ dir_a9lh_files=~/Documents/3ds/a9lh_files
 dir_cakesfw_files=~/Documents/3ds/cakesfw_files
 dir_cia_files=~/Documents/3ds/cia_files
 dir_decrypt9wip_files=~/Documents/3ds/decrypt9wip_files
+dir_3ds_injector=/Documents/3ds/3ds_injector
 dir_slotkeybin_files=~/Documents/3ds/slotkeybin_files
 dir_misc=~/Documents/3ds/misc
 dir_filer=~/Documents/3ds/filer
@@ -399,12 +400,12 @@ echo "Done!";
 COMMENT4
 
 # Copy files over
-cp -v $dir_slotkeybin_files/aeskeydb.bin $dir_bin/;
+cp -v $dir_decrypt9wip_files/aeskeydb.bin $dir_bin/;
 cp -v $dir_slotkeybin_files/slot0x25KeyX.bin $dir_bin/;
 cp -v $dir_slotkeybin_files/slot0x11Key96.bin $dir_bin/;
 cp -v $dir_misc/Uncart-a9lh.bin $dir_bin/;
 cp -v $dir_cia_files/apps/*.cia $dir_cia/apps/;
-cp -v $dir_misc/boot.3dsx $dir_out;
+#cp -v $dir_misc/boot.3dsx $dir_out;
 cp -rRv $dir_filer $dir_out/;
 cp -rRv $dir_3ds_injector $dir_3ds/sys;
 #cp -rRv $dir_plugin $dir_out/;
