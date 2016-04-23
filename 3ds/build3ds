@@ -130,11 +130,10 @@ echo "Building Decrypt9WIP...";
 sleep 5s;
 make clean;
 cd $dir_build/Decrypt9WIP/source/decryptor;
-sed -i -e 's|"aeskeydb.bin"|"/3ds/sys/slotkeybin/aeskeydb.bin"|g' keys.c;
+sed -i -e 's|"aeskeydb.bin"|"/3ds/sys/aeskeydb.bin"|g' keys.c;
 cd $dir_build/Decrypt9WIP;
 make bootstrap;
 mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/;
-cp -v $dir_decrypt9wip_files/aeskeydb.bin $dir_slotkeybin/;
 echo "Done!";
 
 # EmuNAND9
