@@ -263,6 +263,8 @@ cp -v $dir_a9lh_files/otp.bin-n3ds $dir_build/arm9loaderhax/data_input/otp.bin;
 cd $dir_build/arm9loaderhax/;
 make;
 mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-n3ds;
+rm -rf $dir_build/arm9loaderhax;
+cp -rRv $dir_homebrew/arm9loaderhax $dir_build/;
 echo "Done!";
 
 # Arm9loaderhax o3ds
