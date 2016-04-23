@@ -227,7 +227,7 @@ sleep 5s;
 make clean;
 cd $dir_build/3ds_injector/source/;
 sed -i -e 's|"/injector/"|"/3ds/sys/3ds_injector/"|g' paths.h;
-cd dir_build/3ds_injector;
+cd $dir_build/3ds_injector;
 make;
 cp -v *.cake $dir_3ds/Cakes-n3ds/cakes/patches/;
 cp -v *.cake $dir_3ds/Cakes-o3ds/cakes/patches/;
