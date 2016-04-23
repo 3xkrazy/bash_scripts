@@ -121,6 +121,7 @@ cd $dir_build/Decrypt9WIP;
 make bootstrap;
 mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/;
 cp -v $dir_decrypt9wip_files/aeskeydb.bin $dir_bin/;
+cp -v $dir_slotkeybin_files/slot0x05KeyY.bin $dir_bin/;
 echo "Done!";
 
 # EmuNAND9
