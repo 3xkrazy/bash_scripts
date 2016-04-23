@@ -326,7 +326,7 @@ bgImgBot = /3ds/sys/bin/bgBot.bin
 
 [entry]
 title = CakesFW
-path =  /3ds/Cakes/cakes/arm9loaderhax.bin
+path =  /3ds/Cakes-n3ds/cakes/arm9loaderhax.bin
 offset = 0
 key = -1
 
