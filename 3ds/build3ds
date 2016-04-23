@@ -209,17 +209,16 @@ cp -v *.cake $dir_3ds/Cakes-n3ds/cakes/patches/;
 cp -v *.cake $dir_3ds/Cakes-o3ds/cakes/patches/;
 echo "Done!";
 
-<< COMMENT1
+
 # 3ds_injector
-echo "Building 3ds_injector..."
-cd $dir_build/3ds_injector;
-sleep 5s;
-make clean;
-make;
-cp -v *.cake $dir_3ds/Cakes-n3ds/cakes/patches/;
-cp -v *.cake $dir_3ds/Cakes-o3ds/cakes/patches/;
-echo "Done!";
-COMMENT1
+#echo "Building 3ds_injector..."
+#cd $dir_build/3ds_injector;
+#sleep 5s;
+#make clean;
+#make;
+#cp -v *.cake $dir_3ds/Cakes-n3ds/cakes/patches/;
+#cp -v *.cake $dir_3ds/Cakes-o3ds/cakes/patches/;
+#echo "Done!";
 
 # 3ds_injector
 echo "Building 3ds_injector..."
