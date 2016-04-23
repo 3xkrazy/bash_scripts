@@ -32,7 +32,6 @@ dir_3ds_injector=~/Documents/3ds/3ds_injector
 dir_slotkeybin_files=~/Documents/3ds/slotkeybin_files
 dir_misc_files=~/Documents/3ds/misc
 dir_filer=~/Documents/3ds/filer
-dir_plugin=~/Documents/3ds/plugin
 
 # Directories
 dir_src=~/src
@@ -45,6 +44,7 @@ dir_bin=~/src/out/3ds/sys/bin
 dir_firm=~/src/homebrew/firm
 dir_twl=~/src/homebrew/twl
 dir_agb=~/src/homebrew/agb
+dir_tmp=~/src/out/3ds/sys/tmp
 
 # Menu
 echo "";
@@ -369,10 +369,12 @@ cp -v $dir_misc_files/Uncart-a9lh.bin $dir_bin/;
 cp -v $dir_cia_files/apps/*.cia $dir_cia/apps/;
 cp -rRv $dir_filer $dir_out/;
 cp -rRv $dir_3ds_injector $dir_3ds/sys;
-mkdir -vp $dir_3ds/sys/db;
-cd $dir_3ds/sys/db;
+mkdir -vp $dir_3ds/sys/tmp/db;
+cd $dir_3ds/sys/tmp/db;
 touch title.db;
 touch import.db;
+cp -rRv $dir_decrypt9wip_files/n3ds/ $dir_tmp;
+cp -rRv $dir_decrypt9wip_files/o3ds/ $dir_tmp;
 
 # Clean up
 cd ~/src;
