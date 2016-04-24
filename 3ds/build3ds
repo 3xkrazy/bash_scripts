@@ -73,6 +73,7 @@ if [ $option = "1" ]; then
   git clone --recursive https://github.com/Wolfvak/3ds_injector.git
   git clone --recursive https://github.com/delebile/arm9loaderhax.git
   git clone --recursive https://github.com/Steveice10/FBI.git
+  git clone --recursive https://github.com/3xkrazy/ftpd.git
   git clone --recursive -b a9lh https://github.com/Cpasjuste/CtrBootManager.git
   cd $dir_firm/n3ds;
   wget $n3ds_firm;
@@ -293,6 +294,15 @@ cd $dir_build/FBI;
 make clean;
 make;
 cp -v $dir_build/FBI/output/FBI.cia $dir_cia/apps/;
+echo "Done!";
+
+# ftpd
+echo "Building ftpd...";
+sleep 5s;
+cd $dir_build/ftpd;
+make clean;
+make;
+cp -v $dir_build/ftpd/output/ftpd.cia $dir_cia/apps/;
 echo "Done!";
 
 # CtrBootManager
