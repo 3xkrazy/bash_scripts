@@ -295,6 +295,7 @@ echo "Done!";
 
 # ftpd
 cd $dir_build/ftpd;
+echo "";
 echo "********** Building ftpd **********";
 make clean;
 make;
