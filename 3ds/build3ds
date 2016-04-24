@@ -170,7 +170,7 @@ sed -i -e 's|filepath ?=|filepath ?= 3ds/Cakes-n3ds/cakes/|g' Makefile;
 cd $dir_build/CakesForeveryWan/;
 make;
 mv -v $dir_build/CakesForeveryWan/out/Cakes.dat $dir_build/CakesForeveryWan/out/cakes/;
-cp -v $dir_build/CakesForeveryWan/build/main.bin $dir_build/CakesForeveryWan/out/cakes/arm9loaderhax.bin;
+cp -v $dir_build/CakesForeveryWan/build/main.bin $dir_build/CakesForeveryWan/out/cakes/cakesfw.bin;
 mv -v $dir_build/CakesForeveryWan/out/cakes $dir_build/CakesForeveryWan/out/3ds/Cakes/;
 cp -v $dir_slotkeybin_files/slot0x25KeyX.bin $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes;
 cp -v $dir_slotkeybin_files/slot0x11Key96.bin $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes;
@@ -205,7 +205,7 @@ sed -i -e 's|filepath ?=|filepath ?= 3ds/Cakes-o3ds/cakes/|g' Makefile;
 cd $dir_build/CakesForeveryWan/;
 make;
 mv -v $dir_build/CakesForeveryWan/out/Cakes.dat $dir_build/CakesForeveryWan/out/cakes/;
-cp -v $dir_build/CakesForeveryWan/build/main.bin $dir_build/CakesForeveryWan/out/cakes/arm9loaderhax.bin;
+cp -v $dir_build/CakesForeveryWan/build/main.bin $dir_build/CakesForeveryWan/out/cakes/cakesfw.bin;
 mv -v $dir_build/CakesForeveryWan/out/cakes $dir_build/CakesForeveryWan/out/3ds/Cakes/;
 cp -v $dir_slotkeybin_files/slot0x25KeyX.bin $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes;
 cp -v $dir_slotkeybin_files/slot0x11Key96.bin $dir_build/CakesForeveryWan/out/3ds/Cakes/cakes;
@@ -263,7 +263,7 @@ sleep 5s;
 cd $dir_build/arm9loaderhax;
 make clean;
 cd $dir_build/arm9loaderhax/payload_stage2/source;
-sed -i -e 's|"arm9loaderhax.bin"|"/3ds/sys/bin/arm9loaderhax.bin"|g' main.c;
+sed -i -e 's|"arm9loaderhax.bin"|"/3ds/sys/bin/boot.bin"|g' main.c;
 cd $dir_build/arm9loaderhax/payload_installer/installer/source;
 sed -i -e 's|"sdmc:/arm9loaderhax.pack"|"sdmc:/3ds/arm9loaderhax-n3ds/arm9loaderhax.pack"|g' main.c
 cd $dir_build/arm9loaderhax/data_input;
@@ -284,7 +284,7 @@ sleep 5s;
 cd $dir_build/arm9loaderhax;
 make clean;
 cd $dir_build/arm9loaderhax/payload_stage2/source;
-sed -i -e 's|"arm9loaderhax.bin"|"/3ds/sys/bin/arm9loaderhax.bin"|g' main.c;
+sed -i -e 's|"arm9loaderhax.bin"|"/3ds/sys/bin/boot.bin"|g' main.c;
 cd $dir_build/arm9loaderhax/payload_installer/installer/source;
 sed -i -e 's|"sdmc:/arm9loaderhax.pack"|"sdmc:/3ds/arm9loaderhax-o3ds/arm9loaderhax.pack"|g' main.c
 cd $dir_build/arm9loaderhax/data_input;
@@ -328,7 +328,7 @@ cd $dir_build/CtrBootManager/build/CMakeFiles/CtrBootManager_a9lh.dir;
 sed -i -e 's|--set-section-flags|~/.bin/devkitPro/devkitARM/bin/arm-none-eabi-objcopy --set-section-flags|g' build.make;
 cd $dir_build/CtrBootManager/build;
 cmake --build . --target CtrBootManager_a9lh
-cp -v CtrBootManager9.bin $dir_bin/arm9loaderhax.bin;
+cp -v CtrBootManager9.bin $dir_bin/boot.bin;
 echo "[general]
 timeout = 10
 recovery = 2
@@ -347,7 +347,7 @@ bgImgBot = /3ds/sys/bin/bgBot.bin
 
 [entry]
 title = CakesFW
-path =  /3ds/Cakes-n3ds/cakes/arm9loaderhax.bin
+path =  /3ds/Cakes-n3ds/cakes/cakesfw.bin
 offset = 0
 key = -1
 
