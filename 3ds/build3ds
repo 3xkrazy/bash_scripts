@@ -374,7 +374,7 @@ cp -v $dir_cia_files/apps/*.cia $dir_cia/apps/;
 cp -v $dir_misc_files/boot.3dsx $dir_out;
 cp -rRv $dir_filer $dir_out/;
 mkdir -vp $dir_tmp/db;
-touch $dir_tmp/title.db $dir_tmp/import.db;
+touch $dir_tmp/db/title.db $dir_tmp/db/import.db;
 cp -rRv $dir_decrypt9wip_files/n3ds $dir_tmp/hs-n3ds;
 cp -rRv $dir_decrypt9wip_files/o3ds $dir_tmp/hs-o3ds;
 
