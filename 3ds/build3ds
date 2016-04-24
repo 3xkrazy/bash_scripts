@@ -137,7 +137,7 @@ echo "";
 echo "********** Building Uncart **********";
 make clean;
 make;
-mv -v dir$build/uncart/arm9loaderhax.bin $dir_bin/Uncart.bin;
+mv -v $dir_build/uncart/arm9loaderhax.bin $dir_bin/Uncart.bin;
 echo "Done!";
 
 # CakesFW for n3ds
