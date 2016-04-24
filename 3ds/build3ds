@@ -67,6 +67,7 @@ if [ $option = "1" ]; then
   git clone --recursive https://github.com/d0k3/Decrypt9WIP.git
   git clone --recursive https://github.com/d0k3/EmuNAND9.git
   git clone --recursive https://github.com/d0k3/GodMode9.git
+  git clone --recursive https://github.com/AuroraWright/uncart.git
   git clone --recursive https://github.com/mid-kid/CakesForeveryWan.git
   git clone --recursive https://github.com/mid-kid/lgy_cakes.git
   #git clone --recursive https://github.com/mid-kid/3ds_injector.git
@@ -142,6 +143,15 @@ sleep 5s;
 make clean;
 make bootstrap;
 mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_bin/;
+echo "Done!";
+
+# Uncart
+cd $dir_build/uncart;
+echo "Building Uncart...";
+sleep 5s;
+make clean;
+make;
+mv -v dir$build/uncart/arm9loaderhax.bin $dir_bin/Uncart.bin;
 echo "Done!";
 
 # CakesFW for n3ds
@@ -361,7 +371,7 @@ key = 3
 
 [entry]
 title = Uncart
-path =  /3ds/sys/bin/Uncart-a9lh.bin
+path =  /3ds/sys/bin/Uncart.bin
 offset = 0
 key = 3
 
@@ -373,7 +383,6 @@ key = 3" > $dir_bin/a9lh.cfg;
 echo "Done!";
 
 # Copy files over
-cp -v $dir_misc_files/Uncart-a9lh.bin $dir_bin/;
 cp -v $dir_cia_files/apps/*.cia $dir_cia/apps/;
 cp -v $dir_misc_files/boot.3dsx $dir_out;
 cp -rRv $dir_filer $dir_out/;
