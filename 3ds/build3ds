@@ -24,7 +24,7 @@ dir_a9lh_files=~/Documents/3ds/a9lh_files
 dir_cakesfw_files=~/Documents/3ds/cakesfw_files
 dir_cia_files=~/Documents/3ds/cia_files
 dir_decrypt9wip_files=~/Documents/3ds/decrypt9wip_files
-dir_3ds_injector=~/Documents/3ds/3ds_injector
+dir_3ds_injector_files=~/Documents/3ds/3ds_injector_files
 dir_slotkeybin_files=~/Documents/3ds/slotkeybin_files
 dir_misc_files=~/Documents/3ds/misc_files
 dir_filer=~/Documents/3ds/filer
@@ -241,7 +241,7 @@ cd $dir_build/3ds_injector;
 make;
 cp -v *.cake $dir_sys/cakes-n3ds/patches/;
 cp -v *.cake $dir_sys/cakes-o3ds/patches/;
-cp -rRv $dir_3ds_injector $dir_sys/;
+cp -rRv $dir_3ds_injector_files $dir_sys/;
 echo "Done!";
 
 # Arm9loaderhax n3ds
