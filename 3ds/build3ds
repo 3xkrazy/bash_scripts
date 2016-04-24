@@ -242,7 +242,7 @@ make;
 cp -v *.cake $dir_sys/cakes-n3ds/patches/;
 cp -rRv $dir_3ds_injector_files $dir_sys/cakes-n3ds/3ds_injector;
 echo "Done!";
-rm -rRv $dir_build/3ds_injector;
+rm -rfv $dir_build/3ds_injector;
 cp -rRv $dir_homebrew/3ds_injector $dir_build/3ds_injector;
 
 # 3ds_injector for o3ds
