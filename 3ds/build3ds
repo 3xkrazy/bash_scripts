@@ -241,7 +241,7 @@ cd $dir_build/3ds_injector;
 make;
 cp -v *.cake $dir_sys/cakes-n3ds/patches/;
 cp -v *.cake $dir_sys/cakes-o3ds/patches/;
-cp -rRv $dir_3ds_injector_files $dir_sys/;
+cp -rRv $dir_3ds_injector_files $dir_sys/3ds_injector;
 echo "Done!";
 
 # Arm9loaderhax n3ds
