@@ -44,15 +44,15 @@ dir_tmp=$dir_sys/tmp
 
 # Menu
 echo "";
-echo "[1] Update homebrew";
-echo "[2] Build homebrew";
+echo "[1] Build homebrew";
+echo "[2] Update homebrew";
 echo -n "Select your choice: ";
 read option;
 if [ $option != "1" ] && [ $option != "2" ]; then
     echo "Invalid choice!";
     exit 1;
 fi
-if [ $option = "1" ]; then 
+if [ $option = "2" ]; then 
     # Fetch the homebrew from github
     mkdir -vp $dir_homebrew
     rm -rfv $dir_homebrew/*;
