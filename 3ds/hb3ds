@@ -355,25 +355,25 @@ key = -1
 
 [entry]
 title = Decrypt9
-path = /sys/bin/Decrypt9WIP.bin
+path = /sys/bin/decrypt9wip.bin
 offset = 0
 key = 3
 
 [entry]
 title = EmuNAND9
-path = /sys/bin/EmuNAND9.bin
+path = /sys/bin/emunand9.bin
 offset = 0
 key = 3
 
 [entry]
 title = GodMode9
-path = /sys/bin/GodMode9.bin
+path = /sys/bin/godmode9.bin
 offset = 0
 key = 3
 
 [entry]
 title = Uncart
-path = /sys/bin/Uncart.bin
+path = /sys/bin/uncart.bin
 offset = 0
 key = 3
 
