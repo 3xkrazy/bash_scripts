@@ -1,5 +1,5 @@
 #!/bin/bash
-# 3dshb
+# hb3ds
 
 # NATIVE_FIRM
 n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/0000001F
@@ -44,7 +44,7 @@ dir_tmp=$dir_sys/tmp
 
 # Menu
 echo "";
-echo "****** 3DSHB Menu ******"
+echo "****** HB3DS Menu ******"
 echo "[1] Build 3DS homebrew";
 echo "[2] Update 3DS homebrew";
 echo -n "Select your choice: ";
