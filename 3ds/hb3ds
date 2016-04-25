@@ -129,7 +129,7 @@ echo "";
 echo "********** Building GodMode9 **********";
 make clean;
 make bootstrap;
-mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_bin/godmode9;
+mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_bin/godmode9.bin;
 echo "Done!";
 
 # Uncart
