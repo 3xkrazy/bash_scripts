@@ -1,5 +1,5 @@
 #!/bin/bash
-# setup_scritps
+# setup_scripts
 
 dir_bin=~/.bin/
 
