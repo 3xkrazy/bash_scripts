@@ -107,7 +107,7 @@ cd $dir_build/Decrypt9WIP/source/decryptor;
 sed -i -e 's|"aeskeydb.bin"|"/sys/bin/aeskeydb.bin"|g' keys.c;
 cd $dir_build/Decrypt9WIP;
 make bootstrap;
-mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/;
+mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/decrypt9wip.bin;
 cp -v $dir_decrypt9wip_files/aeskeydb.bin $dir_bin/;
 echo "Done!";
 
@@ -119,7 +119,7 @@ make clean;
 cd $dir_build/EmuNAND9/source;
 cd $dir_build/EmuNAND9;
 make bootstrap;
-mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_bin/;
+mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_bin/emunand9.bin;
 echo "Done!";
 
 # Godmode9
@@ -128,7 +128,7 @@ echo "";
 echo "********** Building GodMode9 **********";
 make clean;
 make bootstrap;
-mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_bin/;
+mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_bin/godmode9;
 echo "Done!";
 
 # Uncart
@@ -137,7 +137,7 @@ echo "";
 echo "********** Building Uncart **********";
 make clean;
 make;
-mv -v $dir_build/uncart/arm9loaderhax.bin $dir_bin/Uncart.bin;
+mv -v $dir_build/uncart/arm9loaderhax.bin $dir_bin/uncart.bin;
 echo "Done!";
 
 # CakesFW for n3ds
@@ -304,7 +304,7 @@ echo "";
 echo "********** Building FBI **********";
 make clean;
 make;
-cp -v $dir_build/FBI/output/FBI.cia $dir_cia/apps/;
+cp -v $dir_build/FBI/output/FBI.cia $dir_cia/apps/fbi.cia;
 echo "Done!";
 
 # ftpd
