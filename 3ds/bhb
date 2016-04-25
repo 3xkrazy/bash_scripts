@@ -305,7 +305,7 @@ echo "";
 echo "********** Building FBI **********";
 make clean;
 make;
-cp -v $dir_build/FBI/output/FBI.cia $dir_cia/apps/fbi.cia;
+cp -v $dir_build/FBI/output/FBI.cia $dir_cia/apps/fbi-$(date +%m-%d-%Y).cia;
 echo "Done!";
 
 # ftpd
@@ -314,7 +314,7 @@ echo "";
 echo "********** Building ftpd **********";
 make clean;
 make;
-cp -v $dir_build/ftpd/output/ftpd.cia $dir_cia/apps/;
+cp -v $dir_build/ftpd/output/ftpd.cia $dir_cia/apps/ftpd-$(date +%m-%d-%Y).cia;
 echo "Done!";
 
 # CtrBootManager
