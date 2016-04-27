@@ -34,7 +34,7 @@ dir_filer=~/Documents/3ds/filer
 
 # Define directories
 dir_src=~/src
-dir_homebrew=$dir_src/homebrew
+dir_homebrew=~/Documents/3ds/homebrew
 dir_firm=$dir_homebrew/firm
 dir_twl=$dir_homebrew/twl
 dir_agb=$dir_homebrew/agb
