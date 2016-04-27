@@ -235,7 +235,7 @@ sed -i -e 's|"/injector/"|"/sys/cakes-n3ds/3ds_injector/"|g' paths.h;
 cd $dir_build/3ds_injector;
 make;
 cp -v *.cake $dir_sys/cakes-n3ds/patches/;
-cp -rRv $dir_3ds_injector_files $dir_sys/cakes-n3ds/3ds_injector;
+cp -rR $dir_3ds_injector_files $dir_sys/cakes-n3ds/3ds_injector;
 echo "Done!";
 rm -rf $dir_build/3ds_injector; cp -rR $dir_homebrew/3ds_injector $dir_build/3ds_injector;
 
@@ -249,7 +249,7 @@ sed -i -e 's|"/injector/"|"/sys/cakes-o3ds/3ds_injector/"|g' paths.h;
 cd $dir_build/3ds_injector;
 make;
 cp -v *.cake $dir_sys/cakes-o3ds/patches/;
-cp -rRv $dir_3ds_injector_files $dir_sys/cakes-o3ds/3ds_injector;
+cp -rR $dir_3ds_injector_files $dir_sys/cakes-o3ds/3ds_injector;
 echo "Done!";
 
 # Arm9loaderhax n3ds
