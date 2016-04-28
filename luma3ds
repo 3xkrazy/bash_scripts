@@ -75,7 +75,7 @@ case $choice in
 	cd $dir_build/Decrypt9WIP/source/decryptor;
 	sed -i -e 's|"aeskeydb.bin"|"/luma/sys/aeskeydb.bin"|g' keys.c;
 	cd $dir_build/Decrypt9WIP;
-	make bootstrap;
+	make;
 	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/up_decrypt9wip.bin;
 	cp -v $dir_decrypt9wip_files/aeskeydb.bin $dir_bin/;
 	echo "Done!";
@@ -85,14 +85,14 @@ case $choice in
 	make clean;
 	cd $dir_build/EmuNAND9/source;
 	cd $dir_build/EmuNAND9;
-	make bootstrap;
+	make;
 	mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_bin/right_emunand9.bin;
 	echo "Done!";
 
 	# Godmode9
 	cd $dir_build/GodMode9;
 	make clean;
-	make bootstrap;
+	make;
 	mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_bin/left_godmode9.bin;
 	echo "Done!";
 
