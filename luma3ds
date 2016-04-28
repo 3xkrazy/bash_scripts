@@ -1,0 +1,74 @@
+#!/bin/bash
+# luma3ds
+
+dir_luma3ds=~/Documents/3ds/luma3ds
+dir_src=~/src
+dir_out=$dir_src/out
+dir_build=$dir_src/build
+dir_sys=$dir_out/luma/sys
+dir_payloads=$dir_out/luma/payloads
+
+# Luma3DS Menu
+echo "**** Luma3DS Menu ****";
+echo "[1] Build CFW";
+echo "[2] Update repository";
+echo -n "Select your choice: ";
+read choice;
+
+case $choice in
+	1) 
+	rm -rf $dir_build $dir_out; mkdir -vp $dir_build $dir_out;
+	cp -rR $dir_luma3ds/* $dir_build/;
+	
+	# Arm9loaderhax n3ds
+  cd $dir_build/arm9loaderhax;
+  make clean;
+  cd $dir_build/arm9loaderhax/payload_stage2/source;
+  sed -i -e 's|"arm9loaderhax.bin"|"/luma/boot.bin"|g' main.c;
+  cd $dir_build/arm9loaderhax/payload_installer/installer/source;
+  sed -i -e 's|"sdmc:/arm9loaderhax.pack"|"sdmc:/luma/sys/arm9loaderhax-n3ds/arm9loaderhax.pack"|g' main.c;
+  cp -v $dir_a9lh_files/new3ds10.firm $dir_build/arm9loaderhax/data_input;
+  cp -v $dir_a9lh_files/new3ds90.firm $dir_build/arm9loaderhax/data_input;
+  cp -v $dir_a9lh_files/secret_sector.bin $dir_build/arm9loaderhax/data_input;
+  cp -v $dir_a9lh_files/otp.bin-n3ds $dir_build/arm9loaderhax/data_input/otp.bin;
+  cd $dir_build/arm9loaderhax/;
+  make;
+  mv -v $dir_build/arm9loaderhax/data_output $dir_sys/arm9loaderhax-n3ds;
+  rm -rf $dir_build/arm9loaderhax; cp -rR $dir_luma3ds/arm9loaderhax $dir_build/;
+  echo "Done!";
+  
+  # Arm9loaderhax o3ds
+  cd $dir_build/arm9loaderhax;
+  make clean;
+  cd $dir_build/arm9loaderhax/payload_stage2/source;
+  sed -i -e 's|"arm9loaderhax.bin"|"/luma/boot.bin"|g' main.c;
+  cd $dir_build/arm9loaderhax/payload_installer/installer/source;
+  sed -i -e 's|"sdmc:/arm9loaderhax.pack"|"sdmc:/luma/sys/arm9loaderhax-o3ds/arm9loaderhax.pack"|g' main.c;
+  cp -v $dir_a9lh_files/new3ds10.firm $dir_build/arm9loaderhax/data_input;
+  cp -v $dir_a9lh_files/new3ds90.firm $dir_build/arm9loaderhax/data_input;
+  cp -v $dir_a9lh_files/secret_sector.bin $dir_build/arm9loaderhax/data_input;
+  cp -v $dir_a9lh_files/otp.bin-o3ds $dir_build/arm9loaderhax/data_input/otp.bin;
+  cd $dir_build/arm9loaderhax/;
+  make;
+  mv -v $dir_build/arm9loaderhax/data_output $dir_sys/arm9loaderhax-o3ds;
+  echo "Done!";
+
+  2)
+    rm -rf $dir_luma3ds; mkdir -vp $dir_lumas3ds;
+    cd $dir_lumas3ds;
+    git clone --recursive https://github.com/AuroraWright/Luma3DS.git;
+    git clone --recursive https://github.com/delebile.git;
+    git clone --recursive https://github.com/d0k3/Decrypt9WIP.git;
+    git clone --recursive https://github.com/d0k3/EmuNAND9.git;
+    git clone --recursive https://github.com/d0k3/GodMode9.git;
+    git clone --recursive https://github.com/AuroraWright/uncart.git;
+    git clone --recursive https://github.com/Steveice10/FBI.git;
+    git clone --recursive https://github.com/3xkrazy/ftpd.git;
+    echo "";
+    echo "Repository updated!";
+    exit 0;
+    
+  *)
+    echo "";
+    echo "Invalid choice!";
+    exit 1;
