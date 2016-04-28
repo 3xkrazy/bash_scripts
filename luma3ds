@@ -24,6 +24,7 @@ dir_misc_files=~/Documents/3ds/misc_files
 dir_filer=~/Documents/3ds/filer
 
 # Luma3DS Menu
+echo "";
 echo "**** Luma3DS Menu ****";
 echo "[1] Build CFW";
 echo "[2] Update repository";
