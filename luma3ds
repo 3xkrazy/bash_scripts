@@ -138,7 +138,7 @@ case $choice in
     	cd $dir_lumas3ds;
     	echo "Fetching Homebrew...";
     	git clone --recursive https://github.com/AuroraWright/Luma3DS.git;
-    	git clone --recursive https://github.com/delebile.git;
+    	git clone --recursive https://github.com/delebile/arm9loaderhax.git
     	git clone --recursive https://github.com/d0k3/Decrypt9WIP.git;
     	git clone --recursive https://github.com/d0k3/EmuNAND9.git;
     	git clone --recursive https://github.com/d0k3/GodMode9.git;
