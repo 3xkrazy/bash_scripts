@@ -45,10 +45,10 @@ case $choice in
 	sed 's|filepath ?=|filepath ?= luma/|g' $dir_build/Luma3DS/CakeHax/Makefile;
 	cd $dir_build/Luma3DS;
 	make;
-	mv -v $dir_build/Lumas3DS/out/luma/* $dir_out/luma/;
-	mv -v $dir_build/Lumas3DS/out/arm9loaderhax.bin $dir_out/luma/payloads/def_luma3ds.bin;
-	mv -v $dir_build/Lumas3DS/out/3ds/Luma3DS/Luma3DS.3dsx $dir_out/luma/;
-	mv -v $dir_build/Lumas3DS/out/3ds/Luma3DS/Luma3DS.smdh $dir_out/luma/;
+	mv -v $dir_build/Luma3DS/out/luma/* $dir_out/luma/;
+	mv -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/luma/payloads/def_luma3ds.bin;
+	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.3dsx $dir_out/luma/;
+	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.smdh $dir_out/luma/;
 	echo "Done!";
 	
 	# Arm9loaderhax n3ds
@@ -134,8 +134,8 @@ case $choice in
 	;;
 	
   	2)
-    	mkdir -vp $dir_lumas3ds; rm -rf $dir_luma3ds; mkdir -vp $dir_lumas3ds;
-    	cd $dir_lumas3ds;
+    	mkdir -vp $dir_luma3ds; rm -rf $dir_luma3ds; mkdir -vp $dir_luma3ds;
+    	cd $dir_luma3ds;
     	echo "Fetching Homebrew...";
     	git clone --recursive https://github.com/AuroraWright/Luma3DS.git;
     	git clone --recursive https://github.com/delebile/arm9loaderhax.git
