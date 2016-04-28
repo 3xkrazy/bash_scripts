@@ -129,6 +129,7 @@ case $choice in
 	mv -v $dir_out sdmc_luma3ds-$(date +%m-%d-%Y);
 	echo "";
 	echo "Build finished!";
+	;;
 	
   	2)
     	rm -rf $dir_luma3ds; mkdir -vp $dir_lumas3ds;
@@ -145,9 +146,12 @@ case $choice in
     	echo "Repository updated!";
     	
     	exit 0;
+    	;;
     
   	*)
     	echo "";
     	echo "You selected an invalid choice!";
     	
     	exit 1;
+    	;;
+esac
