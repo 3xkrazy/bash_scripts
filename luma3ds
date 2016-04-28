@@ -76,8 +76,8 @@ case $choice in
 	sed -i -e 's|"aeskeydb.bin"|"/luma/sys/aeskeydb.bin"|g' keys.c;
 	cd $dir_build/Decrypt9WIP;
 	make;
-	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_bin/up_decrypt9wip.bin;
-	cp -v $dir_decrypt9wip_files/aeskeydb.bin $dir_bin/;
+	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_payloads/up_decrypt9wip.bin;
+	cp -v $dir_decrypt9wip_files/aeskeydb.bin $dir_sys/;
 	echo "Done!";
 
 	# EmuNAND9
