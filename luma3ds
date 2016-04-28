@@ -9,6 +9,7 @@ dir_build=$dir_src/build
 dir_luma=$dir_out/luma
 dir_sys=$dir_luma/sys
 dir_payloads=$dir_luma/payloads
+dir_3ds_injector_files=~/Documents/3ds/3ds_injector_files
 dir_cia=$dir_luma/cia
 dir_cia_apps=$dir_cia/apps
 dir_cia_games=$dir_cia/games
@@ -117,6 +118,7 @@ case $choice in
 	echo "Done!";
 	
 	# Copy depencencies
+	cp -rR $dir_3ds_injector_files/locales $dir_sys/;
 	cp -v $dir_cia_files/apps/*.cia $dir_cia/apps/;
 	cp -v $dir_misc_files/boot.3dsx $dir_out;
 	cp -rR $dir_filer $dir_out/;
