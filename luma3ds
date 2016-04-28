@@ -134,7 +134,7 @@ case $choice in
 	;;
 	
   	2)
-    	rm -rf $dir_luma3ds; mkdir -vp $dir_lumas3ds;
+    	mkdir -vp $dir_lumas3ds; rm -rf $dir_luma3ds; mkdir -vp $dir_lumas3ds;
     	cd $dir_lumas3ds;
     	echo "Fetching Homebrew...";
     	git clone --recursive https://github.com/AuroraWright/Luma3DS.git;
