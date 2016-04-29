@@ -48,10 +48,7 @@ case $choice in
 	cd $dir_build/Luma3DS;
 	make;
 	mv -v $dir_build/Luma3DS/out/luma/* $dir_out/luma/;
-	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/luma/payloads/def_luma3ds.bin;
-	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/luma/boot.bin;
-	#mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.3dsx $dir_out/luma/luma.3dsx;
-	#mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.smdh $dir_out/luma/luma.smdh;
+	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/boot.bin-luma3ds;
 	
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP;
@@ -126,16 +123,13 @@ case $choice in
 	cd $dir_build/Luma3DS;
 	make;
 	mv -v $dir_build/Luma3DS/out/luma/* $dir_out/luma/;
-	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/luma/payloads/def_luma3ds.bin;
-	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/luma/boot.bin;
-	#mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.3dsx $dir_out/luma/luma.3dsx;
-	#mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.smdh $dir_out/luma/luma.smdh;
-    	
+	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/boot.bin;
+	
     	# Arm9loaderhax
 	cd $dir_build/arm9loaderhax;
 	make clean;
 	cd $dir_build/arm9loaderhax/payload_stage2/source;
-	sed 's|"arm9loaderhax.bin"|"/luma/boot.bin"|g' main.c
+	sed 's|"arm9loaderhax.bin"|"boot.bin"|g' main.c
 	cd $dir_build/arm9loaderhax;
 	make;
 	
@@ -143,7 +137,10 @@ case $choice in
 	cd $dir_build/SafeA9LHInstaller;
 	make clean;
 	make;
-	mv -v $dir_build/SafeA9LHInstaller/out $dir_out/SafeA9LHInstaller;
+	mv -v $dir_build/
+	mv -v $dir_build/SafeA9LHInstaller/out/3ds $dir_out/;
+	cp -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_out/boot.bin;
+	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_out/;
 	mkdir -v $dir_out/a9lh;
 	cp -v $dir_build/arm9loaderhax/out/* $dir_out/a9lh/;
 	cp -v $dir_a9lh_n3ds/* $dir_out/a9lh/;
