@@ -82,6 +82,7 @@ case $choice in
 	cp -v $dir_build/arm9loaderhax/out/* $dir_sys/SafeA9LHInstaller/;
 	cp -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_sys/SafeA9LHInstaller/;
 	cp -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_sys/SafeA9LHInstaller/;
+	cp -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_sys/SafeA9LHInstaller/;
 
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP;
