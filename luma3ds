@@ -64,24 +64,24 @@ case $choice in
 	cd $dir_build/SafeA9LHInstaller;
 	make clean;
 	cd $dir_build/SafeA9LHInstaller/CakeBrah;
-	sed 's|filepath ?=|filepath ?= luma/sys/a9lh-n3ds/|g' Makefile;
+	sed 's|filepath ?=|filepath ?= luma/sys/SafeA9LHInstaller/|g' Makefile;
 	cd $dir_build/SafeA9LHInstaller/CakeHax;
-	sed 's|filepath ?=|filepath ?= luma/sys/a9lh-n3ds/|g' Makefile;
+	sed 's|filepath ?=|filepath ?= luma/sys/SafeA9LHInstaller/|g' Makefile;
 	cd $dir_build/SafeA9LHInstaller/source;
-	sed 's|"a9lh/otp.bin"|"luma/sys/a9lh-n3ds/otp.bin"|g' installer.c;
-	sed 's|"a9lh/secret_sector.bin"|"luma/sys/a9lh-n3ds/secret_sector.bin"|g' installer.c;
-	sed 's|"a9lh/firm0.bin"|"luma/sys/a9lh-n3ds/firm0.bin"|g' installer.c;
-	sed 's|"a9lh/firm1.bin"|"luma/sys/a9lh-n3ds/firm1.bin"|g' installer.c;
-	sed 's|"a9lh/payload_stage1.bin"|"luma/sys/a9lh-n3ds/payload_stage1.bin"|g' installer.c;
-	sed 's|"a9lh/payload_stage2.bin"|"luma/sys/a9lh-n3ds/payload_stage2.bin"|g' installer.c;
+	sed 's|"a9lh/otp.bin"|"luma/sys/SafeA9LHInstaller/otp.bin"|g' installer.c;
+	sed 's|"a9lh/secret_sector.bin"|"luma/sys/SafeA9LHInstaller/secret_sector.bin"|g' installer.c;
+	sed 's|"a9lh/firm0.bin"|"luma/sys/SafeA9LHInstaller/firm0.bin"|g' installer.c;
+	sed 's|"a9lh/firm1.bin"|"luma/sys/SafeA9LHInstaller/firm1.bin"|g' installer.c;
+	sed 's|"a9lh/payload_stage1.bin"|"luma/sys/SafeA9LHInstaller/payload_stage1.bin"|g' installer.c;
+	sed 's|"a9lh/payload_stage2.bin"|"luma/sys/SafeA9LHInstaller/payload_stage2.bin"|g' installer.c;
 	cd $dir_build/SafeA9LHInstaller;
 	make;
-	cp -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller-n3ds.bin;
-	mkdir -vp $dir_sys/a9lh-n3ds;
-	cp -rR $dir_a9lh_n3ds/* $dir_sys/a9lh-n3ds/;
-	cp -v $dir_build/arm9loaderhax/out/* $dir_sys/a9lh-n3ds/;
-	cp -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_sys/a9lh-n3ds/a9lh-n3ds.3dsx;
-	cp -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_sys/a9lh-n3ds/a9lh-n3ds.smdh;
+	cp -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller.bin;
+	mkdir -vp $dir_sys/SafeA9LHInstaller;
+	cp -rR $dir_a9lh_n3ds/* $dir_sys/SafeA9LHInstaller/;
+	cp -v $dir_build/arm9loaderhax/out/* $dir_sys/SafeA9LHInstaller/;
+	cp -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_sys/SafeA9LHInstaller/;
+	cp -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_sys/SafeA9LHInstaller/;
 
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP;
