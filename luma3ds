@@ -48,7 +48,7 @@ case $choice in
 	cd $dir_build/Luma3DS;
 	make;
 	mv -v $dir_build/Luma3DS/out/luma/* $dir_out/luma/;
-	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/boot.bin-luma3ds;
+	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/boot.bin;
 	
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP;
@@ -123,7 +123,7 @@ case $choice in
 	cd $dir_build/Luma3DS;
 	make;
 	mv -v $dir_build/Luma3DS/out/luma/* $dir_out/luma/;
-	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/boot.bin;
+	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/boot.bin-luma3ds;
 	
     	# Arm9loaderhax
 	cd $dir_build/arm9loaderhax;
