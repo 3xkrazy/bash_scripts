@@ -17,7 +17,7 @@ dir_cia_updates=$dir_cia/updates
 dir_tmp=$dir_sys/tmp
 
 # Dependencies
-dir_a9lh_files=~/Documents/3ds/a9lh_files
+dir_a9lh_n3ds=~/Documents/3ds/a9lh_files/n3ds
 dir_decrypt9wip_files=~/Documents/3ds/decrypt9wip_files
 dir_cia_files=~/Documents/3ds/cia_files
 dir_misc_files=~/Documents/3ds/misc_files
@@ -53,6 +53,30 @@ case $choice in
 	#mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.smdh $dir_out/luma/luma.smdh;
 	echo "Done!";
 	
+	# Arm9loaderhax
+	cd $dir_build/arm9loaderhax;
+	make clean;
+	cd $dir_build/arm9loaderhax/payload_stage2/source;
+	sed 's|"arm9loaderhax.bin"|"/luma/boot.bin"|g' main.c
+	cd $dir_build/arm9loaderhax;
+	make;
+	
+	# SafeA9LHInstaller
+	cd $dir_build/SafeA9LHInstaller;
+	make clean;
+	cd $dir_build/SafeA9LHInstaller/source;
+	sed 's|"a9lh/otp.bin"|"luma/sys/a9lh-n3ds/otp.bin"|g' installer.c
+	sed 's|"a9lh/secret_sector.bin"|"luma/sys/a9lh-n3ds/secret_sector.bin"|g' installer.c
+	sed 's|"a9lh/firm0.bin"|"luma/sys/a9lh-n3ds/firm0.bin"|g' installer.c
+	sed 's|"a9lh/firm1.bin"|"luma/sys/a9lh-n3ds/firm1.bin"|g' installer.c
+	cd $dir_build/SafeA9LHInstaller;
+	make;
+	cp -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller-n3ds.bin
+	mkdir -vp $dir_sys/a9lh-n3ds;
+	cp -rR $dir_a9lh_n3ds $dir_sys/a9lh-n3ds;
+	cp -v $dir_build/arm9loaderhax/out/* $dir_sys/a9lh-n3ds/;
+	echo "Done!";
+<< COMMENT1
 	# Arm9loaderhax n3ds
   	cd $dir_build/arm9loaderhax;
   	make clean;
@@ -87,7 +111,7 @@ case $choice in
   	mv -v $dir_build/arm9loaderhax/data_output $dir_sys/arm9loaderhax-o3ds;
   	cp -v $dir_sys/arm9loaderhax-o3ds/arm9loaderhax.bin $dir_luma/payloads/x_arm9loaderhax.bin-o3ds;
   	echo "Done!";
-  
+COMMENT1
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP;
 	make clean;
