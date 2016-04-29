@@ -48,7 +48,7 @@ case $choice in
 	make;
 	mv -v $dir_build/Luma3DS/out/luma/* $dir_out/luma/;
 	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/luma/payloads/def_luma3ds.bin;
-	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/luma/payloads/boot.bin;
+	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/luma/boot.bin;
 	#mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.3dsx $dir_out/luma/luma.3dsx;
 	#mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.smdh $dir_out/luma/luma.smdh;
 	echo "Done!";
