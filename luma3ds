@@ -47,7 +47,8 @@ case $choice in
 	cd $dir_build/Luma3DS;
 	make;
 	mv -v $dir_build/Luma3DS/out/luma/* $dir_out/luma/;
-	mv -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/luma/payloads/boot.bin;
+	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/luma/payloads/def_luma3ds.bin;
+	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/luma/payloads/boot.bin;
 	#mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.3dsx $dir_out/luma/luma.3dsx;
 	#mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.smdh $dir_out/luma/luma.smdh;
 	echo "Done!";
@@ -56,7 +57,7 @@ case $choice in
   	cd $dir_build/arm9loaderhax;
   	make clean;
   	cd $dir_build/arm9loaderhax/payload_stage2/source;
-  	sed -i -e 's|"arm9loaderhax.bin"|"/luma/payloads/boot.bin"|g' main.c;
+  	sed -i -e 's|"arm9loaderhax.bin"|"/luma/boot.bin"|g' main.c;
   	cd $dir_build/arm9loaderhax/payload_installer/installer/source;
   	sed -i -e 's|"sdmc:/arm9loaderhax.pack"|"sdmc:/luma/sys/arm9loaderhax-n3ds/arm9loaderhax.pack"|g' main.c;
   	cp -v $dir_a9lh_files/new3ds10.firm $dir_build/arm9loaderhax/data_input;
