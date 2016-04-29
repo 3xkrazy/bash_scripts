@@ -143,7 +143,7 @@ case $choice in
 	cd $dir_build/SafeA9LHInstaller;
 	make clean;
 	make;
-	mv -v $dir_build/arm9loaderhax/out $dir_out/SafeA9LHInstaller;
+	mv -v $dir_build/SafeA9LHInstaller/out $dir_out/SafeA9LHInstaller;
 	mkdir -v $dir_out/a9lh;
 	cp -v $dir_build/arm9loaderhax/out/* $dir_out/a9lh/;
 	cp -v $dir_a9lh_n3ds/* $dir_out/a9lh/;
