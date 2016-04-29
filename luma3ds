@@ -75,7 +75,7 @@ case $choice in
 	make;
 	mv -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller.bin;
 	mkdir -v $dir_sys/SafeA9LHInstaller;
-	mv -v $dir_build/SafeA9LHInstaller/out/3ds/* $dir_sys/SafeA9LHInstaller/;
+	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/* $dir_sys/SafeA9LHInstaller/;
 	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_sys/SafeA9LHInstaller/;
 	mv -v $dir_build/arm9loaderhax/out/* $dir_sys/SafeA9LHInstaller/;
 	cp -v $dir_a9lh_n3ds/* $dir_sys/SafeA9LHInstaller/;
