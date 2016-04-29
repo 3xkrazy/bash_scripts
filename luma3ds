@@ -70,6 +70,23 @@ case $choice in
   	cp -v $dir_sys/arm9loaderhax-n3ds/arm9loaderhax.bin $dir_luma/payloads/x_arm9loaderhax.bin;
   	rm -rf $dir_build/arm9loaderhax; cp -rR $dir_luma3ds/arm9loaderhax $dir_build/;
   	echo "Done!";
+  	
+  	# Arm9loaderhax o3ds
+  	cd $dir_build/arm9loaderhax;
+  	make clean;
+  	cd $dir_build/arm9loaderhax/payload_stage2/source;
+  	sed -i -e 's|"arm9loaderhax.bin"|"/luma/boot.bin"|g' main.c;
+  	cd $dir_build/arm9loaderhax/payload_installer/installer/source;
+  	sed -i -e 's|"sdmc:/arm9loaderhax.pack"|"sdmc:/luma/sys/arm9loaderhax-o3ds/arm9loaderhax.pack"|g' main.c;
+  	cp -v $dir_a9lh_files/new3ds10.firm $dir_build/arm9loaderhax/data_input;
+  	cp -v $dir_a9lh_files/new3ds90.firm $dir_build/arm9loaderhax/data_input;
+  	cp -v $dir_a9lh_files/secret_sector.bin $dir_build/arm9loaderhax/data_input;
+  	cp -v $dir_a9lh_files/otp.bin-o3ds $dir_build/arm9loaderhax/data_input/otp.bin;
+  	cd $dir_build/arm9loaderhax/;
+  	make;
+  	mv -v $dir_build/arm9loaderhax/data_output $dir_sys/arm9loaderhax-o3ds;
+  	cp -v $dir_sys/arm9loaderhax-o3ds/arm9loaderhax.bin $dir_luma/payloads/x_arm9loaderhax.bin-o3ds;
+  	echo "Done!";
   
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP;
