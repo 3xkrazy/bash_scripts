@@ -72,7 +72,7 @@ case $choice in
 	make;
 	cp -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller-n3ds.bin
 	mkdir -vp $dir_sys/a9lh-n3ds;
-	cp -rR $dir_a9lh_n3ds $dir_sys/a9lh-n3ds;
+	cp -rR $dir_a9lh_n3ds/* $dir_sys/a9lh-n3ds/;
 	cp -v $dir_build/arm9loaderhax/out/* $dir_sys/a9lh-n3ds/;
 
   	# Decrypt9WIP
