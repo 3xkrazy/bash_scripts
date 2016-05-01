@@ -136,7 +136,7 @@ case $choice in
 	# Cleanup
 	cd ~/src;
 	#rm -rf $dir_build;
-	mv -v $dir_out sdmc_luma3ds-v$(date +%Y%m%d);
+	mv -v $dir_out luma3ds-v$(date +%Y%m%d);
 	echo "";
 	echo "Build finished!";
 	;;
