@@ -76,7 +76,7 @@ case $choice in
 	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller/|g' Makefile;
 	cd $dir_build/SafeA9LHInstaller;
 	make;
-	mv -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller.bin;
+	mv -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller-v$(date +%Y%m%d).bin;
 	mkdir -v $dir_system/SafeA9LHInstaller;
 	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/* $dir_system/SafeA9LHInstaller/;
 	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/SafeA9LHInstaller/;
@@ -90,7 +90,7 @@ case $choice in
 	sed -i -e 's|"aeskeydb.bin"|"/luma/system/aeskeydb.bin"|g' keys.c;
 	cd $dir_build/Decrypt9WIP;
 	make;
-	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_payloads/up_decrypt9wip.bin;
+	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_payloads/up_decrypt9-v$(date +%Y%m%d).bin;
 	cp -v $dir_decrypt9wip_files/aeskeydb.bin $dir_system/;
 
 	# EmuNAND9
@@ -99,31 +99,31 @@ case $choice in
 	cd $dir_build/EmuNAND9/source;
 	cd $dir_build/EmuNAND9;
 	make;
-	mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_payloads/right_emunand9.bin;
+	mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_payloads/right_emunand9-v$(date +%Y%m%d).bin;
 
 	# Godmode9
 	cd $dir_build/GodMode9;
 	make clean;
 	make;
-	mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_payloads/left_godmode9.bin;
+	mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_payloads/left_godmode9-v$(date +%Y%m%d).bin;
 
 	# Uncart
 	cd $dir_build/uncart;
 	make clean;
 	make;
-	mv -v $dir_build/uncart/arm9loaderhax.bin $dir_payloads/down_uncart.bin;
+	mv -v $dir_build/uncart/arm9loaderhax.bin $dir_payloads/down_uncart-v$(date +%Y%m%d).bin;
   	
   	# FBI
 	cd $dir_build/FBI;
 	make clean;
 	make;
-	cp -v $dir_build/FBI/output/FBI.cia $dir_cia_apps/fbi-$(date +%m-%d-%Y).cia;
+	cp -v $dir_build/FBI/output/FBI.cia $dir_cia_apps/fbi-v$(date +%Y%m%d).cia;
 
 	# ftpd
 	cd $dir_build/ftpd;
 	make clean;
 	make;
-	cp -v $dir_build/ftpd/output/ftpd.cia $dir_cia_apps/ftpd-$(date +%m-%d-%Y).cia;
+	cp -v $dir_build/ftpd/output/ftpd.cia $dir_cia_apps/ftpd-v$(date +%Y%m%d).cia;
 	
 	# Copy depencencies
 	cp -rR $dir_locales $dir_luma/;
@@ -136,7 +136,7 @@ case $choice in
 	# Cleanup
 	cd ~/src;
 	#rm -rf $dir_build;
-	mv -v $dir_out sdmc_luma3ds-$(date +%m-%d-%Y);
+	mv -v $dir_out sdmc_luma3ds-v$(date +%Y%m%d);
 	echo "";
 	echo "Build finished!";
 	;;
