@@ -78,8 +78,9 @@ case $choice in
 	make;
 	mv -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller-n3ds-v$(date +%Y%m%d).bin;
 	mkdir -v $dir_system/SafeA9LHInstaller-n3ds;
-	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/* $dir_system/SafeA9LHInstaller-n3ds/;
-	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/SafeA9LHInstaller-n3ds/;
+	cp -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller-n3ds.3dsx $dir_system/SafeA9LHInstaller-n3ds/;
+	cp -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller-n3ds.smdh $dir_system/SafeA9LHInstaller-n3ds/;
+	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller-n3ds.dat $dir_system/SafeA9LHInstaller-n3ds/;
 	cp -v $dir_build/arm9loaderhax/out/* $dir_system/SafeA9LHInstaller-n3ds/;
 	cp -v $dir_a9lh/n3ds/* $dir_system/SafeA9LHInstaller-n3ds/;
 	
@@ -102,8 +103,9 @@ case $choice in
 	make;
 	mv -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller-o3ds-v$(date +%Y%m%d).bin;
 	mkdir -v $dir_system/SafeA9LHInstaller-o3ds;
-	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/* $dir_system/SafeA9LHInstaller-o3ds/;
-	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/SafeA9LHInstaller-o3ds/;
+	cp -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller-o3ds.3dsx $dir_system/SafeA9LHInstaller-o3ds/;
+	cp -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller-o3ds.smdh $dir_system/SafeA9LHInstaller-o3ds/;
+	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller-o3ds.dat $dir_system/SafeA9LHInstaller-o3ds/;
 	cp -v $dir_build/arm9loaderhax/out/* $dir_system/SafeA9LHInstaller-o3ds/;
 	cp -v $dir_a9lh/o3ds/* $dir_system/SafeA9LHInstaller-o3ds/;
 	
