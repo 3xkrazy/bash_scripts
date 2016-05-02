@@ -34,7 +34,7 @@ read choice;
 case $choice in
 	1)
 	# Clean src directory
-	rm -rf $dir_build $dir_out $dir_src/sdmc*;
+	rm -rf $dir_build $dir_out $dir_src/luma3ds*;
 	mkdir -vp $dir_build $dir_out $dir_luma $dir_system;
 	mkdir -vp $dir_cia $dir_cia_apps $dir_cia_games $dir_cia_updates $dir_tmp; 
 	cp -rR $dir_luma3ds/* $dir_build/;
