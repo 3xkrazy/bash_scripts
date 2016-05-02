@@ -2,15 +2,15 @@
 # luma3ds
 
 # Dependencies
-dir_a9lh=~/Documents/3ds/a9lh_files
-dir_decrypt9wip_files=~/Documents/3ds/decrypt9wip_files
-dir_cia_files=~/Documents/3ds/cia_files
-dir_locales=~/Documents/3ds/locales
-dir_misc_files=~/Documents/3ds/misc_files
-dir_filer=~/Documents/3ds/filer
+dep_luma3ds=~/Documents/3ds/luma3ds
+dep_a9lh=~/Documents/3ds/a9lh
+dep_decrypt9wip_files=~/Documents/3ds/decrypt9wip
+dep_cia_files=~/Documents/3ds/cia
+dep_locales=~/Documents/3ds/locales
+dep_misc_files=~/Documents/3ds/misc
+dep_filer=~/Documents/3ds/filer
 
 # Define directories
-dir_luma3ds=~/Documents/3ds/luma3ds
 dir_src=~/src
 dir_out=$dir_src/out
 dir_build=$dir_src/build
@@ -37,7 +37,7 @@ case $choice in
 	rm -rf $dir_build $dir_out $dir_src/luma3ds*;
 	mkdir -vp $dir_build $dir_out $dir_luma $dir_system;
 	mkdir -vp $dir_cia $dir_cia_apps $dir_cia_games $dir_cia_updates $dir_tmp; 
-	cp -rR $dir_luma3ds/* $dir_build/;
+	cp -rR $dep_luma3ds/* $dir_build/;
 	
 	# Luma3DS
 	cd $dir_build/Luma3DS;
@@ -48,7 +48,6 @@ case $choice in
 	sed -i -e 's|"/luma/splashbottom.bin"|"/luma/system/splashbottom.bin"|g' $dir_build/Luma3DS/source/draw.c;
 	sed -i -e 's|filepath ?=|filepath ?= luma/system/luma3ds/|g' $dir_build/Luma3DS/CakeBrah/Makefile;
 	sed -i -e 's|filepath ?=|filepath ?= luma/system/luma3ds/|g' $dir_build/Luma3DS/CakeHax/Makefile;
-	cd $dir_build/Luma3DS;
 	make;
 	mv -v $dir_build/Luma3DS/out/luma/* $dir_out/luma/;
 	mv -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_system/boot.bin;
@@ -56,14 +55,13 @@ case $choice in
 	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.3dsx $dir_system/luma3ds/luma3ds.3dsx;
 	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.smdh $dir_system/luma3ds/luma3ds.smdh;
 	mv -v $dir_build/Luma3DS/out/Luma3DS.dat $dir_system/luma3ds/luma3ds.dat;
-	cp -v $dir_misc_files/new3ds.bin $dir_system/splash.bin-n3ds;
-	cp -v $dir_misc_files/o3dsxl.bin $dir_system/splash.bin-o3ds;
+	#cp -v $dep_misc/new3ds.bin $dir_system/splash.bin-n3ds;
+	#cp -v $dep_misc/o3dsxl.bin $dir_system/splash.bin-o3ds;
 	
 	# Arm9loaderhax
 	cd $dir_build/arm9loaderhax;
 	make clean;
 	sed -i -e 's|"arm9loaderhax.bin"|"/luma/system/boot.bin"|g' $dir_build/arm9loaderhax/payload_stage2/source/main.c;
-	cd $dir_build/arm9loaderhax;
 	make;
 	
 	# SafeA9LHInstaller - n3ds
@@ -84,10 +82,10 @@ case $choice in
 	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_system/safea9lhinstaller-n3ds/safea9lhinstaller-n3ds.smdh;
 	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/safea9lhinstaller-n3ds/safea9lhinstaller-n3ds.dat;
 	cp -v $dir_build/arm9loaderhax/out/* $dir_system/safea9lhinstaller-n3ds/;
-	cp -v $dir_a9lh/n3ds/* $dir_system/safea9lhinstaller-n3ds/;
+	cp -v $dep_a9lh/n3ds/* $dir_system/safea9lhinstaller-n3ds/;
 	
 	# SafeA9LHInstaller - o3ds
-	rm -rf $dir_build/SafeA9LHInstaller; cp -rR $dir_luma3ds/SafeA9LHInstaller $dir_build/;
+	rm -rf $dir_build/SafeA9LHInstaller; cp -rR $dep_luma3ds/SafeA9LHInstaller $dir_build/;
 	cd $dir_build/SafeA9LHInstaller;
 	make clean;
 	sed -i -e 's|"a9lh/otp.bin"|"luma/system/safea9lhinstaller-o3ds/otp.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
@@ -105,7 +103,7 @@ case $choice in
 	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_system/safea9lhinstaller-o3ds/safea9lhinstaller-o3ds.smdh;
 	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/safea9lhinstaller-o3ds/safea9lhinstaller-o3ds.dat;
 	cp -v $dir_build/arm9loaderhax/out/* $dir_system/safea9lhinstaller-o3ds/;
-	cp -v $dir_a9lh/o3ds/* $dir_system/safea9lhinstaller-o3ds/;
+	cp -v $dep_a9lh/o3ds/* $dir_system/safea9lhinstaller-o3ds/;
 	
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP;
@@ -116,7 +114,7 @@ case $choice in
 	make;
 	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_payloads/up_decrypt9-v$(date +%Y%m%d).bin;
 	mkdir -vp $dir_system/d9game $dir_system/decrypt9;
-	cp -v $dir_decrypt9wip_files/aeskeydb.bin $dir_system/decrypt9/;
+	cp -v $dep_decrypt9wip/aeskeydb.bin $dir_system/decrypt9/;
 
 	# EmuNAND9
 	cd $dir_build/EmuNAND9;
@@ -151,24 +149,23 @@ case $choice in
 	mv -v $dir_build/ftpd/output/ftpd.cia $dir_cia_apps/ftpd-v$(date +%Y%m%d).cia;
 	
 	# Copy depencencies
-	cp -rR $dir_locales $dir_luma/;
-	cp -v $dir_cia_files/apps/*.cia $dir_cia_apps/;
-	cp -v $dir_misc_files/boot.3dsx $dir_out;
-	cp -rR $dir_filer $dir_out/;
+	cp -rR $dep_locales $dir_luma/;
+	cp -v $dep_cia/apps/*.cia $dir_cia_apps/;
+	cp -v $dep_misc/boot.3dsx $dir_out;
+	cp -rR $dep_filer $dir_out/;
 	mkdir -vp $dir_tmp/db; touch $dir_tmp/db/title.db $dir_tmp/db/import.db;
-	cp -rR $dir_decrypt9wip_files/n3ds $dir_tmp/hs-n3ds; cp -rR $dir_decrypt9wip_files/o3ds $dir_tmp/hs-o3ds;
+	cp -rR $dep_decrypt9wip/hs-n3ds $dir_tmp/; cp -rR $dep_decrypt9wip/hs-o3ds $dir_tmp/;
 
 	# Cleanup
 	cd ~/src;
-	rm -rf $dir_build;
-	mv -v $dir_out luma3ds-v$(date +%Y%m%d);
+	rm -rf $dir_build; mv -v $dir_out luma3ds-v$(date +%Y%m%d);
 	echo "";
 	echo "Build finished!";
 	;;
 	
 	2)
-    	mkdir -vp $dir_luma3ds; rm -rf $dir_luma3ds; mkdir -vp $dir_luma3ds;
-    	cd $dir_luma3ds;
+    	mkdir -vp $dep_luma3ds; rm -rf $dep_luma3ds; mkdir -vp $dep_luma3ds;
+    	cd $dep_luma3ds;
     	echo "";
     	echo "Fetching Homebrew...";
     	git clone --recursive https://github.com/AuroraWright/Luma3DS.git;
