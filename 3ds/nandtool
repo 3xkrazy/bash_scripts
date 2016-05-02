@@ -1,7 +1,7 @@
 #!/bin/bash
 # nandtool
 
-dir_nand=/home/hle/Documents/3ds/nand_files
+dir_nand=/home/hle/Documents/3ds/nand
 cd $dir_nand;
 
 echo "Which block device is your 3DS connected to?";
