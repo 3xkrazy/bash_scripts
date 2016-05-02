@@ -58,15 +58,16 @@ case $choice in
 	sed -i -e 's|"/luma/config.bin"|"/luma/system/config.bin"|g' $dir_build/Luma3DS/injector/source/patcher.c;
 	sed -i -e 's|"/luma/splash.bin"|"/luma/system/splash.bin"|g' $dir_build/Luma3DS/source/draw.c;
 	sed -i -e 's|"/luma/splashbottom.bin"|"/luma/system/splashbottom.bin"|g' $dir_build/Luma3DS/source/draw.c;
-	sed -i -e 's|filepath ?=|filepath ?= luma/system/Luma3DS/|g' $dir_build/Luma3DS/CakeBrah/Makefile;
-	sed -i -e 's|filepath ?=|filepath ?= luma/system/Luma3DS/|g' $dir_build/Luma3DS/CakeHax/Makefile;
+	sed -i -e 's|filepath ?=|filepath ?= luma/system/luma3ds/|g' $dir_build/Luma3DS/CakeBrah/Makefile;
+	sed -i -e 's|filepath ?=|filepath ?= luma/system/luma3ds/|g' $dir_build/Luma3DS/CakeHax/Makefile;
 	cd $dir_build/Luma3DS;
 	make;
 	mv -v $dir_build/Luma3DS/out/luma/* $dir_out/luma/;
 	mv -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_system/boot.bin;
-	mkdir -vp $dir_system/Luma3DS;
-	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/* $dir_system/Luma3DS/;
-	mv -v $dir_build/Luma3DS/out/Luma3DS.dat $dir_system/Luma3DS/;
+	mkdir -vp $dir_system/luma3ds;
+	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.3dsx $dir_system/luma3ds/luma3ds.3dsx;
+	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.smdh $dir_system/luma3ds/luma3ds.smdh;
+	mv -v $dir_build/Luma3DS/out/Luma3DS.dat $dir_system/luma3ds/luma3ds.dat;
 	cp -v $dir_misc_files/new3ds.bin $dir_system/splash.bin-n3ds;
 	cp -v $dir_misc_files/o3dsxl.bin $dir_system/splash.bin-o3ds;
 	
@@ -80,43 +81,43 @@ case $choice in
 	# SafeA9LHInstaller - n3ds
 	cd $dir_build/SafeA9LHInstaller;
 	make clean;
-	sed -i -e 's|"a9lh/otp.bin"|"luma/system/SafeA9LHInstaller-n3ds/otp.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|"a9lh/secret_sector.bin"|"luma/system/SafeA9LHInstaller-n3ds/secret_sector.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|"a9lh/firm0.bin"|"luma/system/SafeA9LHInstaller-n3ds/firm0.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|"a9lh/firm1.bin"|"luma/system/SafeA9LHInstaller-n3ds/firm1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|"a9lh/payload_stage1.bin"|"luma/system/SafeA9LHInstaller-n3ds/payload_stage1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|"a9lh/payload_stage2.bin"|"luma/system/SafeA9LHInstaller-n3ds/payload_stage2.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller-n3ds/|g' $dir_build/SafeA9LHInstaller/CakeBrah/Makefile;
-	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller-n3ds/|g' $dir_build/SafeA9LHInstaller/CakeHax/Makefile;
+	sed -i -e 's|"a9lh/otp.bin"|"luma/system/safea9lhinstaller-n3ds/otp.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/secret_sector.bin"|"luma/system/safea9lhinstaller-n3ds/secret_sector.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/firm0.bin"|"luma/system/safea9lhinstaller-n3ds/firm0.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/firm1.bin"|"luma/system/safea9lhinstaller-n3ds/firm1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/payload_stage1.bin"|"luma/system/safea9lhinstaller-n3ds/payload_stage1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/payload_stage2.bin"|"luma/system/safea9lhinstaller-n3ds/payload_stage2.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|filepath ?=|filepath ?= luma/system/safea9lhinstaller-n3ds/|g' $dir_build/SafeA9LHInstaller/CakeBrah/Makefile;
+	sed -i -e 's|filepath ?=|filepath ?= luma/system/safea9lhinstaller-n3ds/|g' $dir_build/SafeA9LHInstaller/CakeHax/Makefile;
 	make;
 	mv -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller-n3ds-v$(date +%Y%m%d).bin;
-	mkdir -v $dir_system/SafeA9LHInstaller-n3ds;
-	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_system/SafeA9LHInstaller-n3ds/SafeA9LHInstaller-n3ds.3dsx;
-	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_system/SafeA9LHInstaller-n3ds/SafeA9LHInstaller-n3ds.smdh;
-	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/SafeA9LHInstaller-n3ds/SafeA9LHInstaller-n3ds.dat;
-	cp -v $dir_build/arm9loaderhax/out/* $dir_system/SafeA9LHInstaller-n3ds/;
-	cp -v $dir_a9lh/n3ds/* $dir_system/SafeA9LHInstaller-n3ds/;
+	mkdir -v $dir_system/safea9lhinstaller-n3ds;
+	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_system/safea9lhinstaller-n3ds/safea9lhinstaller-n3ds.3dsx;
+	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_system/safea9lhinstaller-n3ds/safea9lhinstaller-n3ds.smdh;
+	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/safea9lhinstaller-n3ds/safea9lhinstaller-n3ds.dat;
+	cp -v $dir_build/arm9loaderhax/out/* $dir_system/safea9lhinstaller-n3ds/;
+	cp -v $dir_a9lh/n3ds/* $dir_system/safea9lhinstaller-n3ds/;
 	
 	# SafeA9LHInstaller - o3ds
 	rm -rf $dir_build/SafeA9LHInstaller; cp -rR $dir_luma3ds/SafeA9LHInstaller $dir_build/;
 	cd $dir_build/SafeA9LHInstaller;
 	make clean;
-	sed -i -e 's|"a9lh/otp.bin"|"luma/system/SafeA9LHInstaller-o3ds/otp.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|"a9lh/secret_sector.bin"|"luma/system/SafeA9LHInstaller-o3ds/secret_sector.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|"a9lh/firm0.bin"|"luma/system/SafeA9LHInstaller-o3ds/firm0.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|"a9lh/firm1.bin"|"luma/system/SafeA9LHInstaller-o3ds/firm1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|"a9lh/payload_stage1.bin"|"luma/system/SafeA9LHInstaller-o3ds/payload_stage1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|"a9lh/payload_stage2.bin"|"luma/system/SafeA9LHInstaller-o3ds/payload_stage2.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller-o3ds/|g' $dir_build/SafeA9LHInstaller/CakeBrah/Makefile;
-	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller-o3ds/|g' $dir_build/SafeA9LHInstaller/CakeHax/Makefile;
+	sed -i -e 's|"a9lh/otp.bin"|"luma/system/safea9lhinstaller-o3ds/otp.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/secret_sector.bin"|"luma/system/safea9lhinstaller-o3ds/secret_sector.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/firm0.bin"|"luma/system/safea9lhinstaller-o3ds/firm0.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/firm1.bin"|"luma/system/safea9lhinstaller-o3ds/firm1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/payload_stage1.bin"|"luma/system/safea9lhinstaller-o3ds/payload_stage1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/payload_stage2.bin"|"luma/system/safea9lhinstaller-o3ds/payload_stage2.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|filepath ?=|filepath ?= luma/system/safea9lhinstaller-o3ds/|g' $dir_build/SafeA9LHInstaller/CakeBrah/Makefile;
+	sed -i -e 's|filepath ?=|filepath ?= luma/system/safea9lhinstaller-o3ds/|g' $dir_build/SafeA9LHInstaller/CakeHax/Makefile;
 	make;
 	mv -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller-o3ds-v$(date +%Y%m%d).bin;
-	mkdir -v $dir_system/SafeA9LHInstaller-o3ds;
-	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_system/SafeA9LHInstaller-o3ds/SafeA9LHInstaller-o3ds.3dsx;
-	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_system/SafeA9LHInstaller-o3ds/SafeA9LHInstaller-o3ds.smdh;
-	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/SafeA9LHInstaller-o3ds/SafeA9LHInstaller-o3ds.dat;
-	cp -v $dir_build/arm9loaderhax/out/* $dir_system/SafeA9LHInstaller-o3ds/;
-	cp -v $dir_a9lh/o3ds/* $dir_system/SafeA9LHInstaller-o3ds/;
+	mkdir -v $dir_system/safea9lhinstaller-o3ds;
+	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_system/safea9lhinstaller-o3ds/safea9lhinstaller-o3ds.3dsx;
+	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_system/safea9lhinstaller-o3ds/safea9lhinstaller-o3ds.smdh;
+	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/safea9lhinstaller-o3ds/safea9lhinstaller-o3ds.dat;
+	cp -v $dir_build/arm9loaderhax/out/* $dir_system/safea9lhinstaller-o3ds/;
+	cp -v $dir_a9lh/o3ds/* $dir_system/safea9lhinstaller-o3ds/;
 	
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP;
@@ -166,7 +167,7 @@ case $choice in
 
 	# Cleanup
 	cd ~/src;
-	#rm -rf $dir_build;
+	rm -rf $dir_build;
 	mv -v $dir_out luma3ds-v$(date +%Y%m%d);
 	echo "";
 	echo "Build finished!";
