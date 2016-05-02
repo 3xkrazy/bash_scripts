@@ -51,7 +51,7 @@ case $choice in
 	cd $dir_build/Luma3DS;
 	make;
 	mv -v $dir_build/Luma3DS/out/luma/* $dir_out/luma/;
-	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_payloads/boot.bin;
+	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_system/boot.bin;
 	mkdir -vp $dir_system/Luma3DS;
 	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/* $dir_system/Luma3DS/;
 	mv -v $dir_build/Luma3DS/out/Luma3DS.dat $dir_system/Luma3DS/;
@@ -61,7 +61,7 @@ case $choice in
 	# Arm9loaderhax
 	cd $dir_build/arm9loaderhax;
 	make clean;
-	sed -i -e 's|"arm9loaderhax.bin"|"/luma/payloads/boot.bin"|g' $dir_build/arm9loaderhax/payload_stage2/source/main.c;
+	sed -i -e 's|"arm9loaderhax.bin"|"/luma/system/boot.bin"|g' $dir_build/arm9loaderhax/payload_stage2/source/main.c;
 	cd $dir_build/arm9loaderhax;
 	make;
 	
