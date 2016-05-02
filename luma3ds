@@ -8,19 +8,7 @@ dir_cia_files=~/Documents/3ds/cia_files
 dir_locales=~/Documents/3ds/locales
 dir_misc_files=~/Documents/3ds/misc_files
 dir_filer=~/Documents/3ds/filer
-<< COMMENT1
-if [ ! -f $dir_a9lh ] || [ ! -f $dir_decrypt9wip_files ] || [ ! -f $dir_cia_files ] || [ ! -f $dir_locales ] || [ ! -f $dir_misc_files ] || [ ! -f $dir_filer ]; then
-	echo "";
-	echo "There is something wrong with your dependencies.";
-	echo "Please make sure that the following exists:";
-	echo $dir_a9lh;
-	echo $dir_decrypt9wip_files;
-	echo $dir_cia_files;
-	echo $dir_locales;
-	echo $dir_misc_files;
-	echo $dir_filer;
-fi
-COMMENT1
+
 # Define directories
 dir_luma3ds=~/Documents/3ds/luma3ds
 dir_src=~/src
@@ -122,16 +110,21 @@ case $choice in
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP;
 	make clean;
-	sed -i -e 's|"aeskeydb.bin"|"/luma/system/aeskeydb.bin"|g' $dir_build/Decrypt9WIP/source/decryptor/keys.c;
+	sed -i -e 's|"/D9Game"|"/luma/system/d9game"|g' $dir_build/Decrypt9WIP/source/common.h;
+	sed -i -e 's|"/Decrypt9"|"/luma/system/decrypt9"|g' $dir_build/Decrypt9WIP/source/common.h;
+	sed -i -e 's|"Decrypt9.log"|"/luma/system/decrypt9/decrypt9.log"|g' $dir_build/Decrypt9WIP/source/common.h;
 	make;
 	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_payloads/up_decrypt9-v$(date +%Y%m%d).bin;
-	cp -v $dir_decrypt9wip_files/aeskeydb.bin $dir_system/;
+	mkdir -vp $dir_system/d9game $dir_system/decrypt9;
+	cp -v $dir_decrypt9wip_files/aeskeydb.bin $dir_system/decrypt9/;
 
 	# EmuNAND9
 	cd $dir_build/EmuNAND9;
 	make clean;
+	sed -i -e 's|"/EmuNAND9"|"/luma/system/emunand9"|g' $dir_build/EmuNAND9/source/common.h;
 	make;
 	mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_payloads/right_emunand9-v$(date +%Y%m%d).bin;
+	mkdir -vp $dir_system/emunand9;
 
 	# Godmode9
 	cd $dir_build/GodMode9;
@@ -190,7 +183,6 @@ case $choice in
     	echo "";
     	echo "Repository updated!";
     	echo "";
-    	exit 0;
     	;;
 	
   	*)
@@ -199,3 +191,4 @@ case $choice in
     	exit 1;
     	;;
 esac
+exit 0;
