@@ -133,7 +133,7 @@ case $choice in
 	# Uncart
 	cd $dir_build/uncart;
 	make clean;
-	sed -i -e 's|char filename_buf[32]|char filename_buf\[48\]|g' $dir_build/uncart/source/main.c;
+	sed -i -e 's|char filename_buf\[32\]|char filename_buf\[48\]|g' $dir_build/uncart/source/main.c;
 	sed -i -e 's|"/%.16s.3d%c"|"/luma/system/uncart/%.16s.3d%c"|g' $dir_build/uncart/source/main.c;
 	sed -i -e 's|Writing to file|Dumping to|g' $dir_build/uncart/source/main.c;
 	make;
