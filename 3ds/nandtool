@@ -2,7 +2,6 @@
 # nandtool
 
 dir_nand=/home/hle/Documents/3ds/nand
-cd $dir_nand;
 
 echo "Which block device is your 3DS connected to?";
 echo [1] /dev/sdb
@@ -41,11 +40,11 @@ read y
 case $y in
 	1)	echo "";
 		echo -n "Enter nand backup name: ";
-		read nand_name
-		echo Backing up 3DS nand file: $nand_name;
-		sudo dd if=/dev/$block_device of=$dir_nand/$nand_name bs=1M;
+		read nand
+		echo Backing up 3DS nand file: $nand;
+		sudo dd if=/dev/$block_device of=$dir_nand/$nand bs=1M;
 		echo Backup completed! Calculating MD5 hash...;
-		md5sum $dir_nand/$nand_name;
+		md5sum $dir_nand/$nand;
 		;;
 	2)	echo "";
 		echo "Nand list:"
@@ -56,14 +55,14 @@ case $y in
 		echo "";
 		echo -n "Enter nand backup name: ";
 		read nand_name
-                if [ ! -f $dir_nand/$nand_name ]; then
+                if [ ! -f $dir_nand/$nand ]; then
 			echo "";
-			echo $nand_name does not exist!
+			echo $nand does not exist!
 			exit 1;
 		else
 			echo "";
-			echo Writing $nand_name to 3DS nand...
-			sudo dd if=$dir_nand/$nand_name of=/dev/$block_device bs=1M;
+			echo Writing $nand to 3DS nand...
+			sudo dd if=$dir_nand/$nand of=/dev/$block_device bs=1M;
 			echo "Write completed!";
 		fi
 		;;
@@ -73,3 +72,4 @@ case $y in
 		exit 1;
 		;;
 esac
+exit 0;
