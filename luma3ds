@@ -42,6 +42,10 @@ case $choice in
 	# Luma3DS
 	cd $dir_build/Luma3DS;
 	make clean;
+	sed -i -e 's|"/luma/config.bin"|"/luma/system/config.bin"|g' $dir_build/Luma3DS/source/firm.c;
+	sed -i -e 's|"/luma/config.bin"|"/luma/system/config.bin"|g' $dir_build/Luma3DS/injector/source/patcher.c;
+	sed -i -e 's|"/luma/splash.bin"|"/luma/system/splash.bin"|g' $dir_build/Luma3DS/source/draw.c;
+	sed -i -e 's|"/luma/splashbottom.bin"|"/luma/system/splashbottom.bin"|g' $dir_build/Luma3DS/source/draw.c;
 	sed -i -e 's|filepath ?=|filepath ?= luma/system/Luma3DS/|g' $dir_build/Luma3DS/CakeBrah/Makefile;
 	sed -i -e 's|filepath ?=|filepath ?= luma/system/Luma3DS/|g' $dir_build/Luma3DS/CakeHax/Makefile;
 	cd $dir_build/Luma3DS;
@@ -51,30 +55,27 @@ case $choice in
 	mkdir -vp $dir_system/Luma3DS;
 	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/* $dir_system/Luma3DS/;
 	mv -v $dir_build/Luma3DS/out/Luma3DS.dat $dir_system/Luma3DS/;
+	cp -v $dir_misc_files/new3ds.bin $dir_system/splash.bin-n3ds;
+	cp -v $dir_misc_files/o3dsxl.bin $dir_system/splash.bin-o3ds;
 	
 	# Arm9loaderhax
 	cd $dir_build/arm9loaderhax;
 	make clean;
-	cd $dir_build/arm9loaderhax/payload_stage2/source;
-	sed -i -e 's|"arm9loaderhax.bin"|"/luma/payloads/boot.bin"|g' main.c
+	sed -i -e 's|"arm9loaderhax.bin"|"/luma/payloads/boot.bin"|g' $dir_build/arm9loaderhax/payload_stage2/source/main.c;
 	cd $dir_build/arm9loaderhax;
 	make;
 	
 	# SafeA9LHInstaller - n3ds
 	cd $dir_build/SafeA9LHInstaller;
 	make clean;
-	cd $dir_build/SafeA9LHInstaller/source/;
-	sed -i -e 's|"a9lh/otp.bin"|"luma/system/SafeA9LHInstaller-n3ds/otp.bin"|g' installer.c
-	sed -i -e 's|"a9lh/secret_sector.bin"|"luma/system/SafeA9LHInstaller-n3ds/secret_sector.bin"|g' installer.c
-	sed -i -e 's|"a9lh/firm0.bin"|"luma/system/SafeA9LHInstaller-n3ds/firm0.bin"|g' installer.c
-	sed -i -e 's|"a9lh/firm1.bin"|"luma/system/SafeA9LHInstaller-n3ds/firm1.bin"|g' installer.c
-	sed -i -e 's|"a9lh/payload_stage1.bin"|"luma/system/SafeA9LHInstaller-n3ds/payload_stage1.bin"|g' installer.c
-	sed -i -e 's|"a9lh/payload_stage2.bin"|"luma/system/SafeA9LHInstaller-n3ds/payload_stage2.bin"|g' installer.c
-	cd $dir_build/SafeA9LHInstaller/CakeBrah/;
-	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller-n3ds/|g' Makefile;
-	cd $dir_build/SafeA9LHInstaller/CakeHax/;
-	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller-n3ds/|g' Makefile;
-	cd $dir_build/SafeA9LHInstaller;
+	sed -i -e 's|"a9lh/otp.bin"|"luma/system/SafeA9LHInstaller-n3ds/otp.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/secret_sector.bin"|"luma/system/SafeA9LHInstaller-n3ds/secret_sector.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/firm0.bin"|"luma/system/SafeA9LHInstaller-n3ds/firm0.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/firm1.bin"|"luma/system/SafeA9LHInstaller-n3ds/firm1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/payload_stage1.bin"|"luma/system/SafeA9LHInstaller-n3ds/payload_stage1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/payload_stage2.bin"|"luma/system/SafeA9LHInstaller-n3ds/payload_stage2.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller-n3ds/|g' $dir_build/SafeA9LHInstaller/CakeBrah/Makefile;
+	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller-n3ds/|g' cd $dir_build/SafeA9LHInstaller/CakeHax/Makefile;
 	make;
 	mv -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller-n3ds-v$(date +%Y%m%d).bin;
 	mkdir -v $dir_system/SafeA9LHInstaller-n3ds;
@@ -88,18 +89,14 @@ case $choice in
 	rm -rf $dir_build/SafeA9LHInstaller; cp -rR $dir_luma3ds/SafeA9LHInstaller $dir_build/;
 	cd $dir_build/SafeA9LHInstaller;
 	make clean;
-	cd $dir_build/SafeA9LHInstaller/source/;
-	sed -i -e 's|"a9lh/otp.bin"|"luma/system/SafeA9LHInstaller-o3ds/otp.bin"|g' installer.c
-	sed -i -e 's|"a9lh/secret_sector.bin"|"luma/system/SafeA9LHInstaller-o3ds/secret_sector.bin"|g' installer.c
-	sed -i -e 's|"a9lh/firm0.bin"|"luma/system/SafeA9LHInstaller-o3ds/firm0.bin"|g' installer.c
-	sed -i -e 's|"a9lh/firm1.bin"|"luma/system/SafeA9LHInstaller-o3ds/firm1.bin"|g' installer.c
-	sed -i -e 's|"a9lh/payload_stage1.bin"|"luma/system/SafeA9LHInstaller-o3ds/payload_stage1.bin"|g' installer.c
-	sed -i -e 's|"a9lh/payload_stage2.bin"|"luma/system/SafeA9LHInstaller-o3ds/payload_stage2.bin"|g' installer.c
-	cd $dir_build/SafeA9LHInstaller/CakeBrah/;
-	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller-o3ds/|g' Makefile;
-	cd $dir_build/SafeA9LHInstaller/CakeHax/;
-	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller-o3ds/|g' Makefile;
-	cd $dir_build/SafeA9LHInstaller;
+	sed -i -e 's|"a9lh/otp.bin"|"luma/system/SafeA9LHInstaller-o3ds/otp.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/secret_sector.bin"|"luma/system/SafeA9LHInstaller-o3ds/secret_sector.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/firm0.bin"|"luma/system/SafeA9LHInstaller-o3ds/firm0.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/firm1.bin"|"luma/system/SafeA9LHInstaller-o3ds/firm1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/payload_stage1.bin"|"luma/system/SafeA9LHInstaller-o3ds/payload_stage1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/payload_stage2.bin"|"luma/system/SafeA9LHInstaller-o3ds/payload_stage2.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller-o3ds/|g' $dir_build/SafeA9LHInstaller/CakeBrah/Makefile;
+	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller-o3ds/|g' $dir_build/SafeA9LHInstaller/CakeHax/Makefile;
 	make;
 	mv -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller-o3ds-v$(date +%Y%m%d).bin;
 	mkdir -v $dir_system/SafeA9LHInstaller-o3ds;
@@ -112,9 +109,7 @@ case $choice in
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP;
 	make clean;
-	cd $dir_build/Decrypt9WIP/source/decryptor;
-	sed -i -e 's|"aeskeydb.bin"|"/luma/system/aeskeydb.bin"|g' keys.c;
-	cd $dir_build/Decrypt9WIP;
+	sed -i -e 's|"aeskeydb.bin"|"/luma/system/aeskeydb.bin"|g' $dir_build/Decrypt9WIP/source/decryptor/keys.c;
 	make;
 	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_payloads/up_decrypt9-v$(date +%Y%m%d).bin;
 	cp -v $dir_decrypt9wip_files/aeskeydb.bin $dir_system/;
