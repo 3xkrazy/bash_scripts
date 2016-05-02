@@ -5,12 +5,24 @@
 dir_a9lh=~/Documents/3ds/a9lh_files
 dir_decrypt9wip_files=~/Documents/3ds/decrypt9wip_files
 dir_cia_files=~/Documents/3ds/cia_files
+dir_locales=~/Documents/3ds/locales
 dir_misc_files=~/Documents/3ds/misc_files
 dir_filer=~/Documents/3ds/filer
-
+<< COMMENT1
+if [ ! -f $dir_a9lh ] || [ ! -f $dir_decrypt9wip_files ] || [ ! -f $dir_cia_files ] || [ ! -f $dir_locales ] || [ ! -f $dir_misc_files ] || [ ! -f $dir_filer ]; then
+	echo "";
+	echo "There is something wrong with your dependencies.";
+	echo "Please make sure that the following exists:";
+	echo $dir_a9lh;
+	echo $dir_decrypt9wip_files;
+	echo $dir_cia_files;
+	echo $dir_locales;
+	echo $dir_misc_files;
+	echo $dir_filer;
+fi
+COMMENT1
 # Define directories
 dir_luma3ds=~/Documents/3ds/luma3ds
-dir_locales=~/Documents/3ds/locales
 dir_src=~/src
 dir_out=$dir_src/out
 dir_build=$dir_src/build
