@@ -75,7 +75,7 @@ case $choice in
 	sed -i -e 's|"a9lh/payload_stage1.bin"|"luma/system/SafeA9LHInstaller-n3ds/payload_stage1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
 	sed -i -e 's|"a9lh/payload_stage2.bin"|"luma/system/SafeA9LHInstaller-n3ds/payload_stage2.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
 	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller-n3ds/|g' $dir_build/SafeA9LHInstaller/CakeBrah/Makefile;
-	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller-n3ds/|g' cd $dir_build/SafeA9LHInstaller/CakeHax/Makefile;
+	sed -i -e 's|filepath ?=|filepath ?= luma/system/SafeA9LHInstaller-n3ds/|g' $dir_build/SafeA9LHInstaller/CakeHax/Makefile;
 	make;
 	mv -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller-n3ds-v$(date +%Y%m%d).bin;
 	mkdir -v $dir_system/SafeA9LHInstaller-n3ds;
