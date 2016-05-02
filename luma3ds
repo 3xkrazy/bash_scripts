@@ -85,7 +85,7 @@ case $choice in
 	cp -v $dir_build/arm9loaderhax/out/* $dir_system/SafeA9LHInstaller-n3ds/;
 	cp -v $dir_a9lh/n3ds/* $dir_system/SafeA9LHInstaller-n3ds/;
 	
-	# SafeA9LHInstaller - n3ds
+	# SafeA9LHInstaller - o3ds
 	rm -rf $dir_build/SafeA9LHInstaller; cp -rR $dir_luma3ds/SafeA9LHInstaller $dir_build/;
 	cd $dir_build/SafeA9LHInstaller;
 	make clean;
