@@ -4,10 +4,10 @@
 # Dependencies
 dep_luma3ds=~/Documents/3ds/luma3ds
 dep_a9lh=~/Documents/3ds/a9lh
-dep_decrypt9wip_files=~/Documents/3ds/decrypt9wip
-dep_cia_files=~/Documents/3ds/cia
+dep_decrypt9wip=~/Documents/3ds/decrypt9wip
+dep_cia=~/Documents/3ds/cia
 dep_locales=~/Documents/3ds/locales
-dep_misc_files=~/Documents/3ds/misc
+dep_misc=~/Documents/3ds/misc
 dep_filer=~/Documents/3ds/filer
 
 # Define directories
