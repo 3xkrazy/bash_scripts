@@ -1,27 +1,27 @@
 #!/bin/bash
 # luma3ds
 
-# Define directories
-dir_luma3ds=~/Documents/3ds/luma3ds
-dir_src=~/src
-dir_out=$dir_src/out
-dir_build=$dir_src/build
-dir_luma=$dir_out/luma
-dir_system=$dir_luma/system
-dir_payloads=$dir_luma/payloads
-dir_locales=~/Documents/3ds/locales
-dir_cia=$dir_luma/cia
-dir_cia_apps=$dir_cia/apps
-dir_cia_games=$dir_cia/games
-dir_cia_updates=$dir_cia/updates
-dir_tmp=$dir_system/tmp
-
 # Dependencies
 dir_a9lh=~/Documents/3ds/a9lh_files
 dir_decrypt9wip_files=~/Documents/3ds/decrypt9wip_files
 dir_cia_files=~/Documents/3ds/cia_files
 dir_misc_files=~/Documents/3ds/misc_files
 dir_filer=~/Documents/3ds/filer
+
+# Define directories
+dir_luma3ds=~/Documents/3ds/luma3ds
+dir_locales=~/Documents/3ds/locales
+dir_src=~/src
+dir_out=$dir_src/out
+dir_build=$dir_src/build
+dir_luma=$dir_out/luma
+dir_system=$dir_luma/system
+dir_payloads=$dir_luma/payloads
+dir_cia=$dir_luma/cia
+dir_cia_apps=$dir_cia/apps
+dir_cia_games=$dir_cia/games
+dir_cia_updates=$dir_cia/updates
+dir_tmp=$dir_system/tmp
 
 # Luma3DS Menu
 echo "";
@@ -51,7 +51,7 @@ case $choice in
 	cd $dir_build/Luma3DS;
 	make;
 	mv -v $dir_build/Luma3DS/out/luma/* $dir_out/luma/;
-	cp -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_system/boot.bin;
+	mv -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_system/boot.bin;
 	mkdir -vp $dir_system/Luma3DS;
 	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/* $dir_system/Luma3DS/;
 	mv -v $dir_build/Luma3DS/out/Luma3DS.dat $dir_system/Luma3DS/;
@@ -79,8 +79,8 @@ case $choice in
 	make;
 	mv -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller-n3ds-v$(date +%Y%m%d).bin;
 	mkdir -v $dir_system/SafeA9LHInstaller-n3ds;
-	cp -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_system/SafeA9LHInstaller-n3ds/SafeA9LHInstaller-n3ds.3dsx;
-	cp -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_system/SafeA9LHInstaller-n3ds/SafeA9LHInstaller-n3ds.smdh;
+	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_system/SafeA9LHInstaller-n3ds/SafeA9LHInstaller-n3ds.3dsx;
+	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_system/SafeA9LHInstaller-n3ds/SafeA9LHInstaller-n3ds.smdh;
 	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/SafeA9LHInstaller-n3ds/SafeA9LHInstaller-n3ds.dat;
 	cp -v $dir_build/arm9loaderhax/out/* $dir_system/SafeA9LHInstaller-n3ds/;
 	cp -v $dir_a9lh/n3ds/* $dir_system/SafeA9LHInstaller-n3ds/;
@@ -100,8 +100,8 @@ case $choice in
 	make;
 	mv -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller-o3ds-v$(date +%Y%m%d).bin;
 	mkdir -v $dir_system/SafeA9LHInstaller-o3ds;
-	cp -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_system/SafeA9LHInstaller-o3ds/SafeA9LHInstaller-o3ds.3dsx;
-	cp -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_system/SafeA9LHInstaller-o3ds/SafeA9LHInstaller-o3ds.smdh;
+	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_system/SafeA9LHInstaller-o3ds/SafeA9LHInstaller-o3ds.3dsx;
+	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_system/SafeA9LHInstaller-o3ds/SafeA9LHInstaller-o3ds.smdh;
 	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/SafeA9LHInstaller-o3ds/SafeA9LHInstaller-o3ds.dat;
 	cp -v $dir_build/arm9loaderhax/out/* $dir_system/SafeA9LHInstaller-o3ds/;
 	cp -v $dir_a9lh/o3ds/* $dir_system/SafeA9LHInstaller-o3ds/;
@@ -117,8 +117,6 @@ case $choice in
 	# EmuNAND9
 	cd $dir_build/EmuNAND9;
 	make clean;
-	cd $dir_build/EmuNAND9/source;
-	cd $dir_build/EmuNAND9;
 	make;
 	mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_payloads/right_emunand9-v$(date +%Y%m%d).bin;
 
@@ -138,13 +136,13 @@ case $choice in
 	cd $dir_build/FBI;
 	make clean;
 	make;
-	cp -v $dir_build/FBI/output/FBI.cia $dir_cia_apps/fbi-v$(date +%Y%m%d).cia;
+	mv -v $dir_build/FBI/output/FBI.cia $dir_cia_apps/fbi-v$(date +%Y%m%d).cia;
 
 	# ftpd
 	cd $dir_build/ftpd;
 	make clean;
 	make;
-	cp -v $dir_build/ftpd/output/ftpd.cia $dir_cia_apps/ftpd-v$(date +%Y%m%d).cia;
+	mv -v $dir_build/ftpd/output/ftpd.cia $dir_cia_apps/ftpd-v$(date +%Y%m%d).cia;
 	
 	# Copy depencencies
 	cp -rR $dir_locales $dir_luma/;
@@ -179,14 +177,12 @@ case $choice in
     	echo "";
     	echo "Repository updated!";
     	echo "";
-    	
     	exit 0;
     	;;
 	
   	*)
     	echo "";
     	echo "You selected an invalid choice!";
-    	
     	exit 1;
     	;;
 esac
