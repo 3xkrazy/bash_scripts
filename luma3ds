@@ -79,7 +79,7 @@ case $choice in
 	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_system/safea9lhinstaller/safea9lhinstaller.3dsx;
 	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_system/safea9lhinstaller/safea9lhinstaller.smdh;
 	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/safea9lhinstaller/safea9lhinstaller.dat;
-	cp -v $dir_build/arm9loaderhax/out/* $dir_system/safea9lhinstaller/;
+	mv -v $dir_build/arm9loaderhax/out/* $dir_system/safea9lhinstaller/;
 	cp -v $dep_a9lh/* $dir_system/safea9lhinstaller/;
 	
   	# Decrypt9WIP
@@ -104,6 +104,7 @@ case $choice in
 	# GodMode9
 	cd $dir_build/GodMode9;
 	make clean;
+	sed -i -e 's|"0:/snap%03i.bmp"|"0:/luma/system/tmp/snap%03i.bmp"|g' $dir_build/GodMode9/source/fs.c;
 	make;
 	mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_payloads/left_godmode9-v$(date +%Y%m%d).bin;
 
