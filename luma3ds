@@ -1,7 +1,7 @@
 #!/bin/bash
 # luma3ds
 
-# Dependencies
+# Define dependencies
 dep_luma3ds=~/Documents/3ds/luma3ds
 dep_a9lh=~/Documents/3ds/a9lh
 dep_decrypt9wip=~/Documents/3ds/decrypt9wip
@@ -104,7 +104,6 @@ case $choice in
 	# GodMode9
 	cd $dir_build/GodMode9;
 	make clean;
-	sed -i -e 's|"0:/snap%03i.bmp"|"0:/luma/system/tmp/snap%03i.bmp"|g' $dir_build/GodMode9/source/fs.c;
 	make;
 	mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_payloads/left_godmode9-v$(date +%Y%m%d).bin;
 
