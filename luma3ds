@@ -80,7 +80,7 @@ case $choice in
 	mkdir -v $dir_system/safea9lhinstaller-n3ds;
 	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_system/safea9lhinstaller-n3ds/safea9lhinstaller-n3ds.3dsx;
 	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_system/safea9lhinstaller-n3ds/safea9lhinstaller-n3ds.smdh;
-	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/safea9lhinstaller-n3ds/safea9lhinstaller-n3ds.dat;
+	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/safea9lhinstaller-n3ds/safea9lhinstaller.dat;
 	cp -v $dir_build/arm9loaderhax/out/* $dir_system/safea9lhinstaller-n3ds/;
 	cp -v $dep_a9lh/n3ds/* $dir_system/safea9lhinstaller-n3ds/;
 	
@@ -101,7 +101,7 @@ case $choice in
 	mkdir -v $dir_system/safea9lhinstaller-o3ds;
 	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_system/safea9lhinstaller-o3ds/safea9lhinstaller-o3ds.3dsx;
 	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_system/safea9lhinstaller-o3ds/safea9lhinstaller-o3ds.smdh;
-	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/safea9lhinstaller-o3ds/safea9lhinstaller-o3ds.dat;
+	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/safea9lhinstaller-o3ds/safea9lhinstaller.dat;
 	cp -v $dir_build/arm9loaderhax/out/* $dir_system/safea9lhinstaller-o3ds/;
 	cp -v $dep_a9lh/o3ds/* $dir_system/safea9lhinstaller-o3ds/;
 	
