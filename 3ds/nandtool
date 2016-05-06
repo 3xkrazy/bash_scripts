@@ -54,7 +54,7 @@ case $y in
 		done
 		echo "";
 		echo -n "Enter nand backup name: ";
-		read nand_name
+		read nand
                 if [ ! -f $dir_nand/$nand ]; then
 			echo "";
 			echo $nand does not exist!
