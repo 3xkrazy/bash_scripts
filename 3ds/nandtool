@@ -25,11 +25,15 @@ case $x in
                 exit 1;
 		;;
 esac
+
+<< COMMENT1
 if [ ! -f /dev/$block_device ]; then
 	echo "";
 	echo Block device /dev/$block_device does not exist!;
 	exit 1;
 fi
+COMMENT1
+
 echo "";
 echo Your 3DS is connected at /dev/$block_device
 echo ""
