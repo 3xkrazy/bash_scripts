@@ -21,7 +21,7 @@ rm -v $dir_bin/pmove;
 
 cd $dir_bin;
 
-wget $hbtools_url;
+wget $hbtool_url;
 wget $nandtool_url;
 wget $funkeycia_url;
 wget $funkeycia;
