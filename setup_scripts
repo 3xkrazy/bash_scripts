@@ -3,15 +3,15 @@
 
 dir_bin=~/.bin/
 
-hbtool_url=https://raw.githubusercontent.com/3xkrazy/3ds/master/scripts/hbtool
-nandtool_url=https://raw.githubusercontent.com/3xkrazy/3ds/master/scripts/nandtool
-funkeycia_url=https://raw.githubusercontent.com/3xkrazy/3ds/master/scripts/funkeycia
-funkeycia=https://raw.githubusercontent.com/llakssz/FunKeyCIA/master/FunKeyCIA.py
-filer_url=https://raw.githubusercontent.com/3xkrazy/3ds/master/scripts/filer
-setaudio_url=https://raw.githubusercontent.com/3xkrazy/bash_scripts/master/system/setaudio
-pmove_url=https://raw.githubusercontent.com/3xkrazy/bash_scripts/master/system/pmove
+corbenik_url=https://raw.githubusercontent.com/3xkrazy/3ds/master/scripts/corbenik;
+nandtool_url=https://raw.githubusercontent.com/3xkrazy/3ds/master/scripts/nandtool;
+funkeycia_url=https://raw.githubusercontent.com/3xkrazy/3ds/master/scripts/funkeycia;
+funkeycia=https://raw.githubusercontent.com/llakssz/FunKeyCIA/master/FunKeyCIA.py;
+filer_url=https://raw.githubusercontent.com/3xkrazy/3ds/master/scripts/filer;
+setaudio_url=https://raw.githubusercontent.com/3xkrazy/bash_scripts/master/system/setaudio;
+pmove_url=https://raw.githubusercontent.com/3xkrazy/bash_scripts/master/system/pmove;
 
-rm -v $dir_bin/hbtool;
+rm -v $dir_bin/corbenik;
 rm -v $dir_bin/nandtool;
 rm -v $dir_bin/funkeycia;
 rm -v $dir_bin/FunKeyCIA.py;
@@ -21,7 +21,7 @@ rm -v $dir_bin/pmove;
 
 cd $dir_bin;
 
-wget $hbtool_url;
+wget $corbenik_url;
 wget $nandtool_url;
 wget $funkeycia_url;
 wget $funkeycia;
@@ -29,7 +29,7 @@ wget $filer_url;
 wget $setaudio_url;
 wget $pmove_url;
 
-chmod -v u+x $dir_bin/hbtool;
+chmod -v u+x $dir_bin/corbenik;
 chmod -v u+x $dir_bin/nandtool;
 chmod -v u+x $dir_bin/funkeycia;
 chmod -v u+x $dir_bin/FunKeyCIA.py;
